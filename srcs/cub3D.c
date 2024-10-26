@@ -1,8 +1,4 @@
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <MLX42/MLX42.h>
+#include <cub3D.h>
 
 #define WIDTH 512
 #define HEIGHT 512
@@ -41,7 +37,7 @@ void ft_hook(void* param)
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
 	if (mlx_is_key_down(mlx, MLX_KEY_UP))
-		image->instances[0].y -= 5;
+		image->instances->y -= 5;
 	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
 		image->instances[0].y += 5;
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))

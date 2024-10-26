@@ -1,39 +1,35 @@
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+NAME	:= cub3D
+CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
 MORE_FLAGS = -fsanitize=address -g
 
 MLX_DIR	:= ~/MLX42
-MLX_FLAGS = ~/MLX42/build/libmlx42.a
-
-NAME = cub3D
-
 SRC_DIR = srcs
 SRC_FILES = cub3D.c
+
+HEADERS	:= -I ./include -I $(MLX_DIR)/include
+LIBS	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
-OBJS = $(SRCS:.c=.o)
 
-HEADERS_FILES = cub3D.h
-HEADERS_DIR = include
-HEADERS = -I $(addprefix $(HEADERS_DIR)/, $(HEADERS_FILES))
-MLX_HEADERS = -I $(MLX_DIR)/include
+OBJS	:= ${SRCS:.c=.o}
 
-all: $(NAME)
+all: libmlx $(NAME)
 
 libmlx:
 	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
 
-%.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) $(MORE_FLAGS) -Imlx $(MLX_HEADERS) $< -o $@
+%.o: %.c
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(MORE_FLAGS) $(MLX_HEADERS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(MORE_FLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
 clean:
-	rm -rf $(OBJS)
+	@rm -rf $(OBJS)
+	@rm -rf $(MLX_DIR)/build
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
-re: fclean all
+re: clean all
 
-.PHONY: all libmlx clean fclean re
+.PHONY: all, clean, fclean, re, libmlx
