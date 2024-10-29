@@ -1,16 +1,21 @@
 NAME	:= cub3D
-CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
-MORE_FLAGS = -fsanitize=address -g
+CFLAGS	:= -Wextra -Wall -Werror #-Wunreachable-code -Ofast
+MORE_FLAGS = #-fsanitize=address -g
 
 MLX_DIR	:= ~/MLX42
-SRC_DIR = srcs
+SRC_DIR = src
 SRC_FILES = cub3D.c
+
+RAYCAST_FILES = raycasting.c utils.c
+LIBFT_FILES = ft_strdup.c ft_strlen.c
+RAYCAST_SRC = $(addprefix $(SRC_DIR)/raycasting/, $(RAYCAST_FILES))
+LIBFT_SRC = $(addprefix $(SRC_DIR)/libft/, $(LIBFT_FILES))
 
 HEADERS	:= -I ./include -I $(MLX_DIR)/include
 LIBS	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+SRC = $(SRC_DIR)/cub3D.c $(LIBFT_SRC) $(RAYCAST_SRC)
 
-OBJS	:= ${SRCS:.c=.o}
+OBJS	:= ${SRC:.c=.o}
 
 all: libmlx $(NAME)
 
@@ -25,7 +30,7 @@ $(NAME): $(OBJS)
 
 clean:
 	@rm -rf $(OBJS)
-	@rm -rf $(MLX_DIR)/build
+	# rm -rf $(MLX_DIR)/build
 
 fclean: clean
 	@rm -rf $(NAME)
