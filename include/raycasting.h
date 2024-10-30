@@ -8,6 +8,8 @@
 #include <cub3D.h>
 
 # define PI 3.14159265358979323846
+# define FOV 60 * PI / 180 
+# define NUM_RAYS 320 
 
 void raycarting(t_game *game);
 int deg_to_rad(int deg);
