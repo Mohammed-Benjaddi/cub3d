@@ -8,14 +8,16 @@ void	ft_hook(mlx_key_data_t keydata, void *param)
 	game = param;
 	if (keydata.key == MLX_KEY_ESCAPE)
 			mlx_close_window(game->mlx);
+	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+		hanle_left_arrow(game);
 }
 
 t_game *init_infos()
 {
 	t_game *game;
 	game = malloc(sizeof(t_game));
-	game->width = 720;
-	game->height = 420;
+	game->width = 1000;
+	game->height = 620;
 	game->mlx = mlx_init(game->width , game->height, "MLX42", true);
 	game->map = malloc(sizeof(char *) * 15);
 	game->map[0] = 	ft_strdup("111111111111111111111111");
@@ -33,10 +35,15 @@ t_game *init_infos()
 	game->map[12] = ft_strdup("1111011111101011011110N1");
 	game->map[13] = ft_strdup("111111111111111111111111");
 	game->map[14] = NULL;
-	game->x = 0;
-	game->y = 0;
+	game->x = 0.0;
+	game->y = 0.0;
 	game->angle = 90;
 	game->direction = 'N';
+	game->background = mlx_new_image(game->mlx, game->width + 500, game->height + 200);
+  mlx_image_to_window(game->mlx, game->background, 0, 0);
+	game->img = mlx_new_image(game->mlx, game->width, game->height);
+  if (!game->img || (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0))
+    perror("putting image to window failed");
 	return game;
 }
 

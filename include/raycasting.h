@@ -1,18 +1,18 @@
 #ifndef RAYCATSING_H
 # define RAYCATSING_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <MLX42/MLX42.h>
 #include <cub3D.h>
 
+typedef struct s_game t_game;
+
 # define PI 3.14159265358979323846
-# define FOV 60 * PI / 180 
-# define NUM_RAYS 320 
+# define FOV 60 * PI / 180
+# define NUM_RAYS 320
 
 void raycarting(t_game *game);
-int deg_to_rad(int deg);
-int rad_to_deg(int rad);
+float deg_to_rad(float deg);
+float rad_to_deg(float rad);
+float get_new_x(t_game *game, float angle);
+float get_new_y(t_game *game, float angle);
 
 #endif

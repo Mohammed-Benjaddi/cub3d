@@ -12,7 +12,7 @@
 #include <MLX42/MLX42.h>
 #include <libft.h>
 #include <math.h>
-// #include <raycasting.h>
+#include <raycasting.h>
 
 typedef struct s_game
 {
@@ -22,12 +22,30 @@ typedef struct s_game
   int y;
   char **map;
   mlx_t* mlx;
+  mlx_image_t *img;
+  mlx_image_t* background;
   char direction;
-  int player_x;
-  int player_y;
-  double angle;
-  int n_px;
-  int n_py;
+  float player_x;
+  float player_y;
+  float angle;
+  float n_px;
+  float n_py;
 } t_game;
+
+
+// from raycasting.h
+
+void raycarting(t_game *game);
+float deg_to_rad(float deg);
+float rad_to_deg(float rad);
+float get_new_x(t_game *game, float angle);
+float get_new_y(t_game *game, float angle);
+
+// -----------------------------------
+
+
+
+void hanle_left_arrow(t_game *game);
+
 
 #endif

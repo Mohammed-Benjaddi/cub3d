@@ -5,15 +5,17 @@ MORE_FLAGS = #-fsanitize=address -g
 MLX_DIR	:= ~/MLX42
 SRC_DIR = src
 SRC_FILES = cub3D.c
+CUB_FILES = cub3D.c handle_keys_click.c
 
 RAYCAST_FILES = raycasting.c utils.c
 LIBFT_FILES = ft_strdup.c ft_strlen.c
 RAYCAST_SRC = $(addprefix $(SRC_DIR)/raycasting/, $(RAYCAST_FILES))
 LIBFT_SRC = $(addprefix $(SRC_DIR)/libft/, $(LIBFT_FILES))
+CUB_SRC = $(addprefix $(SRC_DIR)/, $(CUB_FILES))
 
 HEADERS	:= -I ./include -I $(MLX_DIR)/include
 LIBS	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRC = $(SRC_DIR)/cub3D.c $(LIBFT_SRC) $(RAYCAST_SRC)
+SRC = $(CUB_SRC) $(LIBFT_SRC) $(RAYCAST_SRC)
 
 OBJS	:= ${SRC:.c=.o}
 
