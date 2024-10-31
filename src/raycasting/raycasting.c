@@ -72,10 +72,10 @@ void ft_pixel(t_game *game)
 void draw_direction(t_game *game)
 {
   int i;
-  int j;
+  // int j;
 
   i = 0;
-  j = 0;
+  // j = 0;
   if(game->direction == 'N')
   {
     while(game->player_y + 15 - i > 0 && i < 50)
