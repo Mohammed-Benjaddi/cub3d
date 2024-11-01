@@ -30,6 +30,10 @@ typedef struct s_game
   float angle;
   float n_px;
   float n_py;
+  double rotation_speed;
+  int turn_direction;
+  int walk_direction;
+  double rotation_angle;
 } t_game;
 
 
@@ -40,12 +44,14 @@ float deg_to_rad(float deg);
 float rad_to_deg(float rad);
 float get_new_x(t_game *game, float angle);
 float get_new_y(t_game *game, float angle);
+void dda_algo(t_game *game);
+void rebuild_map(t_game *game);
 
 // -----------------------------------
 
 
 
-void hanle_left_arrow(t_game *game);
-
+void right_arrow(t_game *game);
+void left_arrow(t_game *game);
 
 #endif

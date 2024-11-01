@@ -14,5 +14,7 @@ float deg_to_rad(float deg);
 float rad_to_deg(float rad);
 float get_new_x(t_game *game, float angle);
 float get_new_y(t_game *game, float angle);
+void dda_algo(t_game *game);
+void rebuild_map(t_game *game);
 
 #endif

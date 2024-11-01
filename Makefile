@@ -6,8 +6,8 @@ MLX_DIR	:= ~/MLX42
 SRC_DIR = src
 SRC_FILES = cub3D.c
 CUB_FILES = cub3D.c handle_keys_click.c
-LIBS_LINUX = $(MLX_DIR)/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
-# LIBS_MAC	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
+# LIBS_LINUX = $(MLX_DIR)/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
+LIBS_MAC	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
 RAYCAST_FILES = raycasting.c utils.c
 LIBFT_FILES = ft_strdup.c ft_strlen.c
@@ -29,7 +29,7 @@ libmlx:
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(MORE_FLAGS) $(OBJS) $(LIBS_LINUX) $(HEADERS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(MORE_FLAGS) $(OBJS) $(LIBS_MAC) $(HEADERS) -o $(NAME)
 
 clean:
 	@rm -rf $(OBJS)

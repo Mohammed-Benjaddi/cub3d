@@ -1,44 +1,11 @@
 #include <raycasting.h>
 
-
-// void  put_player(t_game *game, int y, int x)
-// {
-//   printf("-----------> here\n");
-//   mlx_image_t* img;
-
-//   img = mlx_new_image(game->mlx, 20, 20);
-// 	if (!img || (mlx_image_to_window(game->mlx, img, y, x) < 0))
-// 		perror("putting image to window failed");
-// 	mlx_put_pixel(img, x, y, ft_pixel(rand() % 0xFF, rand() % 0xFF, rand() % 0xFF, rand() % 0xFF));
-// }
-
-// void ft_put_png(const char *path, t_game *game, int y, int x)
-// {
-//   mlx_texture_t* texture = mlx_load_png(path);
-// 	if (!texture)
-//     perror("texture issue");
-// 	mlx_image_t* img = mlx_texture_to_image(game->mlx, texture);
-// 	if (!img)
-//     perror("convert texture to image failed");
-// 	if (mlx_image_to_window(game->mlx, img, x, y) < 0)
-//     perror("putting image to window failed");
-// 	mlx_delete_texture(texture);
-// }
-
-int32_t ft_get_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
-{
-    return (r << 24 | g << 16 | b << 8 | a);
-}
-
 void draw_background(t_game *game)
 {
   int i;
   int j;
-  
 
   i = 0;
-  // image = mlx_new_image(game->mlx, game->width + 500, game->height + 200);
-  // mlx_image_to_window(game->mlx, image, 0, 0);
   while(i < game->width)
   {
     j = 0;
@@ -69,22 +36,31 @@ void ft_pixel(t_game *game)
   }
 }
 
-void draw_direction(t_game *game)
+void dda_algo(t_game *game)
 {
+  game->n_px  = game->player_x + cos(game->rotation_angle) * 30;
+  game->n_py = game->player_y + sin(game->rotation_angle) * 30;
+  float dx;
+  float dy;
+  dx = game->n_px - game->player_x;
+  dy = game->n_py - game->player_y;
+  float steps;
+  if(fabs(dx) > fabs(dy))
+    steps = fabs(dx);
+  else
+    steps = fabs(dy);
   int i;
-  // int j;
-
+  float x = game->player_x;
+  float y = game->player_y;
+  float x_inc = dx / steps;
+  float y_inc = dy / steps;
   i = 0;
-  // j = 0;
-  if(game->direction == 'N')
+  while(i <= steps + 20)
   {
-    while(game->player_y + 15 - i > 0 && i < 50)
-    {
-      mlx_put_pixel(game->img, game->player_x, game->player_y - i, GREEN);
-      i++;
-    }
-    game->n_px = game->player_x;
-    game->n_py = game->y + 15.0 - i;
+    mlx_put_pixel(game->img, roundf(x), roundf(y), GREEN);
+    x += x_inc;
+    y += y_inc;
+    i++;    
   }
 }
 
@@ -108,7 +84,7 @@ void ft_put_player(t_game *game)
   }
   game->player_x = game->x + 15;
   game->player_y = game->y + 15;
-  draw_direction(game);
+  dda_algo(game);
 }
 
 void draw_map(t_game *game)
@@ -131,7 +107,37 @@ void draw_map(t_game *game)
     {
       if(game->map[i][j] == '1')
         ft_pixel(game);
-      else if(game->map[i][j] != '0')
+      j++;
+      game->x += 30.0;
+    }
+    i++;
+    game->y += 30.0;
+  }
+}
+
+bool is_player(char c)
+{
+  if(c == 'N' || c == 'S' || c == 'E' || c == 'W')
+    return true;
+  return false;
+}
+
+void put_player(t_game *game)
+{
+  int i;
+  int j;
+
+  i = 0;
+  j = 0;
+  game->x = 0.0;
+  game->y = 0.0;
+  while(game->map[i])
+  {
+    j = 0;
+    game->x = 0.0;
+    while(game->map[i][j])
+    {
+      if(is_player(game->map[i][j]))
         ft_put_player(game);
       j++;
       game->x += 30.0;
@@ -141,7 +147,21 @@ void draw_map(t_game *game)
   }
 }
 
+void rebuild_map(t_game *game)
+{
+	mlx_delete_image(game->mlx, game->img);
+  game->img = mlx_new_image(game->mlx, game->width, game->height);
+  if (!game->img || (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0))
+    perror("putting image to window failed");
+  game->x = 0;
+  game->y = 0;
+  draw_map(game);
+  printf("image created again\n");
+  put_player(game); 
+}
+
 void raycarting(t_game *game)
 {
   draw_map(game);
+  put_player(game);
 }
