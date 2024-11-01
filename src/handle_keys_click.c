@@ -2,8 +2,8 @@
 
 void update_direction(t_game *game)
 {
-  printf("x ---> %f\n", game->n_px); 
-  printf("y ---> %f\n", game->n_py);
+  // printf("x ---> %f\n", game->n_px); 
+  // printf("y ---> %f\n", game->n_py);
   float dx;
   float dy;
 
@@ -32,24 +32,20 @@ void update_direction(t_game *game)
 
 void right_arrow(t_game *game)
 {
-  // game->turn_direction = 1;
-  printf("rotation angle before ---> %f\n", game->rotation_angle);
-  printf("speed --> %f\n", game->rotation_speed);
+  // printf("rotation angle before ---> %f\n", game->rotation_angle);
+  // printf("speed --> %f\n", game->rotation_speed);
   game->rotation_angle += 1 * game->rotation_speed; 
-  printf("rotation angle after ---> %f\n", game->rotation_angle);
+  // printf("rotation angle after ---> %f\n", game->rotation_angle);
   dda_algo(game);
   rebuild_map(game);
-  // game->turn_direction = 0;
 }
 
 void left_arrow(t_game *game)
 {
-  // game->turn_direction = 1;
-  printf("rotation angle before ---> %f\n", game->rotation_angle);
-  printf("speed --> %f\n", game->rotation_speed);
+  // printf("rotation angle before ---> %f\n", game->rotation_angle);
+  // printf("speed --> %f\n", game->rotation_speed);
   game->rotation_angle += -1 * game->rotation_speed; 
-  printf("rotation angle after ---> %f\n", game->rotation_angle);
+  // printf("rotation angle after ---> %f\n", game->rotation_angle);
   dda_algo(game);
   rebuild_map(game);
-  // game->turn_direction = 0;
 }

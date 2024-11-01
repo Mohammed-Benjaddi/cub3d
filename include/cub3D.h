@@ -24,6 +24,7 @@ typedef struct s_game
   mlx_t* mlx;
   mlx_image_t *img;
   mlx_image_t* background;
+  mlx_image_t* player;
   char direction;
   float player_x;
   float player_y;

@@ -8,9 +8,13 @@ void	ft_hook(mlx_key_data_t keydata, void *param)
 	game = param;
 	if (keydata.key == MLX_KEY_ESCAPE)
 			mlx_close_window(game->mlx);
-	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+	else if (keydata.key == MLX_KEY_RIGHT && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 		right_arrow(game);
-	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+	else if (keydata.key == MLX_KEY_LEFT && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
+		left_arrow(game);
+	// else if (keydata.key == MLX_KEY_UP && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
+		// left_arrow(game);
+	else if (keydata.key == MLX_KEY_DOWN && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 		left_arrow(game);
 }
 
@@ -46,8 +50,8 @@ t_game *init_infos()
 	game->walk_direction = 0;
 	game->rotation_angle = PI / 2;
 	game->rotation_speed = 9 * (PI / 180);
-	printf("init rotation angle ---> %f\n", game->rotation_angle);
-	printf("init rotation speed ---> %f\n", game->rotation_speed);
+	// printf("init rotation angle ---> %f\n", game->rotation_angle);
+	// printf("init rotation speed ---> %f\n", game->rotation_speed);
 	game->background = mlx_new_image(game->mlx, game->width + 500, game->height + 200);
   mlx_image_to_window(game->mlx, game->background, 0, 0);
 	game->img = mlx_new_image(game->mlx, game->width, game->height);

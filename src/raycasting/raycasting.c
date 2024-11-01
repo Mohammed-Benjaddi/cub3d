@@ -156,7 +156,6 @@ void rebuild_map(t_game *game)
   game->x = 0;
   game->y = 0;
   draw_map(game);
-  printf("image created again\n");
   put_player(game); 
 }
 
