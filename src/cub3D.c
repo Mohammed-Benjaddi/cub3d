@@ -41,12 +41,12 @@ t_game *init_infos()
 	game->map[8] = 	ft_strdup("110000001101010111000001");
 	game->map[9] = 	ft_strdup("100000000000000110000011");
 	game->map[10] = ft_strdup("100000000000000011010111");
-	game->map[11] = ft_strdup("11000001110101011111011");
+	game->map[11] = ft_strdup("110000011101010111110111");
 	game->map[12] = ft_strdup("111101111110101101111001");
 	game->map[13] = ft_strdup("111111111111111111111111");
 	game->map[14] = NULL;
-	game->x = 0.0;
-	game->y = 0.0;
+	game->x = game->width / 2;
+	game->y = game->height / 2;
 	game->angle = 90;
 	game->direction = 'N';
 	game->rotation_speed = 5;
@@ -70,8 +70,11 @@ int main(void)
 	game = init_infos();
 	raycarting(game);
 
+	printf("game->x : %d\n", game->x);
+	printf("game->y : %d\n", game->y);
 	mlx_key_hook(game->mlx, ft_hook, game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
+
 	return (EXIT_SUCCESS);
 }

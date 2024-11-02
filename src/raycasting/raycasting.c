@@ -18,7 +18,7 @@ void draw_background(t_game *game)
   }
 }
 
-void ft_pixel(t_game *game)
+void ft_pixel(t_game *game, int x, int y)
 {
   int i;
   int j;
@@ -29,7 +29,7 @@ void ft_pixel(t_game *game)
     j = 0;
     while (j < 30)
     {
-      mlx_put_pixel(game->img, game->x + j, game->y + i, BLACK);
+      mlx_put_pixel(game->img, x + j, y + i, BLACK);
       j++;
     }
     i++;
@@ -64,7 +64,7 @@ void dda_algo(t_game *game)
   }
 }
 
-void ft_put_player(t_game *game)
+void ft_put_player(t_game *game, int x, int y)
 {
   int i;
   int j;
@@ -77,13 +77,13 @@ void ft_put_player(t_game *game)
     while (j < 30)
     {
       if(j >= 12 && j <= 18 && i >= 12 && i <= 18)
-        mlx_put_pixel(game->img, game->x + j, game->y + i, RED);
+        mlx_put_pixel(game->img, x + j, y + i, RED);
       j++;
     }
     i++;
   }
-  game->player_x = game->x + 15;
-  game->player_y = game->y + 15;
+  game->player_x = x + 15;
+  game->player_y = y + 15;
   dda_algo(game);
 }
 
@@ -102,16 +102,13 @@ void draw_map(t_game *game)
   while(game->map[i])
   {
     j = 0;
-    game->x = 0.0;
     while(game->map[i][j])
     {
       if(game->map[i][j] == '1')
-        ft_pixel(game);
+        ft_pixel(game, j * 30, i * 30);
       j++;
-      game->x += 30.0;
     }
     i++;
-    game->y += 30.0;
   }
 }
 
@@ -129,21 +126,21 @@ void put_player(t_game *game)
 
   i = 0;
   j = 0;
-  game->x = 0.0;
-  game->y = 0.0;
+  // game->x = 0.0;
+  // game->y = 0.0;
   while(game->map[i])
   {
     j = 0;
-    game->x = 0.0;
+    // game->x = 0.0;
     while(game->map[i][j])
     {
       if(is_player(game->map[i][j]))
-        ft_put_player(game);
+        ft_put_player(game, j * 30, i * 30);
       j++;
-      game->x += 30.0;
+      // game->x += 30.0;
     }
     i++;
-    game->y += 30.0;
+    // game->y += 30.0;
   }
 }
 
@@ -153,8 +150,8 @@ void rebuild_map(t_game *game)
   game->img = mlx_new_image(game->mlx, game->width, game->height);
   if (!game->img || (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0))
     perror("putting image to window failed");
-  game->x = 0;
-  game->y = 0;
+  // game->x = 0;
+  // game->y = 0;
   draw_map(game);
   put_player(game); 
 }
