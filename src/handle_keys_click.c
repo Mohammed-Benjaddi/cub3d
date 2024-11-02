@@ -32,20 +32,20 @@ void update_direction(t_game *game)
 
 void right_arrow(t_game *game)
 {
-  // printf("rotation angle before ---> %f\n", game->rotation_angle);
-  // printf("speed --> %f\n", game->rotation_speed);
-  game->rotation_angle += 1 * game->rotation_speed; 
-  // printf("rotation angle after ---> %f\n", game->rotation_angle);
-  dda_algo(game);
-  rebuild_map(game);
+  game->turn_direction = 1;
 }
 
 void left_arrow(t_game *game)
 {
-  // printf("rotation angle before ---> %f\n", game->rotation_angle);
-  // printf("speed --> %f\n", game->rotation_speed);
-  game->rotation_angle += -1 * game->rotation_speed; 
-  // printf("rotation angle after ---> %f\n", game->rotation_angle);
-  dda_algo(game);
-  rebuild_map(game);
+  game->turn_direction = -1;
+}
+
+void up_arrow(t_game *game)
+{
+  game->walk_direction = 1;
+}
+
+void down_arrow(t_game *game)
+{
+  game->walk_direction = -1;
 }

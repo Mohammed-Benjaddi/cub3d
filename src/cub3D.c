@@ -12,10 +12,14 @@ void	ft_hook(mlx_key_data_t keydata, void *param)
 		right_arrow(game);
 	else if (keydata.key == MLX_KEY_LEFT && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 		left_arrow(game);
-	// else if (keydata.key == MLX_KEY_UP && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		// left_arrow(game);
-	else if (keydata.key == MLX_KEY_DOWN && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		left_arrow(game);
+	else if (keydata.key == MLX_KEY_UP && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
+		up_arrow(game);
+  game->rotation_angle += game->turn_direction * game->rotation_speed;
+	game->move_step = game->walk_direction * game->move_speed;
+	game->turn_direction = 0;
+	game->walk_direction = 0;
+	dda_algo(game);
+  rebuild_map(game);
 }
 
 t_game *init_infos()
@@ -60,7 +64,7 @@ t_game *init_infos()
 	return game;
 }
 
-int32_t main(void)
+int main(void)
 {
 	t_game *game;
 	game = init_infos();

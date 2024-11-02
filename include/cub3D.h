@@ -33,10 +33,11 @@ typedef struct s_game
   float n_py;
   double rotation_speed;
   int turn_direction;
-  int walk_direction;
   double rotation_angle;
+  int walk_direction;
+  double move_speed;
+  double move_step;
 } t_game;
-
 
 // from raycasting.h
 
@@ -50,9 +51,13 @@ void rebuild_map(t_game *game);
 
 // -----------------------------------
 
-
-
 void right_arrow(t_game *game);
 void left_arrow(t_game *game);
+void up_arrow(t_game *game);
+void down_arrow(t_game *game);
+void move_up(t_game *game);
+void move_down(t_game *game);
+void move_left(t_game *game);
+void move_right(t_game *game);
 
 #endif
