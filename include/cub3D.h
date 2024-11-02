@@ -26,11 +26,11 @@ typedef struct s_game
   mlx_image_t* background;
   mlx_image_t* player;
   char direction;
-  float player_x;
-  float player_y;
-  float angle;
-  float n_px;
-  float n_py;
+  double player_x;
+  double player_y;
+  double angle;
+  double n_px;
+  double n_py;
   double rotation_speed;
   int turn_direction;
   double rotation_angle;
@@ -42,12 +42,13 @@ typedef struct s_game
 // from raycasting.h
 
 void raycarting(t_game *game);
-float deg_to_rad(float deg);
-float rad_to_deg(float rad);
-float get_new_x(t_game *game, float angle);
-float get_new_y(t_game *game, float angle);
+double deg_to_rad(double deg);
+double rad_to_deg(double rad);
+double get_new_x(t_game *game, double angle);
+double get_new_y(t_game *game, double angle);
 void dda_algo(t_game *game);
 void rebuild_map(t_game *game);
+bool is_player(char c);
 
 // -----------------------------------
 

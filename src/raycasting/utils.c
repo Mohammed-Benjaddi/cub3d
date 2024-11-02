@@ -1,23 +1,23 @@
 #include <raycasting.h>
 
-float deg_to_rad(float deg)
+double deg_to_rad(double deg)
 {
   // printf("rad of %f is %f\n", deg, deg * PI / 180.0);
   return (deg * PI / 180.0);
 }
 
-float rad_to_deg(float rad)
+double rad_to_deg(double rad)
 {
   // printf("deg of %f is %f\n", rad, rad * 180.0 / PI);
   return (rad * 180.0 / PI);
 }
 
-float get_new_x(t_game *game, float angle)
+double get_new_x(t_game *game, double angle)
 {
   return cos(angle) * (game->n_px - game->player_x) - sin(angle) * (game->n_py - game->player_y) + game->player_x;
 }    
 
-float get_new_y(t_game *game, float angle)
+double get_new_y(t_game *game, double angle)
 {
   return sin(angle) * (game->n_px - game->player_x) + cos(angle) * (game->n_py - game->player_y) + game->player_y;
 }

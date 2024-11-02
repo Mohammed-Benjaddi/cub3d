@@ -40,20 +40,20 @@ void dda_algo(t_game *game)
 {
   game->n_px  = game->player_x + cos(game->rotation_angle) * 30;
   game->n_py = game->player_y + sin(game->rotation_angle) * 30;
-  float dx;
-  float dy;
+  double dx;
+  double dy;
   dx = game->n_px - game->player_x;
   dy = game->n_py - game->player_y;
-  float steps;
+  double steps;
   if(fabs(dx) > fabs(dy))
     steps = fabs(dx);
   else
     steps = fabs(dy);
   int i;
-  float x = game->player_x;
-  float y = game->player_y;
-  float x_inc = dx / steps;
-  float y_inc = dy / steps;
+  double x = game->player_x;
+  double y = game->player_y;
+  double x_inc = dx / steps;
+  double y_inc = dy / steps;
   i = 0;
   while(i <= steps + 20)
   {
@@ -71,6 +71,10 @@ void ft_put_player(t_game *game, int x, int y)
 
   i = 0;
   j = 0;
+  printf("--> %f\n", game->player_x);
+  printf("--> %f\n", game->player_y);
+  printf("x --> %d\n", x);
+  printf("y --> %d\n", y);
   while(i < 30)
   {
     j = 0;
@@ -82,8 +86,8 @@ void ft_put_player(t_game *game, int x, int y)
     }
     i++;
   }
-  game->player_x = x + 15;
-  game->player_y = y + 15;
+  // game->player_x = x + 15;
+  // game->player_y = y + 15;
   dda_algo(game);
 }
 
@@ -121,27 +125,7 @@ bool is_player(char c)
 
 void put_player(t_game *game)
 {
-  int i;
-  int j;
-
-  i = 0;
-  j = 0;
-  // game->x = 0.0;
-  // game->y = 0.0;
-  while(game->map[i])
-  {
-    j = 0;
-    // game->x = 0.0;
-    while(game->map[i][j])
-    {
-      if(is_player(game->map[i][j]))
-        ft_put_player(game, j * 30, i * 30);
-      j++;
-      // game->x += 30.0;
-    }
-    i++;
-    // game->y += 30.0;
-  }
+  ft_put_player(game, game->player_x, game->player_y);
 }
 
 void rebuild_map(t_game *game)
@@ -150,8 +134,6 @@ void rebuild_map(t_game *game)
   game->img = mlx_new_image(game->mlx, game->width, game->height);
   if (!game->img || (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0))
     perror("putting image to window failed");
-  // game->x = 0;
-  // game->y = 0;
   draw_map(game);
   put_player(game); 
 }
