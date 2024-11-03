@@ -24,7 +24,7 @@ all: libmlx $(NAME)
 libmlx:
 	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
 
-%.o: %.c
+%.o: %.c ./include/cub3D.h 
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)

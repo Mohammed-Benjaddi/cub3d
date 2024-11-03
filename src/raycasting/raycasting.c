@@ -1,17 +1,30 @@
 #include <raycasting.h>
 
+void ft_put_pixel(mlx_image_t* image, int x, int y, int color)
+{
+  // printf("color :  %d\n", color);
+  if(x < 0 || y < 0 || x >= image->width || y >= image->height)
+    return;
+  mlx_put_pixel(image, x, y, color);
+}
+
 void draw_background(t_game *game)
 {
   int i;
   int j;
 
   i = 0;
+  game->background = mlx_new_image(game->mlx, game->width + 500, game->height + 200);
+  // mlx_image_to_window(game->mlx, game->background, 0, 0);
+  if (!game->background || (mlx_image_to_window(game->mlx, game->background, 0, 0)) < 0)
+    perror("putting image to window failed");
   while(i < game->width)
   {
     j = 0;
     while(j < game->height)
     {
-      mlx_put_pixel(game->background, i, j, WHITE);
+      ft_put_pixel(game->background, i, j, WHITE);
+      // mlx_put_pixel(game->background, i, j, WHITE);
       j++;
     }
     i++;
@@ -29,14 +42,15 @@ void ft_pixel(t_game *game, int x, int y)
     j = 0;
     while (j < 30)
     {
-      mlx_put_pixel(game->img, x + j, y + i, BLACK);
+      ft_put_pixel(game->img, x + j, y + i, BLACK);
+      // mlx_put_pixel(game->img, x + j, y + i, BLACK);
       j++;
     }
     i++;
   }
 }
 
-void dda_algo(t_game *game)
+void update_direction_dda(t_game *game) // update player direction using dda algo
 {
   game->n_px  = game->player_x + cos(game->rotation_angle) * 30;
   game->n_py = game->player_y + sin(game->rotation_angle) * 30;
@@ -50,45 +64,19 @@ void dda_algo(t_game *game)
   else
     steps = fabs(dy);
   int i;
-  double x = game->player_x;
-  double y = game->player_y;
+  double x = game->player_x + 15;
+  double y = game->player_y + 15;
   double x_inc = dx / steps;
   double y_inc = dy / steps;
   i = 0;
   while(i <= steps + 20)
   {
-    mlx_put_pixel(game->img, roundf(x), roundf(y), GREEN);
+    // mlx_put_pixel(game->img, roundf(x), roundf(y), GREEN);
+    ft_put_pixel(game->img, roundf(x), roundf(y), RED);
     x += x_inc;
     y += y_inc;
     i++;    
   }
-}
-
-void ft_put_player(t_game *game, int x, int y)
-{
-  int i;
-  int j;
-
-  i = 0;
-  j = 0;
-  printf("--> %f\n", game->player_x);
-  printf("--> %f\n", game->player_y);
-  printf("x --> %d\n", x);
-  printf("y --> %d\n", y);
-  while(i < 30)
-  {
-    j = 0;
-    while (j < 30)
-    {
-      if(j >= 12 && j <= 18 && i >= 12 && i <= 18)
-        mlx_put_pixel(game->img, x + j, y + i, RED);
-      j++;
-    }
-    i++;
-  }
-  // game->player_x = x + 15;
-  // game->player_y = y + 15;
-  dda_algo(game);
 }
 
 void draw_map(t_game *game)
@@ -125,15 +113,37 @@ bool is_player(char c)
 
 void put_player(t_game *game)
 {
-  ft_put_player(game, game->player_x, game->player_y);
+  // ft_put_player(game, game->player_x, game->player_y);
+  int i;
+  int j;
+
+  i = 0;
+  j = 0;
+  
+  while(i < 30)
+  {
+    j = 0;
+    while (j < 30)
+    {
+      if(j >= 12 && j <= 18 && i >= 12 && i <= 18)
+        // mlx_put_pixel(game->img, game->player_x + j, game->player_y + i, RED);
+        ft_put_pixel(game->img, game->player_x + j, game->player_y + i, RED);
+      j++;
+    }
+    i++;
+  }
+  update_direction_dda(game);
+}
+
+void destroy_images(t_game *game)
+{
+	mlx_delete_image(game->mlx, game->img);
+	mlx_delete_image(game->mlx, game->background);
 }
 
 void rebuild_map(t_game *game)
 {
-	mlx_delete_image(game->mlx, game->img);
-  game->img = mlx_new_image(game->mlx, game->width, game->height);
-  if (!game->img || (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0))
-    perror("putting image to window failed");
+  destroy_images(game);
   draw_map(game);
   put_player(game); 
 }

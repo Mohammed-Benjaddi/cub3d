@@ -14,7 +14,7 @@ double deg_to_rad(double deg);
 double rad_to_deg(double rad);
 double get_new_x(t_game *game, double angle);
 double get_new_y(t_game *game, double angle);
-void dda_algo(t_game *game);
+void update_direction_dda(t_game *game);
 void rebuild_map(t_game *game);
 bool is_player(char c);
 

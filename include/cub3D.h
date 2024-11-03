@@ -4,7 +4,9 @@
 #define RED   0xFF0000FF
 #define WHITE 0xFFFFFFFF
 #define BLACK 0x000000FF
-#define GREEN 0xFF00FFFF
+#define GREEN 0x00cb12
+#define BLUE 0x006cff
+#define CYAN 0x00ffec
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -46,7 +48,7 @@ double deg_to_rad(double deg);
 double rad_to_deg(double rad);
 double get_new_x(t_game *game, double angle);
 double get_new_y(t_game *game, double angle);
-void dda_algo(t_game *game);
+void update_direction_dda(t_game *game);
 void rebuild_map(t_game *game);
 bool is_player(char c);
 
