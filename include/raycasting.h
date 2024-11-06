@@ -5,10 +5,6 @@
 
 typedef struct s_game t_game;
 
-# define PI 3.14159265358979323846
-# define FOV 60 * PI / 180
-# define NUM_RAYS 320
-
 void raycarting(t_game *game);
 double deg_to_rad(double deg);
 double rad_to_deg(double rad);

@@ -69,16 +69,16 @@ void s_key(t_game *game)
 
 void a_key(t_game *game)
 {
-  game->walk_direction = 0;
+	game->walk_direction = 0;
   game->move_step = game->move_speed;
-  game->player_x += cos(game->rotation_angle + PI / 2) * game->move_step;
-  game->player_y += sin(game->rotation_angle + PI / 2) * game->move_step;
+  game->player_x -= cos(game->rotation_angle + PI / 2) * game->move_step;
+  game->player_y -= sin(game->rotation_angle + PI / 2) * game->move_step;
 }
 
 void d_key(t_game *game)
 {
   game->walk_direction = 0;
   game->move_step = game->move_speed;
-  game->player_x -= cos(game->rotation_angle + PI / 2) * game->move_step;
-  game->player_y -= sin(game->rotation_angle + PI / 2) * game->move_step;
+  game->player_x += cos(game->rotation_angle + PI / 2) * game->move_step;
+  game->player_y += sin(game->rotation_angle + PI / 2) * game->move_step;
 }

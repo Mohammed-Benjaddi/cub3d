@@ -8,6 +8,10 @@
 #define BLUE 0x006cff
 #define CYAN 0x00ffec
 
+# define PI 3.14159265358979323846
+# define FOV 60 * PI / 180
+# define NUM_RAYS 320
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
