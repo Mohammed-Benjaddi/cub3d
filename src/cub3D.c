@@ -20,10 +20,6 @@ void	ft_hook(mlx_key_data_t keydata, void *param)
 		d_key(game);
 	else if (keydata.key == MLX_KEY_A && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 		a_key(game);
-  // game->rotation_angle += game->turn_direction * game->rotation_speed;
-	// game->move_step = game->walk_direction * game->move_speed;
-	// game->player_x += cos(game->rotation_angle) * game->move_step;
-	// game->player_y += sin(game->rotation_angle) * game->move_step;
 	game->turn_direction = 0;
 	game->walk_direction = 0;
   rebuild_map(game);
