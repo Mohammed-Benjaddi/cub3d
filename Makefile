@@ -8,7 +8,7 @@ CUB_FILES = cub3D.c handle_keys_click.c player_mvt.c
 # LIBS = $(MLX_DIR)/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm # for linux
 LIBS	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm #for mac
 
-RAYCAST_FILES = raycasting.c utils.c
+RAYCAST_FILES = raycasting.c utils.c draw.c player_utils.c
 LIBFT_FILES = ft_strdup.c ft_strlen.c
 RAYCAST_SRC = $(addprefix $(SRC_DIR)/raycasting/, $(RAYCAST_FILES))
 LIBFT_SRC = $(addprefix $(SRC_DIR)/libft/, $(LIBFT_FILES))

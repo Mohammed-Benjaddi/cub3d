@@ -48,16 +48,19 @@ double deg_to_rad(double deg);
 double rad_to_deg(double rad);
 double get_new_x(t_game *game, double angle);
 double get_new_y(t_game *game, double angle);
-void update_direction_dda(t_game *game);
+// void update_direction_dda(t_game *game);
 void rebuild_map(t_game *game);
-bool is_player(char c);
+// bool is_player(char c);
+void set_player_position(t_game *game);
 
 // -----------------------------------
 
 void right_arrow(t_game *game);
 void left_arrow(t_game *game);
-void up_arrow(t_game *game);
-void down_arrow(t_game *game);
+void w_key(t_game *game);
+void s_key(t_game *game);
+void d_key(t_game *game);
+void a_key(t_game *game);
 void move_up(t_game *game);
 void move_down(t_game *game);
 void move_left(t_game *game);

@@ -34,19 +34,54 @@
 void right_arrow(t_game *game)
 {
   game->turn_direction = 1;
+  game->rotation_angle += game->turn_direction * game->rotation_speed;
+	game->move_step = game->walk_direction * game->move_speed;
+	game->player_x += cos(game->rotation_angle) * game->move_step;
+	game->player_y += sin(game->rotation_angle) * game->move_step;
 }
 
 void left_arrow(t_game *game)
 {
   game->turn_direction = -1;
+  game->rotation_angle += game->turn_direction * game->rotation_speed;
+	game->move_step = game->walk_direction * game->move_speed;
+	game->player_x += cos(game->rotation_angle) * game->move_step;
+	game->player_y += sin(game->rotation_angle) * game->move_step;
 }
 
-void up_arrow(t_game *game)
+void w_key(t_game *game)
 {
   game->walk_direction = 1;
+  game->rotation_angle += game->turn_direction * game->rotation_speed;
+	game->move_step = game->walk_direction * game->move_speed;
+	game->player_x += cos(game->rotation_angle) * game->move_step;
+	game->player_y += sin(game->rotation_angle) * game->move_step;
 }
 
-void down_arrow(t_game *game)
+void s_key(t_game *game)
 {
   game->walk_direction = -1;
+  game->rotation_angle += game->turn_direction * game->rotation_speed;
+	game->move_step = game->walk_direction * game->move_speed;
+	game->player_x += cos(game->rotation_angle) * game->move_step;
+	game->player_y += sin(game->rotation_angle) * game->move_step;
+}
+
+void d_key(t_game *game)
+{
+  game->walk_direction = -1;
+  // game->turn_direction = -1;
+  game->rotation_angle += game->turn_direction * game->rotation_speed;
+	game->move_step = game->walk_direction * game->move_speed;
+	game->player_x -= cos(game->rotation_angle) + game->move_step;
+	game->player_y -= sin(game->rotation_angle) + game->move_step;
+}
+
+void a_key(t_game *game)
+{
+  game->walk_direction = -1;
+  game->rotation_angle += game->turn_direction * game->rotation_speed;
+	game->move_step = game->walk_direction * game->move_speed;
+	game->player_x += cos(game->rotation_angle) * game->move_step;
+	game->player_y -= sin(game->rotation_angle) + game->move_step;
 }

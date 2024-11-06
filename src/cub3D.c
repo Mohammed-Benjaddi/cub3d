@@ -12,40 +12,21 @@ void	ft_hook(mlx_key_data_t keydata, void *param)
 		right_arrow(game);
 	else if (keydata.key == MLX_KEY_LEFT && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 		left_arrow(game);
-	else if (keydata.key == MLX_KEY_UP && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		up_arrow(game);
-	else if (keydata.key == MLX_KEY_DOWN && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		down_arrow(game);
-  game->rotation_angle += game->turn_direction * game->rotation_speed;
-	game->move_step = game->walk_direction * game->move_speed;
-	game->player_x += cos(game->rotation_angle) * game->move_step;
-	game->player_y += sin(game->rotation_angle) * game->move_step;
+	else if (keydata.key == MLX_KEY_W && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
+		w_key(game);
+	else if (keydata.key == MLX_KEY_S && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
+		s_key(game);
+	else if (keydata.key == MLX_KEY_D && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
+		d_key(game);
+	else if (keydata.key == MLX_KEY_A && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
+		a_key(game);
+  // game->rotation_angle += game->turn_direction * game->rotation_speed;
+	// game->move_step = game->walk_direction * game->move_speed;
+	// game->player_x += cos(game->rotation_angle) * game->move_step;
+	// game->player_y += sin(game->rotation_angle) * game->move_step;
 	game->turn_direction = 0;
 	game->walk_direction = 0;
   rebuild_map(game);
-}
-
-void set_player_position(t_game *game)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while(game->map[i])
-	{
-		j = 0;
-		while(game->map[i][j])
-		{
-			if(is_player(game->map[i][j]))
-			{
-				game->player_x = (j * 30);
-				game->player_y = (i * 30);
-				return;
-			}
-			j++;
-		}
-		i++;
-	}
 }
 
 t_game *init_infos()
@@ -97,7 +78,7 @@ int main(void)
 	t_game *game;
 	game = init_infos();
 	raycarting(game);
-	// printf("red: %u\n", RED);	
+	// printf("----> %d\n", game->rotation_angle % (2 * PI));	
 	mlx_key_hook(game->mlx, ft_hook, game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
