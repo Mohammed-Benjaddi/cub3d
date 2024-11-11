@@ -23,9 +23,9 @@ void	ft_hook(mlx_key_data_t keydata, void *param)
 	game->turn_direction = 0;
 	game->walk_direction = 0;
   rebuild_map(game);
-	printf("start ---> %f\n", game->rotation_angle - (FOV / 2));
-	printf("mid ---> %f\n", game->rotation_angle);
-	printf("end ---> %f\n", game->rotation_angle + (FOV / 2));
+	// printf("start ---> %f\n", game->rotation_angle - (FOV / 2));
+	// printf("mid ---> %f\n", game->rotation_angle);
+	// printf("end ---> %f\n", game->rotation_angle + (FOV / 2));
 }
 
 t_game *init_infos()

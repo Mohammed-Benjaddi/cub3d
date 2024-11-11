@@ -7,10 +7,10 @@ bool is_player(char c)
   return false;
 }
 
-void update_direction_dda(t_game *game) // update player direction using dda algo
+void update_direction_dda(t_game *game, double rot_angle, int color) // update player direction using dda algo
 {
-  game->n_px  = game->player_x + cos(game->rotation_angle) * 30;
-  game->n_py = game->player_y + sin(game->rotation_angle) * 30;
+  game->n_px  = game->player_x + cos(rot_angle) * 30;
+  game->n_py = game->player_y + sin(rot_angle) * 30;
   double dx;
   double dy;
   dx = game->n_px - game->player_x;
@@ -26,9 +26,9 @@ void update_direction_dda(t_game *game) // update player direction using dda alg
   double x_inc = dx / steps;
   double y_inc = dy / steps;
   i = 0;
-  while(i <= steps + 20)
+  while(i <= steps + 70)
   {
-    ft_put_pixel(game->img, roundf(x), roundf(y), RED);
+    ft_put_pixel(game->img, roundf(x), roundf(y), color);
     x += x_inc;
     y += y_inc;
     i++;    
@@ -77,5 +77,6 @@ void put_player(t_game *game)
     }
     i++;
   }
-  update_direction_dda(game);
+  update_direction_dda(game, game->rotation_angle, RED);
+  cast_rays(game);
 }

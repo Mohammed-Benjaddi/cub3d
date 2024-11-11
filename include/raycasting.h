@@ -18,5 +18,6 @@ void draw_map(t_game *game);
 void draw_background(t_game *game);
 void ft_put_pixel(mlx_image_t* image, int x, int y, int color);
 void put_player(t_game *game);
+void cast_rays(t_game *game);
 
 #endif

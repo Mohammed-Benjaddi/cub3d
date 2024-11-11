@@ -7,6 +7,7 @@
 #define GREEN 0x00cb12
 #define BLUE 0x006cff
 #define CYAN 0x00ffec
+#define BEIGE 0xFFB38E
 
 # define PI 3.14159265358979323846
 # define FOV 60 * PI / 180
@@ -43,6 +44,8 @@ typedef struct s_game
   int walk_direction;
   double move_speed;
   double move_step;
+  double rays_start;
+  double rays_end;
 } t_game;
 
 // from raycasting.h
@@ -52,10 +55,12 @@ double deg_to_rad(double deg);
 double rad_to_deg(double rad);
 double get_new_x(t_game *game, double angle);
 double get_new_y(t_game *game, double angle);
-// void update_direction_dda(t_game *game);
+void update_direction_dda(t_game *game, double rot_angle, int color);
 void rebuild_map(t_game *game);
 // bool is_player(char c);
 void set_player_position(t_game *game);
+void cast_rays(t_game *game);
+
 
 // -----------------------------------
 
