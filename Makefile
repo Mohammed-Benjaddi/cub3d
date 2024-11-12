@@ -8,14 +8,19 @@ CUB_FILES = cub3D.c handle_keys_click.c player_mvt.c
 LIBS = $(MLX_DIR)/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm # for linux
 #LIBS	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm #for mac
 
+PARSE_FILES = parse.c
 RAYCAST_FILES = raycasting.c utils.c draw.c player_utils.c cast_rays.c
 LIBFT_FILES = ft_strdup.c ft_strlen.c
+GNL_FILES = get_next_line.c get_next_line_utils.c
+
 RAYCAST_SRC = $(addprefix $(SRC_DIR)/raycasting/, $(RAYCAST_FILES))
 LIBFT_SRC = $(addprefix $(SRC_DIR)/libft/, $(LIBFT_FILES))
+GNL_SRC = $(addprefix $(SRC_DIR)/gnl/, $(GNL_FILES))
+PARSE_SRC = $(addprefix $(SRC_DIR)/parsing/, $(PARSE_FILES))
 CUB_SRC = $(addprefix $(SRC_DIR)/, $(CUB_FILES))
 
 HEADERS	:= -I ./include -I $(MLX_DIR)/include
-SRC = $(CUB_SRC) $(LIBFT_SRC) $(RAYCAST_SRC)
+SRC = $(CUB_SRC) $(LIBFT_SRC) $(RAYCAST_SRC) $(PARSE_SRC) $(GNL_SRC)
 
 OBJS	:= ${SRC:.c=.o}
 

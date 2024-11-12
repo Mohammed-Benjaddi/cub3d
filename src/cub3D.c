@@ -1,5 +1,6 @@
 #include <cub3D.h>
 #include <raycasting.h>
+#include "../include/parsing.h"
 
 void	ft_hook(mlx_key_data_t keydata, void *param)
 {
@@ -72,9 +73,13 @@ t_game *init_infos()
 	return game;
 }
 
-int main(void)
+int main(int ac, char *av[])
 {
 	t_game *game;
+
+	if (map_checker(ac, av))
+		return (EXIT_FAILURE);
+
 	game = init_infos();
 	raycarting(game);
 	// printf("----> %d\n", game->rotation_angle % (2 * PI));	
