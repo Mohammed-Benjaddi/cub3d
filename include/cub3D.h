@@ -12,6 +12,7 @@
 # define PI 3.14159265358979323846
 # define FOV 60 * PI / 180
 # define NUM_RAYS 320
+# define TILE_SIZE 30
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -46,6 +47,8 @@ typedef struct s_game
   double move_step;
   double rays_start;
   double rays_end;
+  double wall_hit_x;
+  double wall_hit_y;
 } t_game;
 
 // from raycasting.h

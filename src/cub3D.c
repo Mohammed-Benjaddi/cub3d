@@ -1,5 +1,5 @@
 #include <cub3D.h>
-#include <raycasting.h>
+// #include <raycasting.h>
 
 void	ft_hook(mlx_key_data_t keydata, void *param)
 {
@@ -32,13 +32,13 @@ t_game *init_infos()
 {
 	t_game *game;
 	game = malloc(sizeof(t_game));
-	game->width = 1000;
-	game->height = 620;
-	game->mlx = mlx_init(game->width , game->height, "MLX42", true);
+	game->width = 720;
+	game->height = 420;
+	game->mlx = mlx_init(game->width , game->height, "MLX42", false);
 	game->map = malloc(sizeof(char *) * 15);
 	game->map[0] = 	ft_strdup("111111111111111111111111");
-	game->map[1] = 	ft_strdup("1N0000000011000000000001");
-	game->map[2] = 	ft_strdup("101100000111000000000001");
+	game->map[1] = 	ft_strdup("10N000000011000000000001");
+	game->map[2] = 	ft_strdup("100100000111000000000001");
 	game->map[3] = 	ft_strdup("100100000000000000000001");
 	game->map[4] = 	ft_strdup("111111111011000011100001");
 	game->map[5] = 	ft_strdup("100000000011000011101111");
@@ -58,6 +58,8 @@ t_game *init_infos()
 	game->rotation_speed = 5;
 	game->turn_direction = 0;
 	game->walk_direction = 0;
+	game->wall_hit_x = 0;
+	game->wall_hit_y = 0; 
 	game->rotation_angle = PI / 2;
 	game->rotation_speed = 9 * (PI / 180);
 	set_player_position(game);
