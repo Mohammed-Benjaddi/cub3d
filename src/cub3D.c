@@ -81,7 +81,6 @@ int main(int ac, char *av[])
 	if (!parse_entry(ac, av))
 		return (EXIT_FAILURE);
 
-	printf("map is valid\n");
 	// game = init_infos();
 	// raycarting(game);
 	// // printf("----> %d\n", game->rotation_angle % (2 * PI));	

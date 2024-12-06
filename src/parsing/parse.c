@@ -1,6 +1,5 @@
 #include "../include/get_next_line.h"
 #include <stdio.h>
-
 void    parse_free(char** map) {
     int i = 0;
 
@@ -40,11 +39,11 @@ char** map_setter(int ac, char** av) {
         if (!line)
             break;
         free(line);
-        break;
         map_size++;
     }
 
     close(fd);
+    fd = open(av[1], O_RDONLY);
     i = 0;
     map = (char **)malloc(sizeof(char *) * (map_size + 1));
     while(i < map_size) {
@@ -62,6 +61,6 @@ int parse_entry(int ac, char** av) {
     char** map = map_setter(ac, av);
     if (!map)
         return 0;
-    
+
     return (1);
 }
