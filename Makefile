@@ -1,12 +1,14 @@
 NAME	:= cub3D
-CFLAGS	:= #-Wextra -Wall -Werror #-Wunreachable-code -Ofast
-MORE_FLAGS = #-fsanitize=address -g
+CFLAGS	:= -fsanitize=address -g#-Wunreachable-code -Ofast
+# MORE_FLAGS = -fsanitize=address -g
 
 MLX_DIR	:= ~/MLX42
 SRC_DIR = src
 CUB_FILES = cub3D.c handle_keys_click.c player_mvt.c
-LIBS = $(MLX_DIR)/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm # for linux
-#LIBS	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm #for mac
+# LIBS = $(MLX_DIR)/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm # for linux
+# LIBS	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm #for mac
+LIBS    := $(MLX_DIR)/build/libmlx42.a -Iinclude -lglfw -L"/Users/bbelarra/goinfre/homebrew/lib"
+
 
 PARSE_FILES = parse.c
 RAYCAST_FILES = raycasting.c utils.c draw.c player_utils.c cast_rays.c

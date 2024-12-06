@@ -73,19 +73,19 @@ t_game *init_infos()
 	return game;
 }
 
+
 int main(int ac, char *av[])
 {
 	t_game *game;
-
-	if (map_checker(ac, av))
+	if (!map_checker(ac, av))
 		return (EXIT_FAILURE);
-
-	game = init_infos();
-	raycarting(game);
-	// printf("----> %d\n", game->rotation_angle % (2 * PI));	
-	mlx_key_hook(game->mlx, ft_hook, game);
-	mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
+	printf("map is valid\n");
+	// game = init_infos();
+	// raycarting(game);
+	// // printf("----> %d\n", game->rotation_angle % (2 * PI));	
+	// mlx_key_hook(game->mlx, ft_hook, game);
+	// mlx_loop(game->mlx);
+	// mlx_terminate(game->mlx);
 
 	return (EXIT_SUCCESS);
 }
