@@ -21,29 +21,29 @@ int name_checker(char* map_name) {
         return (0);
     return (1);
 }
+char** map_setter(int ac, char** av) {
 
-int map_checker(int ac, char** av) {
-
-    if (ac != 2)
-        return (0);
-
-    int i;
-    char** map;
-    int map_size;
-    int fd;
-
+    int     i;
+    char**  map;
+    int     map_size;
+    int     fd;
+    char*   line;
     fd = open(av[1], O_RDONLY);
-    map_size = 0;
-    if (fd == -1 || !name_checker(av[1]))
-        return (0);
+    if (fd == -1 || !name_checker(av[1])) {
+        write(2, "error: invalid map name\n", 24);
+        return (NULL);
+    }
 
+    map_size = 0;
     while (1) {
-        map[0] = get_next_line(fd);
-        if (!map[0])
+        line = get_next_line(fd);
+        if (!line)
             break;
-        free(map[0]);
+        free(line);
+        break;
         map_size++;
     }
+
     close(fd);
     i = 0;
     map = (char **)malloc(sizeof(char *) * (map_size + 1));
@@ -52,6 +52,16 @@ int map_checker(int ac, char** av) {
         i++;
     }
     map[i] = NULL;
-    parse_free(map);
+    return (map);
+}
+int parse_entry(int ac, char** av) {
+
+    if (ac != 2)
+        return (0);
+
+    char** map = map_setter(ac, av);
+    if (!map)
+        return 0;
+    
     return (1);
 }

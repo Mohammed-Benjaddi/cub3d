@@ -77,8 +77,10 @@ t_game *init_infos()
 int main(int ac, char *av[])
 {
 	t_game *game;
-	if (!map_checker(ac, av))
+	
+	if (!parse_entry(ac, av))
 		return (EXIT_FAILURE);
+
 	printf("map is valid\n");
 	// game = init_infos();
 	// raycarting(game);
