@@ -72,15 +72,9 @@ void flood_fill(char** map, int i, int y) {
 		|| map[i][y] == '1' || map[i][y] == '\n' || map[i][y] == 'M') {
 		return;	
 	}
-	//if (map[i][y] == '1' || map[i][y] == '\0' || map[i][y] == '\n' )
-	//	return ;
 	map[i][y] = 'M';
-	printf(">> %d and %d \n", custom_strlen(map[i + 1]) - 1, y);
 	if (custom_strlen(map[i + 1]) - 1 > y)
-	{
-		printf("badreddine belarradi\n");
 		flood_fill(map, i + 1, y);			
-	}
 	if (custom_strlen(map[i - 1]) - 1 > y)
 		flood_fill(map, i - 1, y);
 	flood_fill(map, i, y + 1);
@@ -102,11 +96,36 @@ int parse_entry(int ac, char** av) {
 	    i++;
     }
     i = 0;
+    int y = 0;
+    int shit = 0;
+    i = 0;
+    int len = 0;
+    while (map[len])
+	len++;
+    len--;
+    while (map[i]) {
+    	y = 0;
+    	while (map[i][y] && map[i][y] != '\n') {
+    		if ((map[i][y] == 'M') && (i == 0 || y == 0 || i == len))
+    			shit = 1;
+    		else if (map[i][y] == 'M' && (map[i][y + 1] == '\n' || map[i][y + 1] == ' ' || map[i][y - 1] == ' '
+    			|| custom_strlen(map[i - 1]) - 1 < y || custom_strlen(map[i + 1]) - 1 < y
+    			|| map[i + 1][y] == ' ' || map[i - 1][y] == ' '))
+    			shit = 1;
+    		y++;
+    	}
+	   i++;
+    }
+    i = 0;
     while (map[i]) {
 	    free(map[i]);
 	    i++;
     }
     free(map[i]);
     free(map);
-    return (1);
+    if (shit == 1) {
+	    printf("failure :(\n");
+	    return (0);
+	}    
+return (1);
 }
