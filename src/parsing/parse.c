@@ -1,11 +1,10 @@
 #include "../include/get_next_line.h"
 #include <stdio.h>
 
-void flood_fill(char** map, int i, int y);
-
 size_t custom_strlen(char* string) {
 	size_t i = 0;
-	while (string[i] && string[i] != '\n')
+
+    while (string[i] && string[i] != '\n')
 		i++;
 	return (i);
 }
@@ -22,17 +21,31 @@ void    parse_free(char** map) {
 }
 
 int name_checker(char* map_name) {
-    int i;
-    i = 0;
+    int i = 0;
     int len = ft_strlen(map_name);
+    
     if (map_name[len - 1] != 'b' || map_name[len - 2] != 'u' 
         || map_name[len - 3] != 'c' || map_name[len - 4] != '.')
-        return (0);
+        return (write(2, "Error\n", 6), 0);
     return (1);
 }
 
-char** map_setter(int ac, char** av) {
+void flood_fill(char** map, int i, int y) {
+	if (!map[i] || !map[i][y] || map[i][y] == ' '
+		|| map[i][y] == '1' || map[i][y] == '\n' || map[i][y] == 'M') {
+		return;	
+	}
+	map[i][y] = 'M';
+	if (!map[i + 1] || custom_strlen(map[i + 1]) - 1 > y)
+		flood_fill(map, i + 1, y);			
+	if (i != 0 && custom_strlen(map[i - 1]) - 1 > y)
+		flood_fill(map, i - 1, y);
+	flood_fill(map, i, y + 1);
+    if (y != 0)
+        flood_fill(map, i, y - 1);
+}
 
+char** map_setter(int ac, char** av) {
     int     i;
     char**  map;
     int     map_size;
@@ -41,7 +54,7 @@ char** map_setter(int ac, char** av) {
     
     fd = open(av[1], O_RDONLY);
     if (fd == -1 || !name_checker(av[1])) {
-        write(2, "error: invalid map name\n", 24);
+        write(2, "Error\nInvalid map name\n", 23);
         return (NULL);
     }
 
@@ -67,42 +80,10 @@ char** map_setter(int ac, char** av) {
     return (map);
 }
 
-void flood_fill(char** map, int i, int y) {
-	if (!map[i] || !map[i][y] || i == 0 || y == 0 || map[i][y] == ' ' 
-		|| map[i][y] == '1' || map[i][y] == '\n' || map[i][y] == 'M') {
-		return;	
-	}
-	map[i][y] = 'M';
-	if (custom_strlen(map[i + 1]) - 1 > y)
-		flood_fill(map, i + 1, y);			
-	if (custom_strlen(map[i - 1]) - 1 > y)
-		flood_fill(map, i - 1, y);
-	flood_fill(map, i, y + 1);
-	flood_fill(map, i, y - 1);
-
-}
-
-int parse_entry(int ac, char** av) {
-
-    if (ac != 2)
-        return (0);
-
-    char** map = map_setter(ac, av);
-    if (!map)
-        return 0;
+int map_checker(char** map, int len) {
     int i = 0;
-    while (map[i]) {
-	    printf("%s", map[i]);
-	    i++;
-    }
-    i = 0;
     int y = 0;
     int shit = 0;
-    i = 0;
-    int len = 0;
-    while (map[len])
-	len++;
-    len--;
     while (map[i]) {
     	y = 0;
     	while (map[i][y] && map[i][y] != '\n') {
@@ -116,16 +97,31 @@ int parse_entry(int ac, char** av) {
     	}
 	   i++;
     }
-    i = 0;
+    return (shit);
+}
+
+void print_map(char** map) {
+    int i = 0;
+    int y = 0;
     while (map[i]) {
-	    free(map[i]);
-	    i++;
+        printf("%s", map[i]);
+        i++;
     }
-    free(map[i]);
-    free(map);
-    if (shit == 1) {
-	    printf("failure :(\n");
-	    return (0);
-	}    
-return (1);
+}
+
+int parse_entry(int ac, char** av) {
+    if (ac != 2)
+        return (write(2, "Error\ninvalid number of arguments\n", 34), 0);
+    char** map = map_setter(ac, av);
+    if (!map)
+        return 0;
+    int len = 0;
+    while (map[len])
+	    len++;
+    len--;
+    if (map_checker(map, len))
+        return (parse_free(map), write(2, "Error\nCheck your map content\n", 29), 0);
+    print_map(map);
+    parse_free(map);
+    return (1);
 }
