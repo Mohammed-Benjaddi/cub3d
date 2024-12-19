@@ -78,7 +78,7 @@ int main(int ac, char *av[])
 {
 	t_game *game;
 	
-	if (!parse_entry(ac, av))
+	if (parse_entry(ac, av))
 		return (EXIT_FAILURE);
 
 	// game = init_infos();

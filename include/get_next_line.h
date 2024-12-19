@@ -29,6 +29,7 @@ typedef struct t_struct
 	char	*buffer;
 }			t_norm_fix;
 
+int			name_checker(char* map_name);
 char		*filler(char *holder, int readed);
 char		*cuter(char *holder, int readed);
 void		little_conca(char *dst, char *src);
