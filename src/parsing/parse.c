@@ -38,7 +38,9 @@ int parse_entry(int ac, char** av) {
     if (ac != 2)
         return (write(2, "Error\ninvalid number of arguments\n", 34), 1);
     map_info.fd = open(av[1], O_RDONLY);
-    if (map_info.fd == -1 || name_checker(av[1]))
+    if (map_info.fd == -1)
+        return (write(2, "Error\nFailed to open file\n", 26), 1);
+    if (name_checker(av[1]))
         return (close(map_info.fd), write(2, "Error\nInvalid map name\n", 23), 1);
     map_setter(&map_info, ac, av);
     if (map_checker(map_info.map, map_info.map_size))
