@@ -43,6 +43,7 @@ int parse_entry(int ac, char** av) {
     if (name_checker(av[1]))
         return (close(map_info.fd), write(2, "Error\nInvalid map name\n", 23), 1);
     map_setter(&map_info, ac, av);
+    syntaxer(&map_info);
     if (map_checker(map_info.map, map_info.map_size))
         return (close(map_info.fd), parse_free(map_info.map), write(2, "Error\nCheck your map content\n", 29), 1);
     print_map(map_info.map);
