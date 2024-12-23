@@ -1,5 +1,4 @@
 #include "../../../include/parsing.h"
-#include "../../../include/libft.h"
 
 int where(char* string) {
     int i = 0;
@@ -18,29 +17,76 @@ char* texture_cuter(char* string) {
 char* norther(char** map) {
     int i = 0;
     int y = 0;
+
+    while (map[i]) {
+        y = 0;
+        while(map[i][y] && map[i][y] != '\n') {
+            if ((map[i][y] == ' '  || y == 0) && map[i][y + 1] == 'N'
+                && map[i][y + 2] == 'O' && (map[i][y + 3] == ' ' 
+                    || map[i][y + 3] == '\n' || !map[i][y + 3]))
+                return (texture_cuter(&map[i][y]));
+            y++;
+        }
+        i++;
+    }
+    return NULL;
+}
+
+char* souther(char** map) {
+    int i = 0;
+    int y = 0;
     int flager = 0;
 
     while (map[i]) {
         y = 0;
         while(map[i][y] && map[i][y] != '\n') {
-            if (map[i][y] != ' ') {
-                if (map[i][y] != 'N' && map[i][y + 1] != 'O')
-                    return NULL;
-                flager = 1;
-                break;
-    
-            }
+            if ((map[i][y] == ' ' || y == 0) && map[i][y + 1] == 'S'
+                && map[i][y + 2] == 'O' && (map[i][y + 3] == ' ' 
+                    || map[i][y + 3] == '\n' || !map[i][y + 3]))
+                return (texture_cuter(&map[i][y]));
             y++;
         }
-        if (flager == 1)
-            break;
+        i++;
     }
-    return (texture_cuter(&map[i][y]));
+    return NULL;
+}
+char* wester(char** map){
+    int i = 0;
+    int y = 0;
+    int flager = 0;
+
+    while (map[i]) {
+        y = 0;
+        while(map[i][y] && map[i][y] != '\n') {
+            if ((map[i][y] == ' ' || y == 0) && map[i][y + 1] == 'W'
+                && map[i][y + 2] == 'E' && (map[i][y + 3] == ' ' 
+                    || map[i][y + 3] == '\n' || !map[i][y + 3]))
+                return (texture_cuter(&map[i][y]));
+            y++;
+        }
+        i++;
+    }
+    return NULL;
 }
 
-int souther();
-int wester();
-int easter();
+char* easter(char** map) {
+    int i = 0;
+    int y = 0;
+    int flager = 0;
+
+    while (map[i]) {
+        y = 0;
+        while(map[i][y] && map[i][y] != '\n') {
+            if ((map[i][y] == ' ' || y == 0) && map[i][y + 1] == 'E'
+                && map[i][y + 2] == 'A' && (map[i][y + 3] == ' ' 
+                    || map[i][y + 3] == '\n' || !map[i][y + 3]))
+                return (texture_cuter(&map[i][y]));
+            y++;
+        }
+        i++;
+    }
+    return NULL;
+}
 
 int syntaxer(t_parse* map_info) {
     map_info->NO_TEXTURE = norther(map_info->map);
