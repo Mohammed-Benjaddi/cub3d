@@ -96,7 +96,7 @@ int syntaxer(t_parse* map_info) {
     int continues =  north_checker(map_info, 0);
     if (continues == -1)
          return (1);
-    printf("success\n");
+    printf("success: %d\n", continues);
     exit(1);
     // continues = south_checker(map_info, continues);
     // if (continues == -1)

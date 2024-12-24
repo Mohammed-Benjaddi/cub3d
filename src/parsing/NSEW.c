@@ -13,6 +13,7 @@ int south_checker(t_parse* map_info, int continues) {
                     return (-1);
                 if (count_word(map_info->map[i], ' ') != 2)
                     return (-1);
+                continues = i;
                 return (continues);
             }
             y++;
@@ -35,6 +36,7 @@ int north_checker(t_parse* map_info, int continues) {
                     return (-1);
                 if (count_word(map_info->map[i], ' ') != 2)
                     return (-1);
+                continues = i;
                 return (continues);
             }
             y++;
@@ -57,6 +59,7 @@ int east_checker(t_parse* map_info, int continues) {
                     return (-1);
                 if (count_word(map_info->map[i], ' ') != 2)
                     return (-1);
+                continues = i;
                 return (continues);
             }
             y++;
@@ -79,6 +82,7 @@ int west_checker(t_parse* map_info, int continues) {
                     return (-1);
                 if (count_word(map_info->map[i], ' ') != 2)
                     return (-1);
+                continues = i;
                 return (continues);
             }
             y++;
