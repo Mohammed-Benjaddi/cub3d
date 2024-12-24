@@ -1,6 +1,6 @@
 #include "../../../include/parsing.h"
 
-size_t size_calc(int fd) {
+size_t  size_calc(int fd) {
     char* line;
     size_t map_size = 0;
     while (1) {
@@ -14,7 +14,7 @@ size_t size_calc(int fd) {
     return (map_size);
 }
 
-size_t custom_strlen(char* string) {
+size_t  custom_strlen(char* string) {
 	size_t i = 0;
 
     while (string[i] && string[i] != '\n')
@@ -22,15 +22,19 @@ size_t custom_strlen(char* string) {
 	return (i);
 }
 
-void    parse_free(char** map) {
+void    parse_free(t_parse* map_info) {
     int i = 0;
 
-    while (map[i]) {
-        free(map[i]);
+    while (map_info->map[i]) {
+        free(map_info->map[i]);
         i++;
     }
-    free(map[i]);
-    free(map);
+    free(map_info->map[i]);
+    free(map_info->map);
+    free(map_info->SO_TEXTURE);
+    free(map_info->NO_TEXTURE);
+    free(map_info->EA_TEXTURE);
+    free(map_info->WE_TEXTURE);
 }
 
 void flood_fill(char** map, int i, int y) {
@@ -63,7 +67,6 @@ int name_checker(char* map_name) {
     
     if (map_name[len - 1] != 'b' || map_name[len - 2] != 'u' 
         || map_name[len - 3] != 'c' || map_name[len - 4] != '.')
-        return (write(2, "Error\n", 6), 1);
+        return (perror("Error\n"), 1);
     return (0);
 }
-

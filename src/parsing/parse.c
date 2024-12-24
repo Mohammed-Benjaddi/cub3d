@@ -3,21 +3,21 @@
 int map_checker(char** map, int len) {
     int i = 0;
     int y = 0;
-    int error = 0;
+
     while (map[i]) {
     	y = 0;
     	while (map[i][y] && map[i][y] != '\n') {
     		if ((map[i][y] == 'M') && (i == 0 || y == 0 || i == len))
-    			error = 1;
+    			return (1);
     		else if (map[i][y] == 'M' && (map[i][y + 1] == '\n' || map[i][y + 1] == ' ' || map[i][y - 1] == ' '
     			|| custom_strlen(map[i - 1]) - 1 < y || custom_strlen(map[i + 1]) - 1 < y
     			|| map[i + 1][y] == ' ' || map[i - 1][y] == ' '))
-    			error = 1;
+    			    return (1);
     		y++;
     	}
 	   i++;
     }
-    return (error);
+    return (0);
 }
 
 t_parse* map_setter(t_parse* map_info, int ac, char** av) {
@@ -36,17 +36,18 @@ t_parse* map_setter(t_parse* map_info, int ac, char** av) {
 int parse_entry(int ac, char** av) {
     t_parse map_info;
     if (ac != 2)
-        return (write(2, "Error\ninvalid number of arguments\n", 34), 1);
+        return (perror("Error\ninvalid number of arguments\n"), 1);
     map_info.fd = open(av[1], O_RDONLY);
     if (map_info.fd == -1)
-        return (write(2, "Error\nFailed to open file\n", 26), 1);
+        return (perror("Error\nFailed to open file\n"), 1);
     if (name_checker(av[1]))
-        return (close(map_info.fd), write(2, "Error\nInvalid map name\n", 23), 1);
+        return (close(map_info.fd), perror("Error\nInvalid map name\n"), 1);
     map_setter(&map_info, ac, av);
-    syntaxer(&map_info);
     if (map_checker(map_info.map, map_info.map_size))
-        return (close(map_info.fd), parse_free(map_info.map), write(2, "Error\nCheck your map content\n", 29), 1);
+        return (close(map_info.fd), parse_free(&map_info), perror("Error\nCheck your map content\n"), 1);
+    if (syntaxer(&map_info))
+        exit(1);
     print_map(map_info.map);
-    parse_free(map_info.map);
+    parse_free(&map_info);
     return (1);
 }
