@@ -15,7 +15,6 @@ int map_checker(char** map, int len) {
     			    return (1);
     		y++;
     	}
-    printf("test %d\n", i);
 	   i++;
     }
     return (0);
