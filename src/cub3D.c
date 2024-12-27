@@ -83,7 +83,7 @@ int main(int ac, char *av[])
 
 	// game = init_infos();
 	// raycarting(game);
-	// // printf("----> %d\n", game->rotation_angle % (2 * PI));	
+	// printf("----> %d\n", game->rotation_angle % (2 * PI));	
 	// mlx_key_hook(game->mlx, ft_hook, game);
 	// mlx_loop(game->mlx);
 	// mlx_terminate(game->mlx);

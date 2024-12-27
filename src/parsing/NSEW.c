@@ -1,8 +1,11 @@
 #include "../../include/parsing.h"
 
-int south_checker(t_parse* map_info, int continues) {
+int south_checker(t_parse* map_info, int continues, int* S) {
     int i = continues;
     int y = 0;
+    if ((*S != 0))
+        return (-1);
+    (*S) = 1;
     while (map_info->map[i]) {
         y = 0;
         while (map_info->map[i][y] && map_info->map[i][y] != '\n') {
@@ -13,7 +16,7 @@ int south_checker(t_parse* map_info, int continues) {
                     return (-1);
                 if (count_word(map_info->map[i], ' ') != 2)
                     return (-1);
-                continues = i;
+                continues = i + 1;
                 return (continues);
             }
             y++;
@@ -23,9 +26,12 @@ int south_checker(t_parse* map_info, int continues) {
     return (-1);
 }
 
-int north_checker(t_parse* map_info, int continues) {
+int north_checker(t_parse* map_info, int continues, int* N) {
     int i = continues;
     int y = 0;
+    if ((*N != 0))
+        return (-1);
+    (*N) = 1;
     while (map_info->map[i]) {
         y = 0;
         while (map_info->map[i][y] && map_info->map[i][y] != '\n') {
@@ -36,7 +42,7 @@ int north_checker(t_parse* map_info, int continues) {
                     return (-1);
                 if (count_word(map_info->map[i], ' ') != 2)
                     return (-1);
-                continues = i;
+                continues = i + 1;
                 return (continues);
             }
             y++;
@@ -46,9 +52,12 @@ int north_checker(t_parse* map_info, int continues) {
     return (-1);
 }
 
-int east_checker(t_parse* map_info, int continues) {
+int east_checker(t_parse* map_info, int continues, int* E) {
     int i = continues;
     int y = 0;
+    if ((*E != 0))
+        return (-1);
+    (*E) = 1;
     while (map_info->map[i]) {
         y = 0;
         while (map_info->map[i][y] && map_info->map[i][y] != '\n') {
@@ -59,7 +68,7 @@ int east_checker(t_parse* map_info, int continues) {
                     return (-1);
                 if (count_word(map_info->map[i], ' ') != 2)
                     return (-1);
-                continues = i;
+                continues = i + 1;
                 return (continues);
             }
             y++;
@@ -69,9 +78,12 @@ int east_checker(t_parse* map_info, int continues) {
     return (-1);
 }
 
-int west_checker(t_parse* map_info, int continues) {
+int west_checker(t_parse* map_info, int continues, int* W) {
     int i = continues;
     int y = 0;
+    if ((*W != 0))
+        return (-1);
+    (*W) = 1;
     while (map_info->map[i]) {
         y = 0;
         while (map_info->map[i][y] && map_info->map[i][y] != '\n') {
@@ -82,7 +94,7 @@ int west_checker(t_parse* map_info, int continues) {
                     return (-1);
                 if (count_word(map_info->map[i], ' ') != 2)
                     return (-1);
-                continues = i;
+                continues = i + 1;
                 return (continues);
             }
             y++;

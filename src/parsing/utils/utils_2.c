@@ -2,7 +2,6 @@
 
 int where(char* string) {
     int i = 0;
-    i++;
     while (string[i] && string[i] != '\n' && string[i] != ' ')
         i++;
     return (i);
@@ -11,9 +10,9 @@ int where(char* string) {
 char* texture_cuter(char* string) {
     int i = 0;
     int start = 0;
-    while (string[start] && string[start] != ' ')
+    while (string[start] == ' ')
         start++;
-    int index = where(string);
+    int index = where(&string[start]);
     char* no_texture = ft_substr(string, start, index);
     return (no_texture);
 }
@@ -31,6 +30,7 @@ char* norther(char** map) {
                     break;
             y++;
         }
+        
         i++;
     }
     return NULL;
@@ -45,7 +45,7 @@ char* souther(char** map) {
         y = 0;
         while(map[i][y] && map[i][y] != '\n') {
                 if (map[i][y] == 'S')
-                    return (texture_cuter(&map[i][y]));
+                    return (texture_cuter(&map[i][y + 3]));
                 if (map[i][y] != ' ' && map[i][y] != 'S')
                     break;
             y++;
@@ -63,7 +63,7 @@ char* wester(char** map){
         y = 0;
         while(map[i][y] && map[i][y] != '\n') {
             if (map[i][y] == 'W')
-                return (texture_cuter(&map[i][y]));
+                return (texture_cuter(&map[i][y + 3]));
             if (map[i][y] != ' ' && map[i][y] != 'W')
                 break;
             y++;
@@ -82,7 +82,7 @@ char* easter(char** map) {
         y = 0;
         while(map[i][y] && map[i][y] != '\n') {
             if (map[i][y] == 'E')
-                return (texture_cuter(&map[i][y]));
+                return (texture_cuter(&map[i][y + 3]));
             if (map[i][y] != ' ' && map[i][y] != 'E')
                 break;
             y++;
@@ -93,24 +93,48 @@ char* easter(char** map) {
 }
 
 int syntaxer(t_parse* map_info) {
-    int continues =  north_checker(map_info, 0);
-    if (continues == -1)
-         return (1);
-    printf("success: %d\n", continues);
-    exit(1);
-    // continues = south_checker(map_info, continues);
-    // if (continues == -1)
-    //     return (1);
-    // continues = west_checker(map_info, continues);
-    // if (continues == -1)
-    //     return (1);
-    // continues = east_checker(map_info, continues);
-    // if (continues == -1)
-    //     return (1);
+    int i = 0;
+    int y = 0;
 
-    // map_info->NO_TEXTURE = norther(map_info->map);
-    // map_info->SO_TEXTURE = souther(map_info->map);
-    // map_info->WE_TEXTURE = wester(map_info->map);
-    // map_info->EA_TEXTURE = easter(map_info->map);
+    int N = 0;
+    int S = 0;
+    int W = 0;
+    int E = 0;
+    int continues = 0;
+    while (i < map_info->som) {
+        y = 0;
+        while (map_info->map[i][y] && map_info->map[i][y] != '\n') {
+            if (map_info->map[i][y] == 'N') {
+                continues = north_checker(map_info, i, &N);
+                break;
+            }
+            else if (map_info->map[i][y] == 'S') {
+                continues = south_checker(map_info, i, &S);
+                break;
+            }
+            else if (map_info->map[i][y] == 'W') {
+                continues = west_checker(map_info, i, &W);
+                break;
+            }
+            else if (map_info->map[i][y] == 'E') {
+                continues = east_checker(map_info, i, &E);
+                break;
+            }
+            else if (map_info->map[i][y] != ' ' && map_info->map[i][y] != 'N' 
+                && map_info->map[i][y] != 'S' && map_info->map[i][y] != 'W'
+                && map_info->map[i][y] != 'E' && map_info->map[i][y] != '\n')
+                    return (1);
+            if (continues == -1)
+                return (1);
+            y++;
+        }
+        i++;
+    }
+    if (S != 1 || N != 1 || E != 1 || W != 1)
+        return (1);
+    map_info->NO_TEXTURE = norther(map_info->map);
+    map_info->SO_TEXTURE = souther(map_info->map);
+    map_info->WE_TEXTURE = wester(map_info->map);
+    map_info->EA_TEXTURE = easter(map_info->map);
     return (0);
 }

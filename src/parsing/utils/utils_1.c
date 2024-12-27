@@ -38,7 +38,7 @@ void    parse_free(t_parse* map_info) {
 }
 
 void flood_fill(char** map, int i, int y) {
-	if (!map[i] || !map[i][y] || map[i][y] == ' '
+    if (!map[i] || !map[i][y] || map[i][y] == ' '
 		|| map[i][y] == '1' || map[i][y] == '\n' || map[i][y] == 'M') {
 		return;	
 	}
