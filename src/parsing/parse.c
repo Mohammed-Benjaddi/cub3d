@@ -85,6 +85,13 @@ void map_start(t_parse* map_info) {
     return;
 }
 
+void print_texture(t_parse* map_info) {
+    printf("\n%s\n", map_info->NO_TEXTURE);
+    printf("%s\n", map_info->SO_TEXTURE);
+    printf("%s\n", map_info->EA_TEXTURE);
+    printf("%s\n", map_info->WE_TEXTURE);
+}
+
 int parse_entry(int ac, char** av) {
     t_parse map_info;
     if (ac != 2)
@@ -97,10 +104,12 @@ int parse_entry(int ac, char** av) {
     if (!map_setter(&map_info, ac, av))
         return (perror("Error\n"), 1);
     if (map_checker(map_info.map, map_info.map_size))
-        return (close(map_info.fd), parse_free(&map_info), perror("Error\nCheck your map content\n"), 1);
+        return (close(map_info.fd), perror("Error\nCheck your map content\n"), 1);
     if (syntaxer(&map_info))
-        return (close(map_info.fd), parse_free(&map_info), perror("Error\nInvalid Map\n"), 1);
+        return (close(map_info.fd), perror("Error\nInvalid Map\n"), 1);
     print_map(map_info.map);
-    parse_free(&map_info);
+    print_texture(&map_info);
+    printf("\nValid Map :)\n");
+    printf("\nMake sure to free\n");
     return (0);
 }

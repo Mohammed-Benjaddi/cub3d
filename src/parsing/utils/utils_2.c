@@ -124,10 +124,10 @@ int syntaxer(t_parse* map_info) {
                 && map_info->map[i][y] != 'S' && map_info->map[i][y] != 'W'
                 && map_info->map[i][y] != 'E' && map_info->map[i][y] != '\n')
                     return (1);
-            if (continues == -1)
-                return (1);
             y++;
         }
+        if (continues == -1)
+            return (1);
         i++;
     }
     if (S != 1 || N != 1 || E != 1 || W != 1)
