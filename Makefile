@@ -1,17 +1,16 @@
 NAME	:= cub3D
-CFLAGS	:= #-fsanitize=address #-g-Wunreachable-code -Ofast
-#MORE_FLAGS = -fsanitize=address -g
+CFLAGS	:= #-Wextra -Wall -Werror #-Wunreachable-code -Ofast
+MORE_FLAGS = #-fsanitize=address -g
 
 MLX_DIR	:= ~/MLX42
 SRC_DIR = src
-CUB_FILES = cub3D.c handle_keys_click.c player_mvt.c
- LIBS = $(MLX_DIR)/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm # for linux
+CUB_FILES = cub3D.c minimap.c handle_keys_click.c player_mvt.c ./render_walls/render_walls.c
+LIBS = $(MLX_DIR)/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm # for linux
 # LIBS	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm #for mac
-#LIBS    := $(MLX_DIR)/build/libmlx42.a -Iinclude -lglfw -L"/Users/bbelarra/goinfre/homebrew/lib"
 
-
+RAYCAST_FILES = raycasting.c utils.c draw.c player_utils.c cast_rays.c check_directions.c vert_hor_intersections.c
+RENDER_WALLS_FILES = render_walls.c
 PARSE_FILES = parse.c utils/utils_0.c utils/utils_1.c utils/utils_2.c NSEW.c
-RAYCAST_FILES = raycasting.c utils.c draw.c player_utils.c cast_rays.c
 LIBFT_FILES = ft_strdup.c ft_strlen.c ft_substr.c
 GNL_FILES = get_next_line.c get_next_line_utils.c
 

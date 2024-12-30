@@ -10,18 +10,20 @@
 typedef struct s_parse {
     int     fd;
     char**  map;
-    char**  real_map;
+
     char*   NO_TEXTURE;
     char*   SO_TEXTURE;
     char*   WE_TEXTURE;
     char*   EA_TEXTURE;
     int     F_colors[3];
     int     C_colors[3];
+    
     size_t  som;
     size_t  map_size;
+    
     int     player_x;
     int     player_y;
-}   
+}
 t_parse;
 
 

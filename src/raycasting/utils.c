@@ -14,10 +14,10 @@ double rad_to_deg(double rad)
 
 double get_new_x(t_game *game, double angle)
 {
-  return cos(angle) * (game->n_px - game->player_x) - sin(angle) * (game->n_py - game->player_y) + game->player_x;
+  return cos(angle) * (game->player.n_px - game->player.player_x) - sin(angle) * (game->player.n_py - game->player.player_y) + game->player.player_x;
 }    
 
 double get_new_y(t_game *game, double angle)
 {
-  return sin(angle) * (game->n_px - game->player_x) + cos(angle) * (game->n_py - game->player_y) + game->player_y;
+  return sin(angle) * (game->player.n_px - game->player.player_x) + cos(angle) * (game->player.n_py - game->player.player_y) + game->player.player_y;
 }
