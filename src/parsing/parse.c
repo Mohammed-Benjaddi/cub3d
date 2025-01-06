@@ -95,18 +95,18 @@ void print_texture(t_parse* map_info) {
 int parse_entry(int ac, char** av) {
     t_parse map_info;
     if (ac != 2)
-        return (perror("Error\ninvalid number of arguments\n"), 1);
+        return (write(2, "Error\ninvalid number of arguments\n", 34), 1);
     map_info.fd = open(av[1], O_RDONLY);
     if (map_info.fd == -1)
-        return (perror("Error\nFailed to open file\n"), 1);
+        return (write(2, "Error\nFailed to open file\n", 26), 1);
     if (name_checker(av[1]))
-        return (close(map_info.fd), perror("Error\nInvalid map name\n"), 1);
+        return (close(map_info.fd), write(2, "Error\nInvalid map name\n", 23), 1);
     if (!map_setter(&map_info, ac, av))
-        return (perror("Error\n"), 1);
+        return (write(2, "Error\nCheck your map content\n", 29), 1);
     if (map_checker(map_info.map, map_info.map_size))
-        return (close(map_info.fd), perror("Error\nCheck your map content\n"), 1);
+        return (close(map_info.fd), write(2, "Error\nCheck your map content\n", 29), 1);
     if (syntaxer(&map_info))
-        return (close(map_info.fd), perror("Error\nInvalid Map\n"), 1);
+        return (close(map_info.fd), write(2, "Error\nCheck your map content\n", 29), 1);
     print_map(map_info.map);
     print_texture(&map_info);
     printf("\nValid Map :)\n");

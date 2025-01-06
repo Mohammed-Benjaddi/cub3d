@@ -91,9 +91,9 @@ t_game *init_infos()
 	set_player_position(game);
 	game->player.move_speed = 10;
 	game->rays = malloc(sizeof(t_ray) * NUM_RAYS);
-	// init_minimap(game, &game->minimap);
-	// game->minimap.p_x = 10;
-  // game->minimap.p_y = 10;
+	//init_minimap(game, &game->minimap);
+	//game->minimap.p_x = 10;
+	//game->minimap.p_y = 10;
 	return game;
 }
 
