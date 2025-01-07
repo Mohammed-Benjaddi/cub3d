@@ -96,6 +96,9 @@ int syntaxer(t_parse* map_info) {
     int i = 0;
     int y = 0;
 
+    int F = 0;
+    int C = 0;
+
     int N = 0;
     int S = 0;
     int W = 0;
@@ -120,9 +123,18 @@ int syntaxer(t_parse* map_info) {
                 continues = east_checker(map_info, i, &E);
                 break;
             }
+            else if (map_info->map[i][y] == 'C') {
+                continues = ceil_check(map_info, i, &C);
+                break;
+            }
+            else if (map_info->map[i][y] == 'F') {
+                continues = floor_check(map_info, i, &F);
+                break;
+            }
             else if (map_info->map[i][y] != ' ' && map_info->map[i][y] != 'N' 
                 && map_info->map[i][y] != 'S' && map_info->map[i][y] != 'W'
-                && map_info->map[i][y] != 'E' && map_info->map[i][y] != '\n')
+                && map_info->map[i][y] != 'E' && map_info->map[i][y] != 'C'
+                && map_info->map[i][y] != 'F' && map_info->map[i][y] != '\n')
                     return (1);
             y++;
         }
@@ -130,7 +142,7 @@ int syntaxer(t_parse* map_info) {
             return (1);
         i++;
     }
-    if (S != 1 || N != 1 || E != 1 || W != 1)
+    if (S != 1 || N != 1 || E != 1 || W != 1 || C != 1 || F != 1)
         return (1);
     map_info->NO_TEXTURE = norther(map_info->map);
     map_info->SO_TEXTURE = souther(map_info->map);

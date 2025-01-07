@@ -72,7 +72,8 @@ void map_start(t_parse* map_info) {
         y = 0;
         while (map_info->map[i][y] && map_info->map[i][y] != '\n') {
             if (map_info->map[i][y] == 'N' || map_info->map[i][y] == 'S' 
-                || map_info->map[i][y] == 'E' || map_info->map[i][y] == 'W')
+                || map_info->map[i][y] == 'E' || map_info->map[i][y] == 'W'
+                || map_info->map[i][y] == 'C' || map_info->map[i][y] == 'F')
                     break;
             else if (map_info->map[i][y] == '0' || map_info->map[i][y] == '1')
                 map_info->som = i;

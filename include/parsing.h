@@ -15,12 +15,12 @@ typedef struct s_parse {
     char*   SO_TEXTURE;
     char*   WE_TEXTURE;
     char*   EA_TEXTURE;
-    int     F_colors[3];
-    int     C_colors[3];
-    
+    int     FLOOR[3];
+    int     CEILING[3];
+
     size_t  som;
     size_t  map_size;
-    
+
     int     player_x;
     int     player_y;
 }
@@ -31,6 +31,9 @@ int north_checker(t_parse* map_info, int continues, int* N);
 int south_checker(t_parse* map_info, int continues, int* S);
 int west_checker(t_parse* map_info, int continues, int* W);
 int east_checker(t_parse* map_info, int continues, int* E);
+
+int floor_check(t_parse *map_info, int continues, int *F);
+int ceil_check(t_parse *map_info, int continues, int *C);
 
 void map_start(t_parse* map_info);
 int final_map_check(t_parse* map_info);
