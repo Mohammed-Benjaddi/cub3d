@@ -49,4 +49,5 @@ void    parse_free(t_parse* map_info);
 void    print_map(char** map);
 void    flood_fill(char** map, int i, int y);
 int     parse_entry(int ac, char** av);
+void    flood_filler(t_parse *map_info);
 #endif

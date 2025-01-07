@@ -92,6 +92,22 @@ void print_texture(t_parse* map_info) {
     printf("%s\n", map_info->WE_TEXTURE);
 }
 
+void flood_filler(t_parse *map_info) {
+    int i = 0;
+    int y = 0;
+
+    i = map_info->som;
+    while (map_info->map[i]) {
+        y = 0;
+        while (map_info->map[i][y] && map_info->map[i][y] != '\n') {
+            if (map_info->map[i][y] == '0')
+                flood_fill(map_info->map, i, y);
+            y++;
+        }
+        i++;
+    }
+}
+
 int parse_entry(int ac, char** av) {
     t_parse map_info;
     if (ac != 2)
@@ -103,7 +119,8 @@ int parse_entry(int ac, char** av) {
         return (close(map_info.fd), write(2, "Error\nInvalid map name\n", 23), 1);
     if (!map_setter(&map_info, ac, av))
         return (write(2, "Error\nCheck your map content\n", 29), 1);
-    if (map_checker(map_info.map, map_info.map_size))
+    flood_filler(&map_info);
+    if (map_checker(&map_info.map[map_info.som], map_info.map_size))
         return (close(map_info.fd), write(2, "Error\nCheck your map content\n", 29), 1);
     if (syntaxer(&map_info))
         return (close(map_info.fd), write(2, "Error\nCheck your map content\n", 29), 1);
