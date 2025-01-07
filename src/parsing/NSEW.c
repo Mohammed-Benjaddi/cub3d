@@ -78,6 +78,19 @@ int east_checker(t_parse* map_info, int continues, int* E) {
     return (-1);
 }
 
+int color_syntax(char *line) {
+    int i = 1;
+    while (line[i] == ' ')
+        i++;
+
+    while (line[i] && line[i] != '\n') {
+        if ((line[i] < '0' || line[i] > '9') && (line[i] != ','))   
+            return (1);
+        i++;
+    }
+    return (0);
+}
+
 int ceil_check(t_parse *map_info, int continues, int *C) {
     int i = continues;
     int y = 0;
@@ -92,7 +105,7 @@ int ceil_check(t_parse *map_info, int continues, int *C) {
             if (map_info->map[i][y] == 'C') {
                 if (map_info->map[i][y + 1] != ' ')
                     return (-1);
-                if (count_word(map_info->map[i], ' ') != 2)
+                if (count_word(map_info->map[i], ' ') != 2 || color_syntax(map_info->map[i]))
                     return (-1);
                 continues = i + 1;
                 return (continues);
@@ -118,7 +131,7 @@ int floor_check(t_parse *map_info, int continues, int *F) {
             if (map_info->map[i][y] == 'F') {
                 if (map_info->map[i][y + 1] != ' ')
                     return (-1);
-                if (count_word(map_info->map[i], ' ') != 2)
+                if (count_word(map_info->map[i], ' ') != 2 || color_syntax(map_info->map[i]))
                     return (-1);
                 continues = i + 1;
                 return (continues);

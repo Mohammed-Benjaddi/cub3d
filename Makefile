@@ -11,7 +11,7 @@ LIBS = $(MLX_DIR)/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm # for linu
 RAYCAST_FILES = raycasting.c utils.c draw.c player_utils.c cast_rays.c check_directions.c vert_hor_intersections.c
 RENDER_WALLS_FILES = render_walls.c
 PARSE_FILES = parse.c utils/utils_0.c utils/utils_1.c utils/utils_2.c NSEW.c
-LIBFT_FILES = ft_strdup.c ft_strlen.c ft_substr.c
+LIBFT_FILES = ft_strdup.c ft_strlen.c ft_substr.c ft_atoi.c
 GNL_FILES = get_next_line.c get_next_line_utils.c
 
 RAYCAST_SRC = $(addprefix $(SRC_DIR)/raycasting/, $(RAYCAST_FILES))

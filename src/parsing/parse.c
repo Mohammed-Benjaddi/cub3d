@@ -125,9 +125,12 @@ int parse_entry(int ac, char** av) {
         return (close(map_info.fd), write(2, "Error\nCheck your map content\n", 29), 1);
     if (syntaxer(&map_info))
         return (close(map_info.fd), write(2, "Error\nCheck your map content\n", 29), 1);
-    print_map(map_info.map);
+    // print_map(map_info.map);
     print_texture(&map_info);
     printf("\nValid Map :)\n");
     printf("\nMake sure to free\n");
+    exit(1);
     return (0);
 }
+
+//make sure to free and delete unused functions (E.G print_map, print_texture...)

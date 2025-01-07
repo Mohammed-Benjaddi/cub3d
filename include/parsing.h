@@ -15,8 +15,14 @@ typedef struct s_parse {
     char*   SO_TEXTURE;
     char*   WE_TEXTURE;
     char*   EA_TEXTURE;
-    int     FLOOR[3];
-    int     CEILING[3];
+
+    int     F_R;
+    int     F_G;
+    int     F_B;
+
+    int     C_R;
+    int     C_G;
+    int     C_B;
 
     size_t  som;
     size_t  map_size;
@@ -31,6 +37,12 @@ int north_checker(t_parse* map_info, int continues, int* N);
 int south_checker(t_parse* map_info, int continues, int* S);
 int west_checker(t_parse* map_info, int continues, int* W);
 int east_checker(t_parse* map_info, int continues, int* E);
+
+
+int     floor_colors(t_parse *map_info);
+int     ceil_colors(t_parse *map_info);
+int     color_syntax(char *line);
+void    colors_extracter(t_parse *map_info, char *line, int who);
 
 int floor_check(t_parse *map_info, int continues, int *F);
 int ceil_check(t_parse *map_info, int continues, int *C);
