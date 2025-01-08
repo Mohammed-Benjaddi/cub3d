@@ -148,63 +148,9 @@ int syntaxer(t_parse* map_info) {
     map_info->SO_TEXTURE = souther(map_info->map);
     map_info->WE_TEXTURE = wester(map_info->map);
     map_info->EA_TEXTURE = easter(map_info->map);
-    floor_colors(map_info);
-    ceil_colors(map_info);
     return (0);
 }
 
 char *look_for(char *line) {
 
-}
-
-void    colors_extracter(t_parse *map_info, char *line, int who) {
-    int y = 0;
-
-    // if (who == 0) {
-    //     map_info->F_R = ft_atoi();
-    //     map_info->F_G = ;
-    //     map_info->F_B = ;
-    // }
-    // else {
-    //     map_info->F_R = ;
-    //     map_info->F_G = ;
-    //     map_info->F_B = ;
-    // }
-}
-
-int floor_colors(t_parse *map_info) {
-    int i = 0;
-    int y = 0;
-    int flager = 0;
-
-    while (map_info->map[i]) {
-        y = 0;
-        while(map_info->map[i][y] && map_info->map[i][y] != '\n') {
-            if (map_info->map[i][y] == 'F')
-                return (colors_extracter(map_info, cus_strdup(map_info->map[i]), 1), 1);
-            if (map_info->map[i][y] != ' ' && map_info->map[i][y] != 'F')
-                break;
-            y++;
-        }
-        i++;
-    }
-    return 0;
-}
-int ceil_colors(t_parse *map_info) {
-    int i = 0;
-    int y = 0;
-    int flager = 0;
-
-    while (map_info->map[i]) {
-        y = 0;
-        while(map_info->map[i][y] && map_info->map[i][y] != '\n') {
-            if (map_info->map[i][y] == 'C')
-                return (colors_extracter(map_info, cus_strdup(map_info->map[i]), 0), 1);
-            if (map_info->map[i][y] != ' ' && map_info->map[i][y] != 'C')
-                break;
-            y++;
-        }
-        i++;
-    }
-    return 0;
 }

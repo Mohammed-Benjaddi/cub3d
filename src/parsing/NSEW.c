@@ -78,7 +78,7 @@ int east_checker(t_parse* map_info, int continues, int* E) {
     return (-1);
 }
 
-int color_syntax(char *line, int color) {
+int color_syntax(t_parse *map_info, char *line, int color) {
     int i = 0;
     while (line[i] == ' ')
         i++;
@@ -152,7 +152,16 @@ int color_syntax(char *line, int color) {
     if (line[i] != '\0' && line[i] != '\n')
         return 1;
 
-    printf("DAAZ\n");
+    if (color == 0) {
+        map_info->C_R = r;
+        map_info->C_G = g;
+        map_info->C_B = b;
+    }
+    else if (color == 1) {
+        map_info->F_R = r;
+        map_info->F_G = g;
+        map_info->F_B = b;
+    }
     return 0;
 }
 
@@ -171,7 +180,7 @@ int ceil_check(t_parse *map_info, int continues, int *C) {
             if (map_info->map[i][y] == 'C') {
                 if (map_info->map[i][y + 1] != ' ')
                     return (-1);
-                if (count_word(map_info->map[i], ' ') != 2 || color_syntax(map_info->map[i], 0))
+                if (count_word(map_info->map[i], ' ') != 2 || color_syntax(map_info, map_info->map[i], 0))
                     return (-1);
                 continues = i + 1;
                 return (continues);
@@ -197,7 +206,7 @@ int floor_check(t_parse *map_info, int continues, int *F) {
             if (map_info->map[i][y] == 'F') {
                 if (map_info->map[i][y + 1] != ' ')
                     return (-1);
-                if (count_word(map_info->map[i], ' ') != 2 || color_syntax(map_info->map[i], 1))
+                if (count_word(map_info->map[i], ' ') != 2 || color_syntax(map_info, map_info->map[i], 1))
                     return (-1);
                 continues = i + 1;
                 return (continues);
