@@ -132,7 +132,7 @@ int parse_entry(int ac, char** av) {
     if (syntaxer(&map_info))
         return (close(map_info.fd), write(2, "Error\nCheck your map content\n", 29), 1);
    
-    print_texture(&map_info);
+    // print_texture(&map_info);
     // print_map(map_info.map);
     // parse_free(&map_info);
     return (0);
