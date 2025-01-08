@@ -41,11 +41,11 @@ int east_checker(t_parse* map_info, int continues, int* E);
 
 int     color_syntax(t_parse *map_info, char *line, int color);
 
-int floor_check(t_parse *map_info, int continues, int *F);
-int ceil_check(t_parse *map_info, int continues, int *C);
+int     floor_check(t_parse *map_info, int continues, int *F);
+int     ceil_check(t_parse *map_info, int continues, int *C);
 
-void map_start(t_parse* map_info);
-int final_map_check(t_parse* map_info);
+void    map_start(t_parse* map_info);
+int     final_map_check(t_parse* map_info);
 
 char*   norther(char** map);
 char*   easter(char** map);
@@ -63,6 +63,6 @@ void    parse_free(t_parse* map_info);
 
 void    print_map(char** map);
 void    flood_fill(char** map, int i, int y);
-int     parse_entry(int ac, char** av);
+t_parse *parse_entry(int ac, char** av);
 void    flood_filler(t_parse *map_info);
 #endif

@@ -99,8 +99,9 @@ t_game *init_infos()
 
 int main(int ac, char** av)
 {
-	if (parse_entry(ac, av))
-		return (EXIT_FAILURE); 
+	t_parse *map_info = parse_entry(ac, av);
+	if (!map_info)
+		return (EXIT_FAILURE);
 	t_game *game;
 	game = init_infos();
 	raycarting(game);
