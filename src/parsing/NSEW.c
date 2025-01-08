@@ -78,18 +78,84 @@ int east_checker(t_parse* map_info, int continues, int* E) {
     return (-1);
 }
 
-int color_syntax(char *line) {
-    int i = 1;
+int color_syntax(char *line, int color) {
+    int i = 0;
     while (line[i] == ' ')
         i++;
 
-    while (line[i] && line[i] != '\n') {
-        if ((line[i] < '0' || line[i] > '9') && (line[i] != ','))   
-            return (1);
+    if (color == 0) {
+        if (line[i] != 'C')
+            exit(1);
+    }
+    else if (color == 1) {
+        if (line[i] != 'F')
+            return 1;
+    }
+    i++;
+
+    while (line[i] == ' ')
+        i++;
+
+    int r = 0;
+    if (!ft_isdigit(line[i]))
+        return 1;
+
+    while (ft_isdigit(line[i])) {
+        r = r * 10 + (line[i] - '0');
         i++;
     }
-    return (0);
+    
+    if (r < 0 || r > 255) 
+        return 1;
+
+    while (line[i] == ' ')
+        i++;
+
+    if (line[i] != ',')
+        return 1;
+    i++;
+
+    int g = 0;
+    if (!ft_isdigit(line[i]))
+        return 1;
+
+    while (ft_isdigit(line[i])) {
+        g = g * 10 + (line[i] - '0');
+        i++;
+    }
+
+    if (g < 0 || g > 255)
+        return 1;
+
+    while (line[i] == ' ')
+        i++;
+
+    if (line[i] != ',')
+        return 1;
+    i++;
+
+    int b = 0;
+    if (!ft_isdigit(line[i]))
+        return 1;
+
+    while (ft_isdigit(line[i])) {
+        b = b * 10 + (line[i] - '0');
+        i++;
+    }
+
+    if (b < 0 || b > 255)
+        return 1;
+
+    while (line[i] == ' ')
+        i++;
+
+    if (line[i] != '\0' && line[i] != '\n')
+        return 1;
+
+    printf("DAAZ\n");
+    return 0;
 }
+
 
 int ceil_check(t_parse *map_info, int continues, int *C) {
     int i = continues;
@@ -105,7 +171,7 @@ int ceil_check(t_parse *map_info, int continues, int *C) {
             if (map_info->map[i][y] == 'C') {
                 if (map_info->map[i][y + 1] != ' ')
                     return (-1);
-                if (count_word(map_info->map[i], ' ') != 2 || color_syntax(map_info->map[i]))
+                if (count_word(map_info->map[i], ' ') != 2 || color_syntax(map_info->map[i], 0))
                     return (-1);
                 continues = i + 1;
                 return (continues);
@@ -131,7 +197,7 @@ int floor_check(t_parse *map_info, int continues, int *F) {
             if (map_info->map[i][y] == 'F') {
                 if (map_info->map[i][y + 1] != ' ')
                     return (-1);
-                if (count_word(map_info->map[i], ' ') != 2 || color_syntax(map_info->map[i]))
+                if (count_word(map_info->map[i], ' ') != 2 || color_syntax(map_info->map[i], 1))
                     return (-1);
                 continues = i + 1;
                 return (continues);

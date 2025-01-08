@@ -23,3 +23,7 @@ int cus_strlen(const char *s)
 		i++;
 	return (i);
 }
+
+int	ft_isdigit(int c) {
+	return (c >= 48 && c <= 57);
+}

@@ -41,7 +41,7 @@ int east_checker(t_parse* map_info, int continues, int* E);
 
 int     floor_colors(t_parse *map_info);
 int     ceil_colors(t_parse *map_info);
-int     color_syntax(char *line);
+int     color_syntax(char *line, int color);
 void    colors_extracter(t_parse *map_info, char *line, int who);
 
 int floor_check(t_parse *map_info, int continues, int *F);
