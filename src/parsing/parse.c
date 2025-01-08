@@ -91,6 +91,12 @@ void print_texture(t_parse* map_info) {
     printf("%s\n", map_info->SO_TEXTURE);
     printf("%s\n", map_info->EA_TEXTURE);
     printf("%s\n", map_info->WE_TEXTURE);
+    printf("%d\n", map_info->F_R);
+    printf("%d\n", map_info->F_G);
+    printf("%d\n", map_info->F_B);
+    printf("%d\n", map_info->C_R);
+    printf("%d\n", map_info->C_G);
+    printf("%d\n", map_info->C_B);
 }
 
 void flood_filler(t_parse *map_info) {
@@ -127,9 +133,6 @@ int parse_entry(int ac, char** av) {
         return (close(map_info.fd), write(2, "Error\nCheck your map content\n", 29), 1);
     // print_map(map_info.map);
     print_texture(&map_info);
-    printf("\nValid Map :)\n");
-    printf("\nMake sure to free\n");
-    exit(1);
     return (0);
 }
 
