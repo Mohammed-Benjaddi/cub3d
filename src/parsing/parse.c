@@ -125,14 +125,16 @@ int parse_entry(int ac, char** av) {
     if (name_checker(av[1]))
         return (close(map_info.fd), write(2, "Error\nInvalid map name\n", 23), 1);
     if (!map_setter(&map_info, ac, av))
-        return (write(2, "Error\nCheck your map content\n", 29), 1);
+        return (map_free(&map_info), write(2, "Error\nCheck your map content\n", 29), 1);
     flood_filler(&map_info);
     if (map_checker(&map_info.map[map_info.som], map_info.map_size))
-        return (close(map_info.fd), write(2, "Error\nCheck your map content\n", 29), 1);
+        return (map_free(&map_info), close(map_info.fd), write(2, "Error\nCheck your map content\n", 29), 1);
     if (syntaxer(&map_info))
         return (close(map_info.fd), write(2, "Error\nCheck your map content\n", 29), 1);
-    // print_map(map_info.map);
+   
     print_texture(&map_info);
+    // print_map(map_info.map);
+    // parse_free(&map_info);
     return (0);
 }
 

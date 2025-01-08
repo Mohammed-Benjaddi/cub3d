@@ -35,6 +35,7 @@ void    parse_free(t_parse* map_info) {
     free(map_info->NO_TEXTURE);
     free(map_info->EA_TEXTURE);
     free(map_info->WE_TEXTURE);
+    close(map_info->fd);
 }
 
 void flood_fill(char** map, int i, int y) {

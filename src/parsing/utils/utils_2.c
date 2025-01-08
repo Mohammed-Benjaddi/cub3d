@@ -135,15 +135,15 @@ int syntaxer(t_parse* map_info) {
                 && map_info->map[i][y] != 'S' && map_info->map[i][y] != 'W'
                 && map_info->map[i][y] != 'E' && map_info->map[i][y] != 'C'
                 && map_info->map[i][y] != 'F' && map_info->map[i][y] != '\n')
-                    return (1);
+                    return (map_free(map_info), 1);
             y++;
         }
         if (continues == -1)
-            return (1);
+            return (map_free(map_info), 1);
         i++;
     }
     if (S != 1 || N != 1 || E != 1 || W != 1 || C != 1 || F != 1)
-        return (1);
+        return (map_free(map_info), 1);
     map_info->NO_TEXTURE = norther(map_info->map);
     map_info->SO_TEXTURE = souther(map_info->map);
     map_info->WE_TEXTURE = wester(map_info->map);
@@ -151,6 +151,3 @@ int syntaxer(t_parse* map_info) {
     return (0);
 }
 
-char *look_for(char *line) {
-
-}

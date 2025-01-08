@@ -57,7 +57,10 @@ size_t  size_calc(int fd);
 size_t  custom_strlen(char* string);
 int     syntaxer(t_parse* map_info);
 int     structer(char** map, int stop);
+
+void    map_free(t_parse *map_info);
 void    parse_free(t_parse* map_info);
+
 void    print_map(char** map);
 void    flood_fill(char** map, int i, int y);
 int     parse_entry(int ac, char** av);
