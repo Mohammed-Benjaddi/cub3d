@@ -5,7 +5,6 @@
 void	ft_hook(mlx_key_data_t keydata, void *param)
 {
 	t_game *game;
-
 	game = param;
 	if (keydata.key == MLX_KEY_ESCAPE)
 			mlx_close_window(game->mlx);
@@ -23,6 +22,7 @@ void	ft_hook(mlx_key_data_t keydata, void *param)
 		a_key(game);
 	game->player.turn_direction = 0;
 	game->player.walk_direction = 0;
+	
   rebuild_map(game);
 }
 
@@ -57,7 +57,7 @@ void player_position(t_game *game)
 	}
 }
 
-t_game *init_infos()
+t_game *init_infos(t_parse *parse)
 {
 	t_game *game;
 	game = malloc(sizeof(t_game));
@@ -91,6 +91,7 @@ t_game *init_infos()
 	set_player_position(game);
 	game->player.move_speed = 10;
 	game->rays = malloc(sizeof(t_ray) * NUM_RAYS);
+	game->map_info = parse;
 	//init_minimap(game, &game->minimap);
 	//game->minimap.p_x = 10;
 	//game->minimap.p_y = 10;
@@ -99,11 +100,14 @@ t_game *init_infos()
 
 int main(int ac, char** av)
 {
-	t_parse *map_info = parse_entry(ac, av);
-	if (!map_info)
+	int flager = 0;
+	t_parse parse; 
+	flager = parse_entry(&parse, ac, av);
+	if (!flager)
 		return (EXIT_FAILURE);
 	t_game *game;
-	game = init_infos();
+	game = init_infos(&parse);
+
 	raycarting(game);
 	mlx_key_hook(game->mlx, ft_hook, game);
 	mlx_loop(game->mlx);

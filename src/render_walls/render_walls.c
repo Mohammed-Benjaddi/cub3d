@@ -5,12 +5,6 @@ void floor_ceiling(t_game *game)
   int i;
   int j;
 
-  // int R = 255, G = 0, B = 0;
-  // int color = (R << 16) | (G << 8) | B | 0xFF;
-
-  // int R1 = 0, G2 = 0, B3 = 255;
-  // int color1 = (R1 << 16) | (G2 << 8) | B3;
-
   i = 0;
   j = 0;
   while(i < game->height)
@@ -19,9 +13,9 @@ void floor_ceiling(t_game *game)
     while(j < game->width)
     {
       if(i < game->height / 2)
-        ft_put_pixel(game->img, j, i, RED);
+        ft_put_pixel(game->img, j, i, game->map_info->ceiling_color);
       else
-        ft_put_pixel(game->img, j, i, CYAN);
+        ft_put_pixel(game->img, j, i, game->map_info->floor_color);
       j++;
     }
     i++;

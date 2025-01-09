@@ -22,6 +22,7 @@
 #include <MLX42/MLX42.h>
 #include <libft.h>
 #include <math.h>
+#include "parsing.h"
 #include <raycasting.h>
 
 typedef struct s_hor_intersection 
@@ -39,7 +40,6 @@ typedef struct s_hor_intersection
   double xToCheck;
   double yToCheck;
 } t_hor_intersection;
-
 
 typedef struct s_ver_intersection 
 {
@@ -113,6 +113,7 @@ typedef struct s_game
   t_ver_intersection v_intersection;
   t_ray *rays;
   t_minimap minimap;
+  t_parse *map_info;
 } t_game;
 
 // from raycasting.h

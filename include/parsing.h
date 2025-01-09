@@ -8,6 +8,8 @@
 #include <errno.h>
 
 typedef struct s_parse {
+    int     ceiling_color;
+    int     floor_color;
     int     fd;
     char**  map;
 
@@ -16,13 +18,6 @@ typedef struct s_parse {
     char*   WE_TEXTURE;
     char*   EA_TEXTURE;
 
-    int     F_R;
-    int     F_G;
-    int     F_B;
-
-    int     C_R;
-    int     C_G;
-    int     C_B;
 
     size_t  som;
     size_t  map_size;
@@ -63,6 +58,6 @@ void    parse_free(t_parse* map_info);
 
 void    print_map(char** map);
 void    flood_fill(char** map, int i, int y);
-t_parse *parse_entry(int ac, char** av);
+int     parse_entry(t_parse *map_info, int ac, char** av);
 void    flood_filler(t_parse *map_info);
 #endif

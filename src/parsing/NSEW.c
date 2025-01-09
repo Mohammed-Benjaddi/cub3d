@@ -152,16 +152,10 @@ int color_syntax(t_parse *map_info, char *line, int color) {
     if (line[i] != '\0' && line[i] != '\n')
         return 1;
 
-    if (color == 0) {
-        map_info->C_R = r;
-        map_info->C_G = g;
-        map_info->C_B = b;
-    }
-    else if (color == 1) {
-        map_info->F_R = r;
-        map_info->F_G = g;
-        map_info->F_B = b;
-    }
+    if (color == 0)
+        map_info->ceiling_color = r << 24 | g << 16 | b << 8 | 0xFF;
+    else if (color == 1)
+        map_info->floor_color = r << 24 | g << 16 | b << 8 | 0xFF;
     return 0;
 }
 
