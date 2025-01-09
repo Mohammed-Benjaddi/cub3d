@@ -138,3 +138,4 @@ int parse_entry(t_parse *map_info, int ac, char** av) {
 }
 
 //make sure to free and delete unused functions (E.G print_map, print_texture...)
+//don't forget to protect images

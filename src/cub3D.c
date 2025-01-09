@@ -101,7 +101,7 @@ t_game *init_infos(t_parse *parse)
 int main(int ac, char** av)
 {
 	int flager = 0;
-	t_parse parse; 
+	t_parse parse;
 	flager = parse_entry(&parse, ac, av);
 	if (!flager)
 		return (EXIT_FAILURE);
