@@ -1,10 +1,10 @@
-C 0,0,255
-F 255,0,0
+C 0,255,0
+F 0,0,255
 
-NO /home/kali/Downloads/ida.png
-SO /home/kali/Downloads/ida.png
-WE /home/kali/Downloads/ida.png
-EA /home/kali/Downloads/ida.png
+SO /home/kali/project/textures/ida0.png
+NO /home/kali/project/textures/ida0.png
+WE /home/kali/project/textures/ida0.png
+EA /home/kali/project/textures/ida0.png
 
         1111111111111111111111111
         1000000000110000000000001
