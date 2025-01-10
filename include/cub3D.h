@@ -114,6 +114,11 @@ typedef struct s_game
   t_ray *rays;
   t_minimap minimap;
   t_parse *map_info;
+
+  mlx_texture_t *no_texture;
+  mlx_texture_t *so_texture;
+  mlx_texture_t *we_texture;
+  mlx_texture_t *ea_texture;
 } t_game;
 
 // from raycasting.h

@@ -92,6 +92,12 @@ t_game *init_infos(t_parse *parse)
 	game->player.move_speed = 10;
 	game->rays = malloc(sizeof(t_ray) * NUM_RAYS);
 	game->map_info = parse;
+ 	 	
+	game->no_texture = mlx_load_png(game->map_info->NO_TEXTURE);
+	game->so_texture = mlx_load_png(game->map_info->SO_TEXTURE);
+    game->we_texture = mlx_load_png(game->map_info->WE_TEXTURE);
+    game->ea_texture = mlx_load_png(game->map_info->EA_TEXTURE);
+
 	//init_minimap(game, &game->minimap);
 	//game->minimap.p_x = 10;
 	//game->minimap.p_y = 10;
@@ -107,6 +113,11 @@ int main(int ac, char** av)
 		return (EXIT_FAILURE);
 	t_game *game;
 	game = init_infos(&parse);
+    if (!game->no_texture || !game->so_texture 
+		|| !game->we_texture || !game->ea_texture) {
+        printf("Error loading textures\n");
+        exit(1);
+    }
 
 	raycarting(game);
 	mlx_key_hook(game->mlx, ft_hook, game);
