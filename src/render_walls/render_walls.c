@@ -100,12 +100,11 @@ void render_walls(t_game *game, t_ray *rays)
             tex_x = tex_x % texture->width;
             tex_y = tex_y % texture->height;
             
-            uint8_t r = texture->pixels[(tex_y * texture->width + tex_x) * 4 + 0]; // Red byte
-            uint8_t g = texture->pixels[(tex_y * texture->width + tex_x) * 4 + 1]; // Green byte
-            uint8_t b = texture->pixels[(tex_y * texture->width + tex_x) * 4 + 2]; // Blue byte
-            
-                color = (r << 24) | (g << 16) | (b << 8) | 0XFF;
-      
+            uint8_t r = texture->pixels[(tex_y * texture->width + tex_x) * 4 + 0];
+            uint8_t g = texture->pixels[(tex_y * texture->width + tex_x) * 4 + 1];
+            uint8_t b = texture->pixels[(tex_y * texture->width + tex_x) * 4 + 2];
+
+            color = (r << 24) | (g << 16) | (b << 8) | 0XFF;
 
             ft_put_pixel(game->img, i, y, color);
             y++;

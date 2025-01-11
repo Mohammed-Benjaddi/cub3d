@@ -40,7 +40,7 @@ int     floor_check(t_parse *map_info, int continues, int *F);
 int     ceil_check(t_parse *map_info, int continues, int *C);
 
 void    map_start(t_parse* map_info);
-int     final_map_check(t_parse* map_info);
+int     position_finder(t_parse* map_info);
 
 char*   norther(char** map);
 char*   easter(char** map);

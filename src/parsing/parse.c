@@ -20,7 +20,7 @@ int map_checker(char** map, int len) {
     return (0);
 }
 
-int final_map_check(t_parse* map_info) {
+int position_finder(t_parse* map_info) {
     int i = map_info->som;
     int y = 0;
     int found = 0;
@@ -59,9 +59,8 @@ t_parse* map_setter(t_parse* map_info, int ac, char** av) {
         map_info->map[i] = get_next_line(map_info->fd);
     map_info->map[i] = NULL;
     map_start(map_info);
-    if (final_map_check(map_info))
+    if (position_finder(map_info))
         return (NULL);
-    flood_fill(map_info->map, map_info->player_y, map_info->player_x);  
     return (map_info);
 }
 
@@ -84,19 +83,6 @@ void map_start(t_parse* map_info) {
         i++;
     }
     return;
-}
-
-void print_texture(t_parse* map_info) {
-    printf("\n%s\n", map_info->NO_TEXTURE);
-    printf("%s\n", map_info->SO_TEXTURE);
-    printf("%s\n", map_info->EA_TEXTURE);
-    printf("%s\n", map_info->WE_TEXTURE);
-    // printf("%d\n", map_info->F_R);
-    // printf("%d\n", map_info->F_G);
-    // printf("%d\n", map_info->F_B);
-    // printf("%d\n", map_info->C_R);
-    // printf("%d\n", map_info->C_G);
-    // printf("%d\n", map_info->C_B);
 }
 
 void flood_filler(t_parse *map_info) {
@@ -130,12 +116,11 @@ int parse_entry(t_parse *map_info, int ac, char** av) {
         return (map_free(map_info), close(map_info->fd), write(2, "Error\nCheck your map content\n", 29), 0);
     if (syntaxer(map_info))
         return (close(map_info->fd), write(2, "Error\nCheck your map content\n", 29), 0);
-   
-    // print_texture(&map_info);
-    // print_map(map_info.map);
-    // parse_free(&map_info);
     return (1);
 }
 
+// print_texture(&map_info);
+// print_map(map_info.map);
+// parse_free(&map_info);
 //make sure to free and delete unused functions (E.G print_map, print_texture...)
 //don't forget to protect images
