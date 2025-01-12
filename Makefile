@@ -4,7 +4,7 @@ MORE_FLAGS = -fsanitize=address -g
 
 MLX_DIR	:= ~/MLX42
 SRC_DIR = src
-CUB_FILES = cub3D.c minimap.c handle_keys_click.c player_mvt.c ./render_walls/render_walls.c
+CUB_FILES = cub3D.c minimap.c handle_keys_click.c player_mvt.c arrows_click.c ./render_walls/render_walls.c
 # LIBS = $(MLX_DIR)/build/libmlx42.a -Iinclude -ldl -L/goinfre/bbelarra/homebrew/Cellar/glfw/3.4/lib/ -lglfw -pthread -lm # for linux
 LIBS	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm #for mac
 

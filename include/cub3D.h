@@ -10,30 +10,30 @@
 #define BEIGE 0xFFB38E
 
 # define PI 3.14159265358979323846
-# define FOV 60 * PI / 180
+# define  FOV 60 * PI / 180
 # define NUM_RAYS 1200
 # define TILE_SIZE 30
 # define MM_TILE_SIZE 20
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <MLX42/MLX42.h>
-#include <libft.h>
-#include <math.h>
-#include "parsing.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include <MLX42/MLX42.h>
+# include <libft.h>
+# include <math.h>
+# include "parsing.h"
 
 typedef struct s_dda_algo
 {
   int n_px;
-  int n_py;
-  double dx;
-  double dy;
-  double steps;
-  double x;
-  double y;
-  double x_inc;
-  double y_inc;
+  int     n_py;
+  double  dx;
+  double  dy;
+  double  steps;
+  double  x;
+  double  y;
+  double  x_inc;
+  double  y_inc;
 } t_dda_algo;
 
 typedef struct s_hor_intersection 
@@ -137,10 +137,10 @@ typedef struct s_game
   mlx_texture_t *ea_texture;
 } t_game;
 
-void raycarting(t_game *game);
-double deg_to_rad(double deg);
-double rad_to_deg(double rad);
-double get_new_x(t_game *game, double angle);
+void    raycarting(t_game *game);
+double  deg_to_rad(double deg);
+double  rad_to_deg(double rad);
+double  get_new_x(t_game *game, double angle);
 double get_new_y(t_game *game, double angle);
 void rebuild_map(t_game *game);
 void set_player_position(t_game *game);
@@ -165,5 +165,6 @@ void a_key(t_game *game);
 void render_walls(t_game *game, t_ray *rays);
 void draw_minimap(t_game *game);
 void init_minimap(t_game *game, t_minimap* minimap);
+bool player_can_move(t_game *game, double new_x, double new_y);
 
 #endif

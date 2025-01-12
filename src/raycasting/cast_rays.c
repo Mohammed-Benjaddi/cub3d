@@ -70,7 +70,6 @@ void render_rays(t_game *game)
   int i;
 
   i = 0;
-  i = 0;
   while(i < NUM_RAYS)
   {
     // draw_line(game, game->player, game->rays[i]);
