@@ -64,4 +64,3 @@ void	*ft_cleaner(char **holder, char *buffer, int flag)
 	*holder = NULL;
 	return (NULL);
 }
-

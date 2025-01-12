@@ -45,8 +45,9 @@ int     position_finder(t_parse* map_info);
 char*   norther(char** map);
 char*   easter(char** map);
 char*   wester(char** map);
-char*   norther(char** map);
+char*   souther(char** map);
 
+char	*texture_cuter(char *string);
 size_t  count_word(char* string, char delimiter);
 size_t  size_calc(int fd);
 size_t  custom_strlen(char* string);

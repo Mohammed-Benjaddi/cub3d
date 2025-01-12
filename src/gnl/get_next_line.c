@@ -19,8 +19,8 @@ char	*get_next_line(int fd)
 	char		*final_string;
 
 	var.buffer = malloc(BUFFER_SIZE + 1);
-	// if (read(fd, var.buffer, 0) == -1 || fd < 0 || 
-	// 	BUFFER_SIZE <= 0 || fd > OPEN_MAX || BUFFER_SIZE > INT_MAX)
+	// if (read(fd, var.buffer, 0) == -1 || fd < 0
+	// 	|| BUFFER_SIZE <= 0 || fd > OPEN_MAX || BUFFER_SIZE > INT_MAX)
 	// 	return (ft_cleaner(&holder, var.buffer, 1));
 	while (1)
 	{
