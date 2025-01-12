@@ -6,7 +6,7 @@
 /*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:50:19 by bbelarra          #+#    #+#             */
-/*   Updated: 2024/05/18 15:25:52 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/12 02:59:41 by bbelarra42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
 # endif
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <limits.h>
 # include "libft.h"
+# include <fcntl.h>
+# include <limits.h>
+# include <stdlib.h>
+# include <unistd.h>
+
 typedef struct t_struct
 {
 	int		i;
@@ -29,7 +30,7 @@ typedef struct t_struct
 	char	*buffer;
 }			t_norm_fix;
 
-int			name_checker(char* map_name);
+int			name_checker(char *map_name);
 char		*filler(char *holder, int readed);
 char		*cuter(char *holder, int readed);
 void		little_conca(char *dst, char *src);

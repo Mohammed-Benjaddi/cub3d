@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2024/12/06 04:54:40 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/12 03:40:10 by bbelarra42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,78 +38,79 @@ char	*texture_cuter(char *string)
 	return (no_texture);
 }
 
+int	failure_help(t_parse *map_info, t_syn *syn)
+{
+	if (map_info->map[syn->i][syn->y] == 'C')
+	{
+		syn->continues = ceil_check(map_info, syn->i, &syn->c);
+		return (1);
+	}
+	if (map_info->map[syn->i][syn->y] == 'F')
+	{
+		syn->continues = floor_check(map_info, syn->i, &syn->f);
+		return (1);
+	}
+	else if (map_info->map[syn->i][syn->y] != ' '
+		&& map_info->map[syn->i][syn->y] != 'N'
+		&& map_info->map[syn->i][syn->y] != 'S'
+		&& map_info->map[syn->i][syn->y] != 'W'
+		&& map_info->map[syn->i][syn->y] != 'E'
+		&& map_info->map[syn->i][syn->y] != 'C'
+		&& map_info->map[syn->i][syn->y] != 'F'
+		&& map_info->map[syn->i][syn->y] != '\n')
+		return (-1);
+	return (1);
+}
+
+int	failure_check(t_parse *map_info, t_syn *syn)
+{
+	if (map_info->map[syn->i][syn->y] == 'N')
+	{
+		syn->continues = north_checker(map_info, syn->i, &syn->n);
+		return (1);
+	}
+	else if (map_info->map[syn->i][syn->y] == 'S')
+	{
+		syn->continues = south_checker(map_info, syn->i, &syn->s);
+		return (1);
+	}
+	else if (map_info->map[syn->i][syn->y] == 'W')
+	{
+		syn->continues = west_checker(map_info, syn->i, &syn->w);
+		return (1);
+	}
+	else if (map_info->map[syn->i][syn->y] == 'E')
+	{
+		syn->continues = east_checker(map_info, syn->i, &syn->e);
+		return (1);
+	}
+	return (failure_help(map_info, syn));
+}
+
 int	syntaxer(t_parse *map_info)
 {
-	int	i;
-	int	y;
-	int	f;
-	int	c;
-	int	n;
-	int	s;
-	int	w;
-	int	e;
-	int	continues;
+	t_syn	syn;
 
-	i = 0;
-	y = 0;
-	f = 0;
-	c = 0;
-	n = 0;
-	s = 0;
-	w = 0;
-	e = 0;
-	continues = 0;
-	while (i < map_info->som)
+	init_syn(&syn);
+	while (syn.i < map_info->som)
 	{
-		y = 0;
-		while (map_info->map[i][y] && map_info->map[i][y] != '\n')
+		syn.y = 0;
+		while (map_info->map[syn.i][syn.y]
+			&& map_info->map[syn.i][syn.y] != '\n')
 		{
-			if (map_info->map[i][y] == 'N')
-			{
-				continues = north_checker(map_info, i, &n);
+			if (failure_check(map_info, &syn) == 1)
 				break ;
-			}
-			else if (map_info->map[i][y] == 'S')
-			{
-				continues = south_checker(map_info, i, &s);
-				break ;
-			}
-			else if (map_info->map[i][y] == 'W')
-			{
-				continues = west_checker(map_info, i, &w);
-				break ;
-			}
-			else if (map_info->map[i][y] == 'E')
-			{
-				continues = east_checker(map_info, i, &e);
-				break ;
-			}
-			else if (map_info->map[i][y] == 'C')
-			{
-				continues = ceil_check(map_info, i, &c);
-				break ;
-			}
-			else if (map_info->map[i][y] == 'F')
-			{
-				continues = floor_check(map_info, i, &f);
-				break ;
-			}
-			else if (map_info->map[i][y] != ' ' && map_info->map[i][y] != 'N'
-				&& map_info->map[i][y] != 'S' && map_info->map[i][y] != 'W'
-				&& map_info->map[i][y] != 'E' && map_info->map[i][y] != 'C'
-				&& map_info->map[i][y] != 'F' && map_info->map[i][y] != '\n')
-				return (map_free(map_info), 1);
-			y++;
+			if (failure_check(map_info, &syn) == -1)
+				return (1);
+			syn.y++;
 		}
-		if (continues == -1)
-			return (map_free(map_info), 1);
-		i++;
+		if (syn.continues == -1)
+			return (1);
+		syn.i++;
 	}
-	if (s != 1 || n != 1 || e != 1 || w != 1 || c != 1 || f != 1)
-		return (map_free(map_info), 1);
-	map_info->NO_TEXTURE = norther(map_info->map);
-	map_info->SO_TEXTURE = souther(map_info->map);
-	map_info->WE_TEXTURE = wester(map_info->map);
-	map_info->EA_TEXTURE = easter(map_info->map);
+	if (syn.s != 1 || syn.n != 1 || syn.e != 1 || syn.w != 1 || syn.c != 1
+		|| syn.f != 1)
+		return (1);
+	texture_initilizer(map_info);
 	return (0);
 }

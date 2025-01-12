@@ -258,8 +258,11 @@ int	floor_check(t_parse *map_info, int continues, int *F)
 
 int	west_checker(t_parse *map_info, int continues, int *W)
 {
-	int i = continues;
-	int y = 0;
+	int	i;
+	int	y;
+
+	i = continues;
+	y = 0;
 	if ((*W != 0))
 		return (-1);
 	(*W) = 1;

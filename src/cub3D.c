@@ -93,10 +93,10 @@ t_game *init_infos(t_parse *parse)
 	game->rays = malloc(sizeof(t_ray) * NUM_RAYS);
 	game->map_info = parse;
  	 	
-	game->no_texture = mlx_load_png(game->map_info->NO_TEXTURE);
-	game->so_texture = mlx_load_png(game->map_info->SO_TEXTURE);
-    game->we_texture = mlx_load_png(game->map_info->WE_TEXTURE);
-    game->ea_texture = mlx_load_png(game->map_info->EA_TEXTURE);
+	game->no_texture = mlx_load_png(game->map_info->no_texture);
+	game->so_texture = mlx_load_png(game->map_info->so_texture);
+    game->we_texture = mlx_load_png(game->map_info->we_texture);
+    game->ea_texture = mlx_load_png(game->map_info->ea_texture);
 
 	//init_minimap(game, &game->minimap);
 	//game->minimap.p_x = 10;
