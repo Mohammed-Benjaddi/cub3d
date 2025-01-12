@@ -67,6 +67,7 @@ void render_walls(t_game *game, t_ray *rays)
     int tex_y;
     uint32_t color;
     mlx_texture_t *texture;
+    texture = NULL;
     float tile_size = TILE_SIZE;
 
     i = 0;
@@ -74,17 +75,19 @@ void render_walls(t_game *game, t_ray *rays)
 
     while (i < NUM_RAYS)
     {
-      while (i < NUM_RAYS && (rays[i].ray_angle >= 2 * M_PI))
-        i++;
-      if (i >= NUM_RAYS)
-        break;
+      // if (rays[i].ray_angle >= 2 * M_PI)
+      // {
+      //   write(1, "ouch\n", 5);
+      //   i++;
+      //   continue;
+      // }
       perp_distance = rays[i].distance * cos(rays[i].ray_angle - game->player.rotation_angle);
       distance_proj_plane = (game->width / 2) * tan(FOV / 2);
       proj_wall_height = (TILE_SIZE / perp_distance) * distance_proj_plane;
       wall_strip_height = (int)proj_wall_height;
       wall_bottom_pixel = get_bottom_pixel(game, wall_strip_height);
       wall_top_pixel = get_top_pixel(game, wall_strip_height);
-
+      
       if (rays[i].ray_angle >= 0 && rays[i].ray_angle < M_PI / 2)
           texture = game->ea_texture;
       else if (rays[i].ray_angle >= M_PI / 2 && rays[i].ray_angle < M_PI)
@@ -93,7 +96,11 @@ void render_walls(t_game *game, t_ray *rays)
           texture = game->we_texture;
       else if (rays[i].ray_angle >= 3 * M_PI / 2 && rays[i].ray_angle < 2 * M_PI)
           texture = game->no_texture;
-
+      if (!texture)
+      {
+        i++;
+        continue;
+      }
       tex_x = get_texture_x(&rays[i], texture, tile_size);
 
       y = wall_top_pixel;
