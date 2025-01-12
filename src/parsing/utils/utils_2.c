@@ -57,7 +57,7 @@ int	syntaxer(t_parse *map_info)
 	n = 0;
 	s = 0;
 	w = 0;
-	w = 0;
+	e = 0;
 	continues = 0;
 	while (i < map_info->som)
 	{
@@ -66,32 +66,32 @@ int	syntaxer(t_parse *map_info)
 		{
 			if (map_info->map[i][y] == 'N')
 			{
-				continues = north_checker(map_info, i, &N);
+				continues = north_checker(map_info, i, &n);
 				break ;
 			}
 			else if (map_info->map[i][y] == 'S')
 			{
-				continues = south_checker(map_info, i, &S);
+				continues = south_checker(map_info, i, &s);
 				break ;
 			}
 			else if (map_info->map[i][y] == 'W')
 			{
-				continues = west_checker(map_info, i, &W);
+				continues = west_checker(map_info, i, &w);
 				break ;
 			}
 			else if (map_info->map[i][y] == 'E')
 			{
-				continues = east_checker(map_info, i, &E);
+				continues = east_checker(map_info, i, &e);
 				break ;
 			}
 			else if (map_info->map[i][y] == 'C')
 			{
-				continues = ceil_check(map_info, i, &C);
+				continues = ceil_check(map_info, i, &c);
 				break ;
 			}
 			else if (map_info->map[i][y] == 'F')
 			{
-				continues = floor_check(map_info, i, &F);
+				continues = floor_check(map_info, i, &f);
 				break ;
 			}
 			else if (map_info->map[i][y] != ' ' && map_info->map[i][y] != 'N'
