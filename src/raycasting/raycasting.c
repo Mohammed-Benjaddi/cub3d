@@ -1,4 +1,4 @@
-#include <raycasting.h>
+#include <cub3D.h>
 
 void destroy_images(t_game *game)
 {
@@ -11,7 +11,7 @@ void rebuild_map(t_game *game)
 {
   destroy_images(game);
   draw_map(game);
-  // put_player(game);
+  put_player(game);
   cast_rays(game);
 	render_walls(game, game->rays);
   draw_minimap(game);
@@ -19,12 +19,6 @@ void rebuild_map(t_game *game)
 
 void raycarting(t_game *game)
 {
-  // printf("floor after: %d\n", game->map_info->floor_color);
-	// printf("ceiling after: %d\n", game->map_info->ceiling_color);
-  game->minimap.p_x = 60;
-  game->minimap.p_y = 40;
-
-  
   draw_map(game);
   put_player(game);
   cast_rays(game);

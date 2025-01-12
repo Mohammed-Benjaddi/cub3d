@@ -1,4 +1,4 @@
-#include <raycasting.h>
+#include <cub3D.h>
 
 bool is_player(char c)
 {
@@ -60,20 +60,19 @@ void set_player_position(t_game *game)
 
 void put_player(t_game *game)
 {
-  // int i;
-  // int j;
+  int i;
+  int j;
 
-  // i = -5;
-  // while(i < 5)
-  // {
-  //   j = -5;
-  //   while (j < 5)
-  //   {
-  //     ft_put_pixel(game->img, game->player.player_x + j, game->player.player_y + i, RED);
-  //     j++;
-  //   }
-  //   i++;
-  // }
-  // update_direction_dda(game, game->player.rotation_angle, RED);
+  i = -5;
+  while(i < 5)
+  {
+    j = -5;
+    while (j < 5)
+    {
+      ft_put_pixel(game->img, game->player.player_x + j, game->player.player_y + i, RED);
+      j++;
+    }
+    i++;
+  }
   cast_rays(game);
 }

@@ -1,4 +1,4 @@
-#include <raycasting.h>
+#include <cub3D.h>
 
 int isRayFacingDown(double ray_angle)
 {

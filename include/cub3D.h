@@ -14,7 +14,6 @@
 # define NUM_RAYS 1200
 # define TILE_SIZE 30
 # define MM_TILE_SIZE 20
-# define MINIMAP_SCALE_FACTOR 0.2
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,7 +22,19 @@
 #include <libft.h>
 #include <math.h>
 #include "parsing.h"
-#include <raycasting.h>
+
+typedef struct s_dda_algo
+{
+  int n_px;
+  int n_py;
+  double dx;
+  double dy;
+  double steps;
+  double x;
+  double y;
+  double x_inc;
+  double y_inc;
+} t_dda_algo;
 
 typedef struct s_hor_intersection 
 {
@@ -58,10 +69,10 @@ typedef struct s_ver_intersection
 } t_ver_intersection;
 
 typedef struct s_ray {
-    float ray_angle;
-    float wallHitX;
-    float wallHitY;
-    float distance;
+    double ray_angle;
+    double wallHitX;
+    double wallHitY;
+    double distance;
     int wasHitVertical;
     int isRayFacingUp;
     int isRayFacingDown;
@@ -87,16 +98,22 @@ typedef struct s_player
 
 typedef struct s_minimap
 {
-  int x;
-  int y;
   double p_x;
   double p_y;
   int x_inc;
   int y_inc;
-  int width;
-  int height;
   double n_px;
   double n_py;
+  int v; 
+  int h;
+  int width;
+  int height;
+  double x; 
+  double y; 
+  double s_y;
+  double s_x; 
+  double end_x;
+  double end_y;
   mlx_image_t* mm_img;
 } t_minimap;
 
@@ -114,43 +131,38 @@ typedef struct s_game
   t_ray *rays;
   t_minimap minimap;
   t_parse *map_info;
-
   mlx_texture_t *no_texture;
   mlx_texture_t *so_texture;
   mlx_texture_t *we_texture;
   mlx_texture_t *ea_texture;
 } t_game;
 
-// from raycasting.h
-
 void raycarting(t_game *game);
 double deg_to_rad(double deg);
 double rad_to_deg(double rad);
 double get_new_x(t_game *game, double angle);
 double get_new_y(t_game *game, double angle);
-void update_direction_dda(t_game *game, double rot_angle, int color);
 void rebuild_map(t_game *game);
-// bool is_player(char c);
 void set_player_position(t_game *game);
+void draw_map(t_game *game);
+void draw_background(t_game *game);
+void ft_put_pixel(mlx_image_t* image, int x, int y, int color);
+void put_player(t_game *game);
 void cast_rays(t_game *game);
+void horizontal_intersection(t_game *game, t_hor_intersection *hor_inter, double ray_angle);
+void vertical_intersection(t_game *game, t_ver_intersection *ver_inter, double ray_angle);
+int isRayFacingDown(double ray_angle);
+int isRayFacingUp(double ray_angle);
+int isRayFacingRight(double ray_angle);
+int isRayFacingLeft(double ray_angle);
 bool is_player(char c);
-
-// -----------------------------------
-
 void right_arrow(t_game *game);
 void left_arrow(t_game *game);
 void w_key(t_game *game);
 void s_key(t_game *game);
 void d_key(t_game *game);
 void a_key(t_game *game);
-// void move_up(t_game *game);
-// void move_down(t_game *game);
-// void move_left(t_game *game);
-// void move_right(t_game *game);
-
 void render_walls(t_game *game, t_ray *rays);
-
-// ------------------------------------------
 void draw_minimap(t_game *game);
 void init_minimap(t_game *game, t_minimap* minimap);
 

@@ -1,10 +1,10 @@
-C 0,0,0
-F 0,0,255
+C 37,150,190
+F 234,182,118
 
-SO /Users/bbelarra/projects/textures/ida0.png
-NO /Users/bbelarra/projects/textures/ida0.png
-WE /Users/bbelarra/projects/textures/ida0.png
-EA /Users/bbelarra/projects/textures/ida0.png
+SO ./textures/two.png
+NO ./textures/one.png
+WE ./textures/three.png
+EA ./textures/four.png
 
         1111111111111111111111111
         1000000000110000000000001

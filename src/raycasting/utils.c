@@ -1,14 +1,12 @@
-#include <raycasting.h>
+#include <cub3D.h>
 
 double deg_to_rad(double deg)
 {
-  // printf("rad of %f is %f\n", deg, deg * PI / 180.0);
   return (deg * PI / 180.0);
 }
 
 double rad_to_deg(double rad)
 {
-  // printf("deg of %f is %f\n", rad, rad * 180.0 / PI);
   return (rad * 180.0 / PI);
 }
 

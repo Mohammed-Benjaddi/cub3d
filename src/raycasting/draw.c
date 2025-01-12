@@ -1,4 +1,4 @@
-#include <raycasting.h>
+#include <cub3D.h>
 
 void ft_pixel(t_game *game, int x, int y)
 {
@@ -21,7 +21,7 @@ void ft_pixel(t_game *game, int x, int y)
 void draw_map(t_game *game)
 {
   int i;
-  // int j;
+  int j;
 
   i = 0;
   if(!game->map)
@@ -30,17 +30,17 @@ void draw_map(t_game *game)
   game->img = mlx_new_image(game->mlx, game->width, game->height);
   if (!game->img || (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0))
     perror("putting image to window failed");
-  // while(game->map[i])
-  // {
-  //   j = 0;
-  //   while(game->map[i][j])
-  //   {
-  //     if(game->map[i][j] == '1')
-  //       ft_pixel(game, j * TILE_SIZE, i * TILE_SIZE);
-  //     j++;
-  //   }
-  //   i++;
-  // }
+  while(game->map[i])
+  {
+    j = 0;
+    while(game->map[i][j])
+    {
+      if(game->map[i][j] == '1')
+        ft_pixel(game, j * TILE_SIZE, i * TILE_SIZE);
+      j++;
+    }
+    i++;
+  }
 }
 
 void ft_put_pixel(mlx_image_t* image, int x, int y, int color)
