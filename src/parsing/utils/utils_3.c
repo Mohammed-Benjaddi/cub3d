@@ -6,7 +6,7 @@
 /*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/12 04:01:45 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/12 06:43:22 by bbelarra42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,56 @@ int	position_helper(t_parse *map_info, int *found, int *i, int *y)
 		(*found)++;
 	}
 	return (0);
+}
+
+int	ceil_check(t_parse *map_info, int continues, int *C)
+{
+	int	i;
+	int	y;
+
+	i = continues;
+	y = 0;
+	if ((*C != 0))
+		return (-1);
+	(*C) = 1;
+	while (map_info->map[i])
+	{
+		y = 0;
+		while (map_info->map[i][y] && map_info->map[i][y] != '\n')
+		{
+			if (map_info->map[i][y] != ' ' && map_info->map[i][y] != 'C')
+				return (-1);
+			if (map_info->map[i][y] == 'C')
+				return (ceil_help(map_info, i, y, continues));
+			y++;
+		}
+		i++;
+	}
+	return (-1);
+}
+
+int	floor_check(t_parse *map_info, int continues, int *F)
+{
+	int	i;
+	int	y;
+
+	i = continues;
+	y = 0;
+	if ((*F != 0))
+		return (-1);
+	(*F) = 1;
+	while (map_info->map[i])
+	{
+		y = 0;
+		while (map_info->map[i][y] && map_info->map[i][y] != '\n')
+		{
+			if (map_info->map[i][y] != ' ' && map_info->map[i][y] != 'F')
+				return (-1);
+			if (map_info->map[i][y] == 'F')
+				return (floor_help(map_info, i, y, continues));
+			y++;
+		}
+		i++;
+	}
+	return (-1);
 }

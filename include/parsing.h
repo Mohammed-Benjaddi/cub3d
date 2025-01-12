@@ -6,7 +6,7 @@
 /*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 03:32:49 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/12 03:56:07 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/12 06:36:20 by bbelarra42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,13 @@ int			position_helper(t_parse *map_info, int *found, int *i, int *y);
 int			floor_check(t_parse *map_info, int continues, int *F);
 int			ceil_check(t_parse *map_info, int continues, int *C);
 int			map_checker(char **map, int len);
-
+int			ns_help(t_parse *map_info, int i, int y, int continues);
+int			w_help(t_parse *map_info, int i, int y, int continues);
+int			e_help(t_parse *map_info, int i, int y, int continues);
 void		map_start(t_parse *map_info);
 int			position_finder(t_parse *map_info);
+int			floor_help(t_parse *map_info, int i, int y, int continues);
+int			ceil_help(t_parse *map_info, int i, int y, int continues);
 
 char		*norther(char **map);
 char		*easter(char **map);
