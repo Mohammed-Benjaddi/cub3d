@@ -74,41 +74,45 @@ void render_walls(t_game *game, t_ray *rays)
 
     while (i < NUM_RAYS)
     {
-        perp_distance = rays[i].distance * cos(rays[i].ray_angle - game->player.rotation_angle);
-        distance_proj_plane = (game->width / 2) * tan(FOV / 2);
-        proj_wall_height = (TILE_SIZE / perp_distance) * distance_proj_plane;
-        wall_strip_height = (int)proj_wall_height;
-        wall_bottom_pixel = get_bottom_pixel(game, wall_strip_height);
-        wall_top_pixel = get_top_pixel(game, wall_strip_height);
-
-        if (rays[i].ray_angle >= 0 && rays[i].ray_angle < M_PI / 2)
-            texture = game->ea_texture;
-        else if (rays[i].ray_angle >= M_PI / 2 && rays[i].ray_angle < M_PI)
-            texture = game->so_texture;
-        else if (rays[i].ray_angle >= M_PI && rays[i].ray_angle < 3 * M_PI / 2)
-            texture = game->we_texture;
-        else if (rays[i].ray_angle >= 3 * M_PI / 2 && rays[i].ray_angle < 2 * M_PI)
-            texture = game->no_texture;
-
-        tex_x = get_texture_x(&rays[i], texture, tile_size);
-
-        y = wall_top_pixel;
-        while (y < wall_bottom_pixel)
-        {
-            tex_y = (int)(((y - wall_top_pixel) / (double)wall_strip_height) * texture->height);
-
-            tex_x = tex_x % texture->width;
-            tex_y = tex_y % texture->height;
-            
-            uint8_t r = texture->pixels[(tex_y * texture->width + tex_x) * 4 + 0];
-            uint8_t g = texture->pixels[(tex_y * texture->width + tex_x) * 4 + 1];
-            uint8_t b = texture->pixels[(tex_y * texture->width + tex_x) * 4 + 2];
-
-            color = (r << 24) | (g << 16) | (b << 8) | 0XFF;
-
-            ft_put_pixel(game->img, i, y, color);
-            y++;
-        }
+      while (i < NUM_RAYS && (rays[i].ray_angle >= 2 * M_PI))
         i++;
+      if (i >= NUM_RAYS)
+        break;
+      perp_distance = rays[i].distance * cos(rays[i].ray_angle - game->player.rotation_angle);
+      distance_proj_plane = (game->width / 2) * tan(FOV / 2);
+      proj_wall_height = (TILE_SIZE / perp_distance) * distance_proj_plane;
+      wall_strip_height = (int)proj_wall_height;
+      wall_bottom_pixel = get_bottom_pixel(game, wall_strip_height);
+      wall_top_pixel = get_top_pixel(game, wall_strip_height);
+
+      if (rays[i].ray_angle >= 0 && rays[i].ray_angle < M_PI / 2)
+          texture = game->ea_texture;
+      else if (rays[i].ray_angle >= M_PI / 2 && rays[i].ray_angle < M_PI)
+          texture = game->so_texture;
+      else if (rays[i].ray_angle >= M_PI && rays[i].ray_angle < 3 * M_PI / 2)
+          texture = game->we_texture;
+      else if (rays[i].ray_angle >= 3 * M_PI / 2 && rays[i].ray_angle < 2 * M_PI)
+          texture = game->no_texture;
+
+      tex_x = get_texture_x(&rays[i], texture, tile_size);
+
+      y = wall_top_pixel;
+      while (y < wall_bottom_pixel)
+      {
+          tex_y = (int)(((y - wall_top_pixel) / (double)wall_strip_height) * texture->height);
+
+          tex_x = tex_x % texture->width;
+          tex_y = tex_y % texture->height;
+          
+          uint8_t r = texture->pixels[(tex_y * texture->width + tex_x) * 4 + 0];
+          uint8_t g = texture->pixels[(tex_y * texture->width + tex_x) * 4 + 1];
+          uint8_t b = texture->pixels[(tex_y * texture->width + tex_x) * 4 + 2];
+
+          color = (r << 24) | (g << 16) | (b << 8) | 0XFF;
+
+          ft_put_pixel(game->img, i, y, color);
+          y++;
+      }
+      i++;
     }
 }
