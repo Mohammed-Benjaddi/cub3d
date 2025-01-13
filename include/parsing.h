@@ -6,7 +6,7 @@
 /*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 03:32:49 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/13 05:32:41 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/13 09:03:44 by bbelarra42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct s_parse
 	int		floor_color;
 	int		fd;
 	char	**map;
-
 	char	*no_texture;
 	char	*so_texture;
 	char	*we_texture;
@@ -57,12 +56,23 @@ typedef struct s_parse
 
 	int		player_x;
 	int		player_y;
+
+	char	**original;
+	size_t	width;
+	size_t	height;
 }			t_parse;
 
 int			north_checker(t_parse *map_info, int continues, int *N);
 int			south_checker(t_parse *map_info, int continues, int *S);
 int			west_checker(t_parse *map_info, int continues, int *W);
 int			east_checker(t_parse *map_info, int continues, int *E);
+size_t		real_size(t_parse *map_info);
+char		**set_original(char **src, size_t size, int som);
+void		free_original(char **map);
+void		set_height_width(t_parse *map_info);
+size_t		get_longest_line(t_parse *map_info);
+
+int			valid(char *line);
 
 void		texture_initilizer(t_parse *map_info);
 void		init_syn(t_syn *syn);

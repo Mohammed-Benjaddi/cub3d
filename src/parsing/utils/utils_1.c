@@ -6,11 +6,21 @@
 /*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/12 03:54:08 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/13 09:13:28 by bbelarra42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/parsing.h"
+
+int	valid(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (line[i] && line[i] != '\n')
+		return (1);
+	return (0);
+}
 
 size_t	size_calc(int fd)
 {

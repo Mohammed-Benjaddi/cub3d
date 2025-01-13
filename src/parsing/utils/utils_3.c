@@ -6,7 +6,7 @@
 /*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/13 05:15:00 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/13 09:18:43 by bbelarra42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ int	map_checker(char **map, int len)
 				return (1);
 			else if (map[i][y] == 'M' && (map[i][y + 1] == '\n' || map[i][y
 					+ 1] == ' ' || map[i][y - 1] == ' ' || custom_strlen(map[i
-						- 1]) - 1 < y || custom_strlen(map[i + 1]) - 1 < y
-					|| map[i + 1][y] == ' ' || map[i - 1][y] == ' '))
+						- 1]) - 1 < y || map[i - 1][y] == ' '))
+				return (1);
+			else if ((i + 1 < len && map[i][y] == 'M') && (custom_strlen(map[i
+						+ 1]) - 1 < y || map[i + 1][y] == ' '))
 				return (1);
 			y++;
 		}
@@ -63,7 +65,7 @@ int	position_helper(t_parse *map_info, int *found, int *i, int *y)
 		|| map_info->map[(*i)][(*y)] == 'N' || map_info->map[(*i)][(*y)] == 'E')
 	{
 		map_info->player_x = (*y);
-		map_info->player_y = (*i);
+		map_info->player_y = (*i) - map_info->som;
 		(*found)++;
 	}
 	return (0);

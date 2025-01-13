@@ -6,7 +6,7 @@
 /*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 05:35:09 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/13 05:36:11 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/13 07:09:32 by bbelarra42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,18 @@ int	b(t_parse *map_info, t_rgb *rgb, char *line, int color)
 	if (rgb->b < 0 || rgb->b > 255)
 		return (1);
 	return (0);
+}
+
+void	free_original(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map[i]);
+	free(map);
 }
