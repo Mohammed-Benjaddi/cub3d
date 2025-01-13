@@ -6,7 +6,7 @@
 /*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/12 06:43:42 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/13 05:35:53 by bbelarra42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,74 +118,20 @@ int	west_checker(t_parse *map_info, int continues, int *W)
 
 int	color_syntax(t_parse *map_info, char *line, int color)
 {
-	int	i;
-	int	r;
-	int	g;
-	int	b;
+	t_rgb	rgb;
 
-	i = 0;
-	while (line[i] == ' ')
-		i++;
-	if (color == 0)
-	{
-		if (line[i] != 'C')
-			exit(1);
-	}
-	else if (color == 1)
-	{
-		if (line[i] != 'F')
-			return (1);
-	}
-	i++;
-	while (line[i] == ' ')
-		i++;
-	r = 0;
-	if (!ft_isdigit(line[i]))
+	rgb_init(&rgb);
+	if (r(map_info, &rgb, line, color))
 		return (1);
-	while (ft_isdigit(line[i]))
-	{
-		r = r * 10 + (line[i] - '0');
-		i++;
-	}
-	if (r < 0 || r > 255)
+	if (g(map_info, &rgb, line, color))
 		return (1);
-	while (line[i] == ' ')
-		i++;
-	if (line[i] != ',')
+	if (b(map_info, &rgb, line, color))
 		return (1);
-	i++;
-	g = 0;
-	if (!ft_isdigit(line[i]))
-		return (1);
-	while (ft_isdigit(line[i]))
-	{
-		g = g * 10 + (line[i] - '0');
-		i++;
-	}
-	if (g < 0 || g > 255)
-		return (1);
-	while (line[i] == ' ')
-		i++;
-	if (line[i] != ',')
-		return (1);
-	i++;
-	b = 0;
-	if (!ft_isdigit(line[i]))
-		return (1);
-	while (ft_isdigit(line[i]))
-	{
-		b = b * 10 + (line[i] - '0');
-		i++;
-	}
-	if (b < 0 || b > 255)
-		return (1);
-	while (line[i] == ' ')
-		i++;
-	if (line[i] != '\0' && line[i] != '\n')
+	if (line[rgb.i] != '\0' && line[rgb.i] != '\n' && line[rgb.i] != ' ')
 		return (1);
 	if (color == 0)
-		map_info->ceiling_color = r << 24 | g << 16 | b << 8 | 0xFF;
+		map_info->ceiling_color = rgb.r << 24 | rgb.g << 16 | rgb.b << 8 | 0xFF;
 	else if (color == 1)
-		map_info->floor_color = r << 24 | g << 16 | b << 8 | 0xFF;
+		map_info->floor_color = rgb.r << 24 | rgb.g << 16 | rgb.b << 8 | 0xFF;
 	return (0);
 }

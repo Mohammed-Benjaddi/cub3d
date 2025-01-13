@@ -6,7 +6,7 @@
 /*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 03:32:49 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/12 06:36:20 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/13 05:32:41 by bbelarra42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 # include <errno.h>
 # include <stdio.h>
 # include <unistd.h>
+
+typedef struct s_rgb
+{
+	int		i;
+	int		r;
+	int		g;
+	int		b;
+}			t_rgb;
 
 typedef struct s_syn
 {
@@ -72,6 +80,11 @@ void		map_start(t_parse *map_info);
 int			position_finder(t_parse *map_info);
 int			floor_help(t_parse *map_info, int i, int y, int continues);
 int			ceil_help(t_parse *map_info, int i, int y, int continues);
+
+int			r(t_parse *map_info, t_rgb *rgb, char *line, int color);
+int			g(t_parse *map_info, t_rgb *rgb, char *line, int color);
+int			b(t_parse *map_info, t_rgb *rgb, char *line, int color);
+void		rgb_init(t_rgb *rgb);
 
 char		*norther(char **map);
 char		*easter(char **map);
