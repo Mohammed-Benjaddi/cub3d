@@ -6,7 +6,7 @@
 /*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 03:32:49 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/13 09:03:44 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/13 09:29:18 by bbelarra42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_parse
 	size_t	width;
 	size_t	height;
 }			t_parse;
+
+void		print_original(t_parse *map_info);
 
 int			north_checker(t_parse *map_info, int continues, int *N);
 int			south_checker(t_parse *map_info, int continues, int *S);

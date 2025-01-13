@@ -6,7 +6,7 @@
 /*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/13 09:13:28 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/13 09:24:32 by bbelarra42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	parse_free(t_parse *map_info)
 	free(map_info->no_texture);
 	free(map_info->ea_texture);
 	free(map_info->we_texture);
+	free_original(map_info->original);
 	close(map_info->fd);
 }
 
