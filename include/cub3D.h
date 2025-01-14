@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:48:07 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 13:33:54 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:49:24 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define BEIGE 0xFFB38E
 
 # define PI 3.14159265358979323846
-// # define FOV 60 * PI / 180
+// # define fov 60 * PI / 180
 # define NUM_RAYS 1200
 # define TILE_SIZE 30
 # define MM_TILE_SIZE 20
@@ -51,47 +51,47 @@ typedef struct s_dda_algo
 typedef struct s_hor_intersection
 {
 	bool				found_horz_wall_hit;
-	int					horzWallContent;
-	double				nextHorzTouchX;
-	double				nextHorzTouchY;
-	double				horzWallHitX;
-	double				horzWallHitY;
+	int					horz_wall_content;
+	double				next_horz_touch_x;
+	double				next_horz_touch_y;
+	double				horz_wall_hit_x;
+	double				horz_wall_hit_y;
 	double				xintercept;
 	double				yintercept;
 	double				xstep;
 	double				ystep;
-	double				xToCheck;
-	double				yToCheck;
+	double				x_check;
+	double				y_check;
 }						t_hor_intersection;
 
 typedef struct s_ver_intersection
 {
-	bool				foundVertWallHit;
-	int					vertWallContent;
-	double				nextVertTouchX;
-	double				nextVertTouchY;
-	double				vertWallHitX;
-	double				vertWallHitY;
+	bool				found_vert_wall_hit;
+	int					vert_wall_content;
+	double				next_vert_touch_x;
+	double				next_vert_touch_y;
+	double				vert_wall_hit_x;
+	double				vert_wall_hit_y;
 	double				xintercept;
 	double				yintercept;
 	double				xstep;
 	double				ystep;
-	double				xToCheck;
-	double				yToCheck;
+	double				x_check;
+	double				y_check;
 }						t_ver_intersection;
 
 typedef struct s_ray
 {
 	double				ray_angle;
-	double				wallHitX;
-	double				wallHitY;
+	double				wall_hit_x;
+	double				wall_hit_y;
 	double				distance;
-	int					wasHitVertical;
+	int					was_hit_vertical;
 	int					is_ray_facing_up;
 	int					is_ray_facing_down;
 	int					is_ray_facing_left;
 	int					is_ray_facing_right;
-	int					wallHitContent;
+	int					wall_hit_content;
 }						t_ray;
 
 typedef struct s_player
@@ -133,7 +133,7 @@ typedef struct s_game
 {
 	int					width;
 	int					height;
-	double				FOV;
+	double				fov;
 	char				**map;
 	mlx_t				*mlx;
 	mlx_image_t			*img;

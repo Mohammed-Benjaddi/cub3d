@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 06:06:00 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/14 13:30:19 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:47:22 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ int	get_texture_x(t_ray *ray, mlx_texture_t *texture, float tile_size)
 {
 	int	tex_x;
 
-	if (ray->wasHitVertical)
-		tex_x = (int)(ray->wallHitY / tile_size * texture->width)
+	if (ray->was_hit_vertical)
+		tex_x = (int)(ray->wall_hit_y / tile_size * texture->width)
 			% texture->width;
 	else
-		tex_x = (int)(ray->wallHitX / tile_size * texture->width)
+		tex_x = (int)(ray->wall_hit_x / tile_size * texture->width)
 			% texture->width;
 	return (tex_x);
 }
@@ -101,7 +101,7 @@ void	render_walls(t_game *game, t_ray *rays)
 	{
 		perp_distance = rays[i].distance * cos(rays[i].ray_angle
 				- game->player.rotation_angle);
-		distance_proj_plane = (game->width / 2) * tan(game->FOV / 2);
+		distance_proj_plane = (game->width / 2) * tan(game->fov / 2);
 		proj_wall_height = (TILE_SIZE / perp_distance) * distance_proj_plane;
 		wall_strip_height = (int)proj_wall_height;
 		wall_bottom_pixel = get_bottom_pixel(game, wall_strip_height);

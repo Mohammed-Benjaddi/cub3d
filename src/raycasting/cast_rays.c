@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:28:13 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 13:33:54 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:47:22 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,18 @@ void	get_the_smaller_distance(t_game *game, t_ray *ray,
 	if (vert_hit_distance < horz_hit_distance)
 	{
 		ray->distance = vert_hit_distance;
-		ray->wallHitX = ver_inter->vertWallHitX;
-		ray->wallHitY = ver_inter->vertWallHitY;
-		ray->wallHitContent = ver_inter->vertWallContent;
-		ray->wasHitVertical = true;
+		ray->wall_hit_x = ver_inter->vert_wall_hit_x;
+		ray->wall_hit_y = ver_inter->vert_wall_hit_y;
+		ray->wall_hit_content = ver_inter->vert_wall_content;
+		ray->was_hit_vertical = true;
 	}
 	else
 	{
 		ray->distance = horz_hit_distance;
-		ray->wallHitX = hor_inter->horzWallHitX;
-		ray->wallHitY = hor_inter->horzWallHitY;
-		ray->wallHitContent = hor_inter->horzWallContent;
-		ray->wasHitVertical = false;
+		ray->wall_hit_x = hor_inter->horz_wall_hit_x;
+		ray->wall_hit_y = hor_inter->horz_wall_hit_y;
+		ray->wall_hit_content = hor_inter->horz_wall_content;
+		ray->was_hit_vertical = false;
 	}
 	ray->is_ray_facing_down = is_ray_facing_down(ray->ray_angle);
 	ray->is_ray_facing_up = is_ray_facing_up(ray->ray_angle);
@@ -69,14 +69,14 @@ void	cast_ray(t_game *game, t_ray *ray, float ray_angle)
 	vertical_intersection(game, ver_inter, ray_angle);
 	if (hor_inter->found_horz_wall_hit)
 		horz_hit_distance = calculate_distance(game->player.player_x,
-				game->player.player_y, hor_inter->horzWallHitX,
-				hor_inter->horzWallHitY);
+				game->player.player_y, hor_inter->horz_wall_hit_x,
+				hor_inter->horz_wall_hit_y);
 	else
 		horz_hit_distance = INT_MAX;
-	if (ver_inter->foundVertWallHit)
+	if (ver_inter->found_vert_wall_hit)
 		vert_hit_distance = calculate_distance(game->player.player_x,
-				game->player.player_y, ver_inter->vertWallHitX,
-				ver_inter->vertWallHitY);
+				game->player.player_y, ver_inter->vert_wall_hit_x,
+				ver_inter->vert_wall_hit_y);
 	else
 		vert_hit_distance = INT_MAX;
 	ray->ray_angle = ray_angle;
@@ -88,12 +88,12 @@ void	cast_rays(t_game *game)
 	double	ray_angle;
 	int		i;
 
-	ray_angle = game->player.rotation_angle - (game->FOV / 2);
+	ray_angle = game->player.rotation_angle - (game->fov / 2);
 	i = 0;
 	while (i < game->width)
 	{
 		cast_ray(game, &game->rays[i], ray_angle);
-		ray_angle += (game->FOV / NUM_RAYS);
+		ray_angle += (game->fov / NUM_RAYS);
 		i++;
 	}
 }
