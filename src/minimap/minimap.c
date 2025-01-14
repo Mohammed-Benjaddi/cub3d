@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:55:29 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/13 19:55:29 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:17:37 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,41 +35,6 @@ void	minimap_put_pixel(t_game *game, t_minimap *minimap, uint32_t color)
 		return ;
 	mlx_put_pixel(minimap->mm_img, minimap->s_x - (minimap->x - minimap->h),
 		minimap->s_y - (minimap->y - minimap->v), color);
-}
-
-t_dda_algo	init_dda(t_minimap *minimap, double rot_angle)
-{
-	t_dda_algo	dda;
-
-	dda.n_px = minimap->h + cos(rot_angle) * (TILE_SIZE / 2);
-	dda.n_py = minimap->v + sin(rot_angle) * (TILE_SIZE / 2);
-	dda.dx = dda.n_px - minimap->h;
-	dda.dy = dda.n_py - minimap->v;
-	if (fabs(dda.dx) > fabs(dda.dy))
-		dda.steps = fabs(dda.dx);
-	else
-		dda.steps = fabs(dda.dy);
-	dda.x = minimap->h;
-	dda.y = minimap->v;
-	dda.x_inc = dda.dx / dda.steps;
-	dda.y_inc = dda.dy / dda.steps;
-	return (dda);
-}
-
-void	dda(t_minimap *minimap, double rot_angle)
-{
-	t_dda_algo	dda;
-	int			i;
-
-	i = 0;
-	dda = init_dda(minimap, rot_angle);
-	while (i <= dda.steps)
-	{
-		ft_put_pixel(minimap->mm_img, roundf(dda.x), roundf(dda.y), RED);
-		dda.x += dda.x_inc;
-		dda.y += dda.y_inc;
-		i++;
-	}
 }
 
 void	put_player_minimap(t_game *game, t_minimap *minimap)
@@ -103,6 +68,7 @@ void	draw_minimap_pix(t_game *game, t_minimap *minimap)
 	else
 		minimap_put_pixel(game, minimap, WHITE);
 }
+
 void	draw_minimap(t_game *game)
 {
 	t_minimap	*minimap;

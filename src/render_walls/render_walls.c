@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 06:06:00 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/13 06:44:43 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/14 13:30:19 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	render_walls(t_game *game, t_ray *rays)
 	{
 		perp_distance = rays[i].distance * cos(rays[i].ray_angle
 				- game->player.rotation_angle);
-		distance_proj_plane = (game->width / 2) * tan(FOV / 2);
+		distance_proj_plane = (game->width / 2) * tan(game->FOV / 2);
 		proj_wall_height = (TILE_SIZE / perp_distance) * distance_proj_plane;
 		wall_strip_height = (int)proj_wall_height;
 		wall_bottom_pixel = get_bottom_pixel(game, wall_strip_height);

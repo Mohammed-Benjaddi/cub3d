@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 21:04:38 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/12 21:10:17 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:29:02 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ t_game	*init_infos(t_parse *parse)
 	game->map[12] = ft_strdup("111101111110101101111001");
 	game->map[13] = ft_strdup("111111111111111111111111");
 	game->map[14] = NULL;
+	game->FOV = 60 * PI / 180;
 	game->player.rotation_speed = 5;
 	game->player.turn_direction = 0;
 	game->player.walk_direction = 0;

@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:48:07 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/13 19:48:07 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:33:54 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define BEIGE 0xFFB38E
 
 # define PI 3.14159265358979323846
-# define FOV 60 * PI / 180
+// # define FOV 60 * PI / 180
 # define NUM_RAYS 1200
 # define TILE_SIZE 30
 # define MM_TILE_SIZE 20
@@ -50,7 +50,7 @@ typedef struct s_dda_algo
 
 typedef struct s_hor_intersection
 {
-	bool				foundHorzWallHit;
+	bool				found_horz_wall_hit;
 	int					horzWallContent;
 	double				nextHorzTouchX;
 	double				nextHorzTouchY;
@@ -133,6 +133,7 @@ typedef struct s_game
 {
 	int					width;
 	int					height;
+	double				FOV;
 	char				**map;
 	mlx_t				*mlx;
 	mlx_image_t			*img;
@@ -187,5 +188,6 @@ void					get_first_hor_inter(t_game *game,
 void					get_first_ver_inter(t_game *game,
 							t_ver_intersection *ver_inter, double ray_angle);
 bool					map_has_wall(t_game *game, double x, double y);
+void					dda(t_minimap *minimap, double rot_angle);
 
 #endif

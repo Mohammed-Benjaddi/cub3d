@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:02:54 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/13 19:54:29 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:33:54 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_horizontal_intersection(t_game *game,
 		t_hor_intersection *hor_inter, double ray_angle)
 {
-	hor_inter->foundHorzWallHit = false;
+	hor_inter->found_horz_wall_hit = false;
 	hor_inter->horzWallContent = 0;
 	hor_inter->horzWallHitX = 0;
 	hor_inter->horzWallHitY = 0;
@@ -94,7 +94,7 @@ void	horizontal_intersection(t_game *game,
 			hor_inter->horzWallContent = 
 				game->map[(int)floor(hor_inter->yToCheck 
 					/ TILE_SIZE)][(int)floor(hor_inter->xToCheck / TILE_SIZE)];
-			hor_inter->foundHorzWallHit = true;
+			hor_inter->found_horz_wall_hit = true;
 			break ;
 		}
 		else
@@ -109,7 +109,6 @@ void	vertical_intersection(t_game *game,
 	t_ver_intersection *ver_inter, double ray_angle)
 {
 	init_vertical_intersection(game, ver_inter, ray_angle);
-	// while (game, ver_inter->nextVertTouchX, ver_inter->nextVertTouchY)
 	while (ver_inter->nextVertTouchX >= 0
 		&& ver_inter->nextVertTouchX <= game->width
 		&& ver_inter->nextVertTouchY >= 0
@@ -130,10 +129,7 @@ void	vertical_intersection(t_game *game,
 			ver_inter->foundVertWallHit = true;
 			break ;
 		}
-		else
-		{
-			ver_inter->nextVertTouchX += ver_inter->xstep;
-			ver_inter->nextVertTouchY += ver_inter->ystep;
-		}
+		ver_inter->nextVertTouchX += ver_inter->xstep;
+		ver_inter->nextVertTouchY += ver_inter->ystep;
 	}
 }

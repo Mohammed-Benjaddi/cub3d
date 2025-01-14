@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:28:13 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/13 18:58:48 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:33:54 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	cast_ray(t_game *game, t_ray *ray, float ray_angle)
 	ver_inter = &game->v_intersection;
 	horizontal_intersection(game, hor_inter, ray_angle);
 	vertical_intersection(game, ver_inter, ray_angle);
-	if (hor_inter->foundHorzWallHit)
+	if (hor_inter->found_horz_wall_hit)
 		horz_hit_distance = calculate_distance(game->player.player_x,
 				game->player.player_y, hor_inter->horzWallHitX,
 				hor_inter->horzWallHitY);
@@ -88,12 +88,12 @@ void	cast_rays(t_game *game)
 	double	ray_angle;
 	int		i;
 
-	ray_angle = game->player.rotation_angle - (FOV / 2);
+	ray_angle = game->player.rotation_angle - (game->FOV / 2);
 	i = 0;
 	while (i < game->width)
 	{
 		cast_ray(game, &game->rays[i], ray_angle);
-		ray_angle += (FOV / NUM_RAYS);
+		ray_angle += (game->FOV / NUM_RAYS);
 		i++;
 	}
 }
