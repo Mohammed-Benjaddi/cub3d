@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:02:54 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 13:53:04 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:26:37 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,10 @@ void	horizontal_intersection(t_game *game,
 	while (check_intersections(game, 
 			hor_inter->next_horz_touch_x, hor_inter->next_horz_touch_y))
 	{
+		hor_inter->y_check = hor_inter->next_horz_touch_y;
 		hor_inter->x_check = hor_inter->next_horz_touch_x;
 		if (is_ray_facing_up(ray_angle))
-			hor_inter->y_check = hor_inter->next_horz_touch_y + -1;
-		else
-			hor_inter->y_check = hor_inter->next_horz_touch_y + 0;
+			hor_inter->y_check--;
 		if (map_has_wall(game, hor_inter->x_check, hor_inter->y_check))
 		{
 			hor_inter->horz_wall_hit_x = hor_inter->next_horz_touch_x;
@@ -97,11 +96,8 @@ void	horizontal_intersection(t_game *game,
 			hor_inter->found_horz_wall_hit = true;
 			break ;
 		}
-		else
-		{
 			hor_inter->next_horz_touch_x += hor_inter->xstep;
 			hor_inter->next_horz_touch_y += hor_inter->ystep;
-		}
 	}
 }
 
@@ -114,10 +110,9 @@ void	vertical_intersection(t_game *game,
 		&& ver_inter->next_vert_touch_y >= 0
 		&& ver_inter->next_vert_touch_y <= game->height)
 	{
+		ver_inter->x_check = ver_inter->next_vert_touch_x;
 		if (is_ray_facing_left(ray_angle))
-			ver_inter->x_check = ver_inter->next_vert_touch_x + -1;
-		else
-			ver_inter->x_check = ver_inter->next_vert_touch_x + 0;
+			ver_inter->x_check--;
 		ver_inter->y_check = ver_inter->next_vert_touch_y;
 		if (map_has_wall(game, ver_inter->x_check, ver_inter->y_check))
 		{
