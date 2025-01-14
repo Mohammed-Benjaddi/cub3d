@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:28:13 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 15:57:39 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:31:32 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	get_the_smaller_distance(t_game *game, t_ray *ray,
 		ray->distance = vert_hit_distance;
 		ray->wall_hit_x = ver_inter->vert_wall_hit_x;
 		ray->wall_hit_y = ver_inter->vert_wall_hit_y;
-		ray->wall_hit_content = ver_inter->vert_wall_content;
 		ray->was_hit_vertical = true;
 	}
 	else
@@ -46,7 +45,6 @@ void	get_the_smaller_distance(t_game *game, t_ray *ray,
 		ray->distance = horz_hit_distance;
 		ray->wall_hit_x = hor_inter->horz_wall_hit_x;
 		ray->wall_hit_y = hor_inter->horz_wall_hit_y;
-		ray->wall_hit_content = hor_inter->horz_wall_content;
 		ray->was_hit_vertical = false;
 	}
 	ray->is_ray_facing_down = is_ray_facing_down(ray->ray_angle);

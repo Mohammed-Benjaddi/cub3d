@@ -14,7 +14,7 @@ PARSE_FILES = parse.c nsew_check.c utils/utils_0.c utils/utils_1.c utils/utils_2
 LIBFT_FILES = ft_strdup.c ft_strlen.c ft_substr.c ft_atoi.c
 GNL_FILES = get_next_line.c get_next_line_utils.c
 MINIMAP_FILES = minimap.c dda_algo.c
-HOOK_FILES = handle_keys_click.c arrows_click.c
+HOOK_FILES = ft_hook.c handle_keys_click.c arrows_click.c 
 
 RAYCAST_SRC = $(addprefix $(SRC_DIR)/raycasting/, $(RAYCAST_FILES))
 LIBFT_SRC = $(addprefix $(SRC_DIR)/libft/, $(LIBFT_FILES))

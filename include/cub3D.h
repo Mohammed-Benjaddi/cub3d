@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:48:07 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 15:59:31 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:37:15 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_dda_algo
 typedef struct s_hor_intersection
 {
 	bool				found_horz_wall_hit;
-	int					horz_wall_content;
 	double				next_horz_touch_x;
 	double				next_horz_touch_y;
 	double				horz_wall_hit_x;
@@ -67,7 +66,6 @@ typedef struct s_hor_intersection
 typedef struct s_ver_intersection
 {
 	bool				found_vert_wall_hit;
-	int					vert_wall_content;
 	double				next_vert_touch_x;
 	double				next_vert_touch_y;
 	double				vert_wall_hit_x;
@@ -91,7 +89,6 @@ typedef struct s_ray
 	int					is_ray_facing_down;
 	int					is_ray_facing_left;
 	int					is_ray_facing_right;
-	int					wall_hit_content;
 }						t_ray;
 
 typedef struct s_player
@@ -190,5 +187,6 @@ void					get_first_ver_inter(t_game *game,
 							t_ver_intersection *ver_inter, double ray_angle);
 bool					map_has_wall(t_game *game, double x, double y);
 void					dda(t_minimap *minimap, double rot_angle);
+void					ft_hook(mlx_key_data_t keydata, void *param);
 
 #endif

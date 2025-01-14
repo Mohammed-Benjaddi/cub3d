@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:02:54 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 18:26:37 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:31:38 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	init_horizontal_intersection(t_game *game,
 		t_hor_intersection *hor_inter, double ray_angle)
 {
 	hor_inter->found_horz_wall_hit = false;
-	hor_inter->horz_wall_content = 0;
 	hor_inter->horz_wall_hit_x = 0;
 	hor_inter->horz_wall_hit_y = 0;
 	get_first_hor_inter(game, hor_inter, ray_angle);
@@ -44,7 +43,6 @@ void	init_vertical_intersection(t_game *game, t_ver_intersection *ver_inter,
 		double ray_angle)
 {
 	ver_inter->found_vert_wall_hit = false;
-	ver_inter->vert_wall_content = 0;
 	ver_inter->vert_wall_hit_x = 0;
 	ver_inter->vert_wall_hit_y = 0;
 	get_first_ver_inter(game, ver_inter, ray_angle);
@@ -75,12 +73,12 @@ bool	check_intersections(t_game *game, double x, double y)
 	return (false);
 }
 
-void	horizontal_intersection(t_game *game, 
-	t_hor_intersection *hor_inter, double ray_angle)
+void	horizontal_intersection(t_game *game, t_hor_intersection *hor_inter,
+		double ray_angle)
 {
 	init_horizontal_intersection(game, hor_inter, ray_angle);
-	while (check_intersections(game, 
-			hor_inter->next_horz_touch_x, hor_inter->next_horz_touch_y))
+	while (check_intersections(game, hor_inter->next_horz_touch_x,
+			hor_inter->next_horz_touch_y))
 	{
 		hor_inter->y_check = hor_inter->next_horz_touch_y;
 		hor_inter->x_check = hor_inter->next_horz_touch_x;
@@ -90,19 +88,16 @@ void	horizontal_intersection(t_game *game,
 		{
 			hor_inter->horz_wall_hit_x = hor_inter->next_horz_touch_x;
 			hor_inter->horz_wall_hit_y = hor_inter->next_horz_touch_y;
-			hor_inter->horz_wall_content = 
-				game->map[(int)floor(hor_inter->y_check 
-					/ TILE_SIZE)][(int)floor(hor_inter->x_check / TILE_SIZE)];
 			hor_inter->found_horz_wall_hit = true;
 			break ;
 		}
-			hor_inter->next_horz_touch_x += hor_inter->xstep;
-			hor_inter->next_horz_touch_y += hor_inter->ystep;
+		hor_inter->next_horz_touch_x += hor_inter->xstep;
+		hor_inter->next_horz_touch_y += hor_inter->ystep;
 	}
 }
 
-void	vertical_intersection(t_game *game, 
-	t_ver_intersection *ver_inter, double ray_angle)
+void	vertical_intersection(t_game *game, t_ver_intersection *ver_inter,
+		double ray_angle)
 {
 	init_vertical_intersection(game, ver_inter, ray_angle);
 	while (ver_inter->next_vert_touch_x >= 0
@@ -118,9 +113,6 @@ void	vertical_intersection(t_game *game,
 		{
 			ver_inter->vert_wall_hit_x = ver_inter->next_vert_touch_x;
 			ver_inter->vert_wall_hit_y = ver_inter->next_vert_touch_y;
-			ver_inter->vert_wall_content = 
-				game->map[(int)floor(ver_inter->y_check
-					/ TILE_SIZE)][(int)floor(ver_inter->x_check / TILE_SIZE)];
 			ver_inter->found_vert_wall_hit = true;
 			break ;
 		}
