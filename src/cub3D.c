@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 21:04:38 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 15:12:00 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:59:47 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,10 @@ t_game	*init_infos(t_parse *parse)
 {
 	t_game *game;
 	game = malloc(sizeof(t_game));
-	game->width = 720;
-	game->height = 420;
 	game->map_info = parse;
+	game->width = game->map_info->width * TILE_SIZE;
+	game->height = game->map_info->height * TILE_SIZE;
+	game->num_rays = game->width;
 	game->mlx = mlx_init(game->width , game->height, "MLX42", false);
 	game->map = game->map_info->original;
 	game->fov = 60 * PI / 180;
@@ -95,10 +96,8 @@ t_game	*init_infos(t_parse *parse)
 	game->player.rotation_speed = 10 * (PI / 180);
 	game->player.player_x = (game->map_info->player_x * TILE_SIZE + 15); 
 	game->player.player_y = (game->map_info->player_y * TILE_SIZE + 15); 
-	printf("x ----> %f\n", game->player.player_x);
-	printf("y ----> %f\n", game->player.player_y);
 	game->player.move_speed = 10;
-	game->rays = malloc(sizeof(t_ray) * NUM_RAYS);
+	game->rays = malloc(sizeof(t_ray) * game->num_rays);
 	game->no_texture = mlx_load_png(game->map_info->no_texture);
 	game->so_texture = mlx_load_png(game->map_info->so_texture);
 	game->we_texture = mlx_load_png(game->map_info->we_texture);

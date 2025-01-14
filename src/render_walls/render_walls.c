@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 06:06:00 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/14 13:47:22 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:57:50 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	render_walls(t_game *game, t_ray *rays)
 	tile_size = TILE_SIZE;
 	i = 0;
 	floor_ceiling(game);
-	while (i < NUM_RAYS)
+	while (i < game->num_rays)
 	{
 		perp_distance = rays[i].distance * cos(rays[i].ray_angle
 				- game->player.rotation_angle);

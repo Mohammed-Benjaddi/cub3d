@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:28:13 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 13:47:22 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:57:39 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	cast_rays(t_game *game)
 	while (i < game->width)
 	{
 		cast_ray(game, &game->rays[i], ray_angle);
-		ray_angle += (game->fov / NUM_RAYS);
+		ray_angle += (game->fov / game->num_rays);
 		i++;
 	}
 }

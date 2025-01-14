@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:48:07 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 13:49:24 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:59:31 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ typedef struct s_game
 {
 	int					width;
 	int					height;
+	int					num_rays;
 	double				fov;
 	char				**map;
 	mlx_t				*mlx;
