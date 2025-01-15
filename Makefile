@@ -1,6 +1,6 @@
 NAME	:= cub3D
 CFLAGS	:= #-Wextra -Wall -Werror #-Wunreachable-code -Ofast
-MORE_FLAGS = -fsanitize=address -g
+MORE_FLAGS = #-fsanitize=address -g
 
 MLX_DIR	:= ~/MLX42
 SRC_DIR = src

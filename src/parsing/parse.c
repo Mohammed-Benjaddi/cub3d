@@ -129,6 +129,7 @@ int	parse_entry(t_parse *map_info, int ac, char **av)
 		return (map_free(map_info), free_original(map_info->original),
 			close(map_info->fd), write(2, "Error\nCheck your map content\n",
 				29), 0);
+	trim_empty(map_info->original);
 	set_height_width(map_info);
 	print_original(map_info);
 	return (1);

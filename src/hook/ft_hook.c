@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 18:36:16 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 18:36:24 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/15 21:53:59 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ void	init_rotation(t_game *game)
 	game->player.walk_direction = 0;
 }
 
+void esc_click(t_game *game)
+{
+	parse_free(game->map_info);
+	mlx_close_window(game->mlx);
+}
+
 void	ft_hook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
@@ -25,7 +31,7 @@ void	ft_hook(mlx_key_data_t keydata, void *param)
 	game = param;
 	init_rotation(game);
 	if (keydata.key == MLX_KEY_ESCAPE)
-		mlx_close_window(game->mlx);
+		esc_click(game);
 	else if (keydata.key == MLX_KEY_RIGHT && (keydata.action == MLX_PRESS
 			|| keydata.action == MLX_REPEAT))
 		right_arrow(game);

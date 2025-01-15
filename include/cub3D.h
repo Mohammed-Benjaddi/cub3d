@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:48:07 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 18:37:15 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/15 21:10:21 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,6 @@ typedef struct s_player
 
 typedef struct s_minimap
 {
-	double				p_x;
-	double				p_y;
-	int					x_inc;
-	int					y_inc;
-	double				n_px;
-	double				n_py;
 	int					v;
 	int					h;
 	int					width;
@@ -140,7 +134,7 @@ typedef struct s_game
 	t_hor_intersection	h_intersection;
 	t_ver_intersection	v_intersection;
 	t_ray				*rays;
-	t_minimap			minimap;
+	t_minimap			*minimap;
 	t_parse				*map_info;
 	mlx_texture_t		*no_texture;
 	mlx_texture_t		*so_texture;

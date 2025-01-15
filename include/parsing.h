@@ -73,9 +73,9 @@ char		**set_original(char **src, size_t size, int som);
 void		free_original(char **map);
 void		set_height_width(t_parse *map_info);
 size_t		get_longest_line(t_parse *map_info);
-
+void		overwrite(char *line);
 int			valid(char *line);
-
+void		trim_empty(char **original);
 void		texture_initilizer(t_parse *map_info);
 void		init_syn(t_syn *syn);
 int			failure_check(t_parse *map_info, t_syn *syn);

@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:55:29 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 12:17:37 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/15 21:11:39 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	put_player_minimap(t_game *game, t_minimap *minimap)
 void	draw_minimap_pix(t_game *game, t_minimap *minimap)
 {
 	if ((minimap->s_x / (TILE_SIZE / 2)) >= 0 && (minimap->s_y / (TILE_SIZE
-				/ 2)) >= 0 && (minimap->s_y / (TILE_SIZE / 2)) < 14
+				/ 2)) >= 0 && (minimap->s_y / (TILE_SIZE / 2)) < game->map_info->height
 		&& (minimap->s_x / (TILE_SIZE
 				/ 2)) < (int)ft_strlen(game->map[(int)(minimap->s_y / (TILE_SIZE
 					/ 2))]) && game->map[(int)(minimap->s_y / (TILE_SIZE
@@ -73,7 +73,7 @@ void	draw_minimap(t_game *game)
 {
 	t_minimap	*minimap;
 
-	minimap = &game->minimap;
+	minimap = game->minimap;
 	init_minimap(game, minimap);
 	minimap->s_y = minimap->y - minimap->v;
 	minimap->end_y = minimap->y + minimap->v;

@@ -75,3 +75,39 @@ void	set_height_width(t_parse *map_info)
 	map_info->height = height;
 	map_info->width = get_longest_line(map_info);
 }
+
+void	overwrite(char *line)
+{
+	int	i;
+	int	size;
+	int	save;
+	int	flager;
+
+	flager = 0;
+	size = custom_strlen(line);
+	save = size;
+	size--;
+	i = 0;
+	while (line[size] == ' ')
+	{
+		flager = 1;
+		size--;
+	}
+	if (flager == 1)
+	{
+		size++;
+		line[size] = line[save++];
+	}
+}
+
+void	trim_empty(char **original)
+{
+	int	i;
+
+	i = 0;
+	while (original[i])
+	{
+		overwrite(original[i]);
+		i++;
+	}
+}

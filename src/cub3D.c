@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 21:04:38 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 18:35:53 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/15 21:11:29 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_game	*init_infos(t_parse *parse)
 	game->player.player_y = (game->map_info->player_y * TILE_SIZE + 15);
 	game->player.move_speed = 10;
 	game->rays = malloc(sizeof(t_ray) * game->num_rays);
+	game->minimap = malloc(sizeof(t_minimap));
 	game->no_texture = mlx_load_png(game->map_info->no_texture);
 	game->so_texture = mlx_load_png(game->map_info->so_texture);
 	game->we_texture = mlx_load_png(game->map_info->we_texture);
