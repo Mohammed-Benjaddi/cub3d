@@ -1,12 +1,12 @@
 NAME	:= cub3D
-CFLAGS	:= #-Wextra -Wall -Werror
+CFLAGS	:= -Wextra -Wall -Werror
 MORE_FLAGS = #-fsanitize=address -g
 
 MLX_DIR	:= ~/MLX42
 SRC_DIR = src
 CUB_FILES = cub3D.c ./render_walls/render_walls.c
-# LIBS = $(MLX_DIR)/build/libmlx42.a -Iinclude -ldl -L/goinfre/bbelarra/homebrew/Cellar/glfw/3.4/lib/ -lglfw -pthread -lm # for linux
-LIBS	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm #for mac
+LIBS = $(MLX_DIR)/build/libmlx42.a -Iinclude -ldl -L/goinfre/bbelarra/homebrew/Cellar/glfw/3.4/lib/ -lglfw -pthread -lm # for linux
+#LIBS	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm #for mac
 
 RAYCAST_FILES = raycasting.c utils.c draw.c player_utils.c cast_rays.c check_directions.c vert_hor_intersections.c calc_first_inters.c
 RENDER_WALLS_FILES = render_walls.c

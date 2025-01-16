@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 06:06:00 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/14 15:57:50 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 20:01:04 by bbelarra42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,26 @@ void	render_init(t_render *render, t_game *game, t_ray *rays)
 	return ;
 }
 
+void	put_get_color(t_render *render, t_game *game)
+{
+	render->tex_y = (int)(((render->y - render->wall_top_pixel)
+				/ (double)render->wall_strip_height) * render->texture->height);
+	render->r = render->texture->pixels[(render->tex_y * render->texture->width
+			+ render->tex_x) * 4 + 0];
+	render->g = render->texture->pixels[(render->tex_y * render->texture->width
+			+ render->tex_x) * 4 + 1];
+	render->b = render->texture->pixels[(render->tex_y * render->texture->width
+			+ render->tex_x) * 4 + 2];
+	render->a = render->texture->pixels[(render->tex_y * render->texture->width
+			+ render->tex_x) * 4 + 3];
+	render->color = (render->r << 24) | (render->g << 16) | (render->b << 8) | render->a;
+	ft_put_pixel(game->img, render->i, render->y, render->color);
+}
+
 void	render_walls(t_game *game, t_ray *rays)
 {
 	t_render	render;
+
 	render.i = 0;
 	render.distance_proj_plane = (game->width / 2.0) / tan(game->fov / 2.0);
 	floor_ceiling(game);
@@ -111,20 +128,7 @@ void	render_walls(t_game *game, t_ray *rays)
 		render.y = render.wall_top_pixel;
 		while (render.y < render.wall_bottom_pixel)
 		{
-			render.tex_y = (int)(((render.y - render.wall_top_pixel)
-						/ (double)render.wall_strip_height)
-					* render.texture->height);
-			render.r = render.texture->pixels[(render.tex_y
-					* render.texture->width + render.tex_x) * 4 + 0];
-			render.g = render.texture->pixels[(render.tex_y
-					* render.texture->width + render.tex_x) * 4 + 1];
-			render.b = render.texture->pixels[(render.tex_y
-					* render.texture->width + render.tex_x) * 4 + 2];
-			render.a = render.texture->pixels[(render.tex_y
-					* render.texture->width + render.tex_x) * 4 + 3];
-			render.color = (render.r << 24) | (render.g << 16)
-				| (render.b << 8) | render.a;
-			ft_put_pixel(game->img, render.i, render.y, render.color);
+			put_get_color(&render, game);
 			render.y++;
 		}
 		render.i++;
