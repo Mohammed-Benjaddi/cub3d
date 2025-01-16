@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arrows_click.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 21:23:56 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/13 18:27:40 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 20:00:49 by simo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ bool	check_width(t_game *game, int x, int y)
 {
 	int	i;
 
-	i = -2;
-	while (i <= 2)
+	i = -5;
+	while (i <= 5)
 	{
 		if (y / TILE_SIZE >= 0 && y / TILE_SIZE < (game->height / TILE_SIZE)
 			&& (x + i) / TILE_SIZE >= 0 && (x + i) / TILE_SIZE < (game->width
@@ -61,8 +61,8 @@ bool	check_height(t_game *game, int x, int y)
 {
 	int	i;
 
-	i = -2;
-	while (i <= 2)
+	i = -5;
+	while (i <= 5)
 	{
 		if ((y + i) / TILE_SIZE >= 0 && (y + i) / TILE_SIZE < (game->height
 				/ TILE_SIZE) && (x / TILE_SIZE) >= 0 && (x
@@ -82,7 +82,7 @@ bool	player_can_move(t_game *game, double new_x, double new_y)
 	int	x;
 	int	y;
 
-	i = -2;
+	i = -5;
 	y = floor(new_y);
 	x = floor(new_x);
 	if (!check_width(game, x, y))

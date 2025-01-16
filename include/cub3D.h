@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:48:07 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/15 21:10:21 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:58:29 by simo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,5 +182,6 @@ void					get_first_ver_inter(t_game *game,
 bool					map_has_wall(t_game *game, double x, double y);
 void					dda(t_minimap *minimap, double rot_angle);
 void					ft_hook(mlx_key_data_t keydata, void *param);
+t_game				*init_infos(t_parse *parse);
 
 #endif
