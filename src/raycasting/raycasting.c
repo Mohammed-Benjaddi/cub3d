@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:02:27 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 11:47:44 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 20:11:45 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	rebuild_map(t_game *game)
 void	raycarting(t_game *game)
 {
 	draw_map(game);
-	put_player(game);
 	cast_rays(game);
 	render_walls(game, game->rays);
 	draw_minimap(game);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:48:07 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 18:58:29 by simo             ###   ########.fr       */
+/*   Updated: 2025/01/16 20:11:39 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,6 @@ void					draw_map(t_game *game);
 void					draw_background(t_game *game);
 void					ft_put_pixel(mlx_image_t *image, int x, int y,
 							int color);
-void					put_player(t_game *game);
 void					cast_rays(t_game *game);
 void					horizontal_intersection(t_game *game,
 							t_hor_intersection *hor_inter, double ray_angle);

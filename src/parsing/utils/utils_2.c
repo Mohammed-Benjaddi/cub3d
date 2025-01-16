@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/13 05:14:44 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/16 20:15:02 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	syntaxer(t_parse *map_info)
 	t_syn	syn;
 
 	init_syn(&syn);
-	while (syn.i < map_info->som)
+	while (syn.i < (int)map_info->som)
 	{
 		syn.y = 0;
 		while (map_info->map[syn.i][syn.y]

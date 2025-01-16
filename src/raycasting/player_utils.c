@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:01:37 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/15 21:26:01 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 20:11:31 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,6 @@ void	set_player_position(t_game *game)
 		}
 		i++;
 	}
-}
-
-void	put_player(t_game *game)
-{
-	// int	i;
-	// int	j;
-
-	// i = -5;
-	// while (i < 5)
-	// {
-	// 	j = -5;
-	// 	while (j < 5)
-	// 	{
-	// 		ft_put_pixel(game->img, game->player.player_x + j,
-	// 			game->player.player_y + i, RED);
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-	// cast_rays(game);
 }
 
 // void	update_direction_dda(t_game *game, double rot_angle, int color)

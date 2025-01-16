@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:55:29 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 12:05:32 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 20:20:35 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_minimap(t_game *game, t_minimap *minimap)
 		perror("putting image to window failed");
 }
 
-void	minimap_put_pixel(t_game *game, t_minimap *minimap, uint32_t color)
+void	minimap_put_pixel(t_minimap *minimap, uint32_t color)
 {
 	if (minimap->s_x - (minimap->x - minimap->h) < 0 || minimap->s_y
 		- (minimap->y - minimap->v) < 0 || minimap->s_x - (minimap->x
@@ -64,9 +64,9 @@ void	draw_minimap_pix(t_game *game, t_minimap *minimap)
 				/ 2)) < (int)ft_strlen(game->map[(int)(minimap->s_y / (TILE_SIZE
 					/ 2))]) && game->map[(int)(minimap->s_y / (TILE_SIZE
 				/ 2))][(int)(minimap->s_x / (TILE_SIZE / 2))] == '1')
-		minimap_put_pixel(game, minimap, BLACK);
+		minimap_put_pixel(minimap, BLACK);
 	else
-		minimap_put_pixel(game, minimap, WHITE);
+		minimap_put_pixel(minimap, WHITE);
 }
 
 void	draw_minimap(t_game *game)

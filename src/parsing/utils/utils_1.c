@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/13 09:24:32 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/16 20:14:21 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	parse_free(t_parse *map_info)
 	close(map_info->fd);
 }
 
-void	flood_fill(char **map, int i, int y)
+void	flood_fill(char **map, int i, size_t y)
 {
 	if (!map[i] || !map[i][y] || map[i][y] == ' ' || map[i][y] == '1'
 		|| map[i][y] == '\n' || map[i][y] == 'M')

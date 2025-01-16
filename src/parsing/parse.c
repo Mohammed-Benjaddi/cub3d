@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 03:42:44 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/13 09:26:07 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/16 20:13:56 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,8 @@ int	position_finder(t_parse *map_info)
 	return (0);
 }
 
-t_parse	*map_setter(t_parse *map_info, int ac, char **av)
+t_parse	*map_setter(t_parse *map_info, char **av)
 {
-	char	*line;
 	int		i;
 
 	i = -1;
@@ -47,7 +46,7 @@ t_parse	*map_setter(t_parse *map_info, int ac, char **av)
 	map_info->map_size = size_calc(map_info->fd);
 	map_info->fd = open(av[1], O_RDONLY);
 	map_info->map = (char **)malloc(sizeof(char *) * (map_info->map_size + 1));
-	while (++i < map_info->map_size)
+	while (++i < (int)map_info->map_size)
 		map_info->map[i] = get_next_line(map_info->fd);
 	map_info->map[i] = NULL;
 	map_start(map_info);
@@ -117,7 +116,7 @@ int	parse_entry(t_parse *map_info, int ac, char **av)
 	if (name_checker(av[1]))
 		return (close(map_info->fd), write(2, "Error\nInvalid map name\n", 23),
 			0);
-	if (!map_setter(map_info, ac, av))
+	if (!map_setter(map_info, av))
 		return (map_free(map_info), free_original(map_info->original), write(2,
 				"Error\nCheck your map content\n", 29), 0);
 	flood_filler(map_info);

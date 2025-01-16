@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 03:32:49 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/13 09:29:18 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/16 20:20:03 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ int			position_finder(t_parse *map_info);
 int			floor_help(t_parse *map_info, int i, int y, int continues);
 int			ceil_help(t_parse *map_info, int i, int y, int continues);
 
-int			r(t_parse *map_info, t_rgb *rgb, char *line, int color);
-int			g(t_parse *map_info, t_rgb *rgb, char *line, int color);
-int			b(t_parse *map_info, t_rgb *rgb, char *line, int color);
+int			r(t_rgb *rgb, char *line, int color);
+int			g(t_rgb *rgb, char *line);
+int			b(t_rgb *rgb, char *line);
 void		rgb_init(t_rgb *rgb);
 
 char		*norther(char **map);
@@ -112,7 +112,7 @@ int			structer(char **map, int stop);
 void		map_free(t_parse *map_info);
 void		parse_free(t_parse *map_info);
 
-void		flood_fill(char **map, int i, int y);
+void		flood_fill(char **map, int i, size_t y);
 int			parse_entry(t_parse *map_info, int ac, char **av);
 void		flood_filler(t_parse *map_info);
 #endif

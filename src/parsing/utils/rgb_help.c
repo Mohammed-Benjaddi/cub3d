@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_help.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 05:35:09 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/13 07:09:32 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/16 20:19:45 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/parsing.h"
 
-int	r(t_parse *map_info, t_rgb *rgb, char *line, int color)
+int	r(t_rgb *rgb, char *line, int color)
 {
 	while (line[rgb->i] == ' ')
 		rgb->i++;
@@ -49,7 +49,7 @@ void	rgb_init(t_rgb *rgb)
 	rgb->b = 0;
 }
 
-int	g(t_parse *map_info, t_rgb *rgb, char *line, int color)
+int	g(t_rgb *rgb, char *line)
 {
 	if (line[rgb->i] != ',')
 		return (1);
@@ -66,7 +66,7 @@ int	g(t_parse *map_info, t_rgb *rgb, char *line, int color)
 	return (0);
 }
 
-int	b(t_parse *map_info, t_rgb *rgb, char *line, int color)
+int	b(t_rgb *rgb, char *line)
 {
 	if (line[rgb->i] != ',')
 		return (1);

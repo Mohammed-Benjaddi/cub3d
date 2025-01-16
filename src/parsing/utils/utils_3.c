@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/13 09:18:43 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/16 20:15:51 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int	map_checker(char **map, int len)
 			if ((map[i][y] == 'M') && (i == 0 || y == 0 || i == len))
 				return (1);
 			else if (map[i][y] == 'M' && (map[i][y + 1] == '\n' || map[i][y
-					+ 1] == ' ' || map[i][y - 1] == ' ' || custom_strlen(map[i
+					+ 1] == ' ' || map[i][y - 1] == ' ' || (int)custom_strlen(map[i
 						- 1]) - 1 < y || map[i - 1][y] == ' '))
 				return (1);
-			else if ((i + 1 < len && map[i][y] == 'M') && (custom_strlen(map[i
+			else if ((i + 1 < len && map[i][y] == 'M') && ((int)custom_strlen(map[i
 						+ 1]) - 1 < y || map[i + 1][y] == ' '))
 				return (1);
 			y++;

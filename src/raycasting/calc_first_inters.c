@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_first_inters.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:04:04 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 16:53:08 by simo             ###   ########.fr       */
+/*   Updated: 2025/01/16 20:12:37 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	get_first_ver_inter(t_game *game, t_ver_intersection *ver_inter,
 
 bool	map_has_wall(t_game *game, double x, double y)
 {
-	int	map_x;
-	int	map_y;
+	size_t	map_x;
+	size_t	map_y;
 
 	if (x < 0 || x > game->map_info->width * TILE_SIZE 
 		|| y < 0 || y > game->map_info->height * TILE_SIZE)
@@ -45,7 +45,7 @@ bool	map_has_wall(t_game *game, double x, double y)
 	map_x = floor(x / TILE_SIZE);
 	map_y = floor(y / TILE_SIZE);
 	if(map_x < 0 || map_y < 0 || map_y >= game->map_info->height
-		|| map_x >= ft_strlen(game->map[map_y]))
+		|| (int)map_x >= ft_strlen(game->map[map_y]))
 		return (true);
 	return (game->map[map_y][map_x] == '1');
 }
