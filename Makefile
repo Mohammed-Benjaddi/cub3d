@@ -1,5 +1,5 @@
 NAME	:= cub3D
-CFLAGS	:= #-Wextra -Wall -Werror #-Wunreachable-code -Ofast
+CFLAGS	:= #-Wextra -Wall -Werror
 MORE_FLAGS = #-fsanitize=address -g
 
 MLX_DIR	:= ~/MLX42

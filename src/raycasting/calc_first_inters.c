@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:04:04 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/13 19:19:53 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:56:43 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,13 @@ bool	map_has_wall(t_game *game, double x, double y)
 	int	map_x;
 	int	map_y;
 
-	if (x < 0 || x > 720 || y < 0 || y > 420)
+	if (x < 0 || x > game->map_info->width * TILE_SIZE 
+		|| y < 0 || y > game->map_info->height * TILE_SIZE)
 		return (true);
 	map_x = floor(x / TILE_SIZE);
 	map_y = floor(y / TILE_SIZE);
+	if(map_x < 0 || map_y < 0 || map_y >= game->map_info->height
+		|| map_x >= ft_strlen(game->map[map_y]))
+		return (true);
 	return (game->map[map_y][map_x] == '1');
 }

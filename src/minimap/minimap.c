@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:55:29 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/15 21:11:39 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 12:05:32 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	minimap_put_pixel(t_game *game, t_minimap *minimap, uint32_t color)
 {
 	if (minimap->s_x - (minimap->x - minimap->h) < 0 || minimap->s_y
 		- (minimap->y - minimap->v) < 0 || minimap->s_x - (minimap->x
-			- minimap->h) >= 180 || minimap->s_y - (minimap->y
-			- minimap->v) >= 120)
+			- minimap->h) >= minimap->width || minimap->s_y - (minimap->y
+			- minimap->v) >= minimap->height)
 		return ;
 	mlx_put_pixel(minimap->mm_img, minimap->s_x - (minimap->x - minimap->h),
 		minimap->s_y - (minimap->y - minimap->v), color);
