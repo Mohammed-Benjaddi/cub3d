@@ -96,7 +96,7 @@ void	overwrite(char *line)
 	if (flager == 1)
 	{
 		size++;
-		line[size] = line[save++];
+		line[size] = line[save];
 	}
 }
 

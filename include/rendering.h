@@ -15,19 +15,19 @@
 typedef struct s_render
 {
 	int				i;
+	int				y;
+	double			perp_distance;
 	double			distance_proj_plane;
 	double			proj_wall_height;
-	double			perp_distance;
 	int				wall_strip_height;
-	int				wall_bottom_pixel;
 	int				wall_top_pixel;
-	int				y;
+	int				wall_bottom_pixel;
+	int				color;
+	mlx_texture_t	*texture;
+	int				r;
+	int				g;
+	int				b;
+	int				a;
 	int				tex_x;
 	int				tex_y;
-	uint32_t		color;
-	mlx_texture_t	*texture;
-	float			tile_size;
-	uint8_t			r;
-	uint8_t			g;
-	uint8_t			b;
 }					t_render;
