@@ -33,8 +33,8 @@ typedef struct s_render
 	int				tex_y;
 }					t_render;
 
-void	put_get_color(t_render *render, t_game *game);
-void	puter(t_render *render, t_game *game, t_ray *rays);
-void	render_init(t_render *render, t_game *game, t_ray *rays);
-int		get_bottom_pixel(t_game *game, int wall_strip_hight);
-int		get_top_pixel(t_game *game, int wall_strip_hight);
+void				put_get_color(t_render *render, t_game *game);
+void				puter(t_render *render, t_game *game, t_ray *rays);
+void				render_init(t_render *render, t_game *game, t_ray *rays);
+int					get_bottom_pixel(t_game *game, int wall_strip_hight);
+int					get_top_pixel(t_game *game, int wall_strip_hight);

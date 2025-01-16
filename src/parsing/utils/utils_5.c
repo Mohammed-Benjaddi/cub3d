@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:25:44 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/16 21:43:41 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 21:54:21 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ size_t	get_longest_line(t_parse *map_info)
 {
 	int		i;
 	size_t	current;
-	size_t		new;
+	size_t	new;
 
 	i = 0;
 	current = 0;

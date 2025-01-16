@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 03:32:49 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/16 21:43:47 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 22:17:58 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct s_parse
 	size_t	height;
 }			t_parse;
 
-
 int			north_checker(t_parse *map_info, int continues, int *N);
 int			south_checker(t_parse *map_info, int continues, int *S);
 int			west_checker(t_parse *map_info, int continues, int *W);
@@ -114,4 +113,6 @@ void		parse_free(t_parse *map_info);
 void		flood_fill(char **map, int i, size_t y);
 int			parse_entry(t_parse *map_info, int ac, char **av);
 void		flood_filler(t_parse *map_info);
+int			check_help(char **map, int i, int y);
+
 #endif

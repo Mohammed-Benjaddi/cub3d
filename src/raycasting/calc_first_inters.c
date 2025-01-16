@@ -39,12 +39,12 @@ bool	map_has_wall(t_game *game, double x, double y)
 	size_t	map_x;
 	size_t	map_y;
 
-	if (x < 0 || x > game->map_info->width * TILE_SIZE 
-		|| y < 0 || y > game->map_info->height * TILE_SIZE)
+	if (x < 0 || x > game->map_info->width * TILE_SIZE || y < 0
+		|| y > game->map_info->height * TILE_SIZE)
 		return (true);
 	map_x = floor(x / TILE_SIZE);
 	map_y = floor(y / TILE_SIZE);
-	if(map_x < 0 || map_y < 0 || map_y >= game->map_info->height
+	if (map_x < 0 || map_y < 0 || map_y >= game->map_info->height
 		|| (int)map_x >= ft_strlen(game->map[map_y]))
 		return (true);
 	return (game->map[map_y][map_x] == '1');

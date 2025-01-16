@@ -30,4 +30,3 @@ void	ft_put_pixel(mlx_image_t *image, int x, int y, int color)
 		return ;
 	mlx_put_pixel(image, x, y, color);
 }
-

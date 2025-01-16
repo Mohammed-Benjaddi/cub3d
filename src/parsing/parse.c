@@ -39,7 +39,7 @@ int	position_finder(t_parse *map_info)
 
 t_parse	*map_setter(t_parse *map_info, char **av)
 {
-	int		i;
+	int	i;
 
 	i = -1;
 	map_info->som = 0;

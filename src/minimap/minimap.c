@@ -59,8 +59,8 @@ void	put_player_minimap(t_game *game, t_minimap *minimap)
 void	draw_minimap_pix(t_game *game, t_minimap *minimap)
 {
 	if ((minimap->s_x / (TILE_SIZE / 2)) >= 0 && (minimap->s_y / (TILE_SIZE
-				/ 2)) >= 0 && (minimap->s_y / (TILE_SIZE / 2)) < game->map_info->height
-		&& (minimap->s_x / (TILE_SIZE
+				/ 2)) >= 0 && (minimap->s_y / (TILE_SIZE
+				/ 2)) < game->map_info->height && (minimap->s_x / (TILE_SIZE
 				/ 2)) < (int)ft_strlen(game->map[(int)(minimap->s_y / (TILE_SIZE
 					/ 2))]) && game->map[(int)(minimap->s_y / (TILE_SIZE
 				/ 2))][(int)(minimap->s_x / (TILE_SIZE / 2))] == '1')

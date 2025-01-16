@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/12 04:04:33 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/16 22:06:20 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ char	*get_next_line(int fd)
 	char		*final_string;
 
 	var.buffer = malloc(BUFFER_SIZE + 1);
-	// if (read(fd, var.buffer, 0) == -1 || fd < 0
-	// 	|| BUFFER_SIZE <= 0 || fd > OPEN_MAX || BUFFER_SIZE > INT_MAX)
-	// 	return (ft_cleaner(&holder, var.buffer, 1));
+	if (read(fd, var.buffer, 0) == -1 || fd < 0
+		|| BUFFER_SIZE <= 0 || fd > OPEN_MAX || BUFFER_SIZE > INT_MAX)
+		return (ft_cleaner(&holder, var.buffer, 1));
 	while (1)
 	{
 		var.readed = read(fd, var.buffer, BUFFER_SIZE);

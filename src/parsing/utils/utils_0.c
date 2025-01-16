@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_0.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/13 08:27:27 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/16 22:12:14 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,14 @@ void	texture_initilizer(t_parse *map_info)
 	map_info->so_texture = souther(map_info->map);
 	map_info->we_texture = wester(map_info->map);
 	map_info->ea_texture = easter(map_info->map);
+}
+
+int	check_help(char **map, int i, int y)
+{
+	if (map[i][y] == 'M' && (map[i][y + 1] == '\n' || map[i][y
+			+ 1] == ' ' || map[i][y - 1] == ' '
+			|| (int)custom_strlen(map[i - 1]) - 1 < y || map[i
+			- 1][y] == ' '))
+		return (1);
+	return (0);
 }

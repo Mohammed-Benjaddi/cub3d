@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vert_hor_intersections.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:02:54 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 18:13:08 by simo             ###   ########.fr       */
+/*   Updated: 2025/01/16 21:52:01 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ void	init_vertical_intersection(t_game *game, t_ver_intersection *ver_inter,
 bool	check_intersections(t_game *game, double x, double y)
 {
 	if (x >= 0 && y >= 0 && floor(y / TILE_SIZE) < game->map_info->height
-			&& floor(x / TILE_SIZE) < ft_strlen(game->map[(int)floor(y / TILE_SIZE)]))
-			return (true);
+		&& floor(x / TILE_SIZE) < ft_strlen(game->map[(int)floor(y
+					/ TILE_SIZE)]))
+		return (true);
 	return (false);
 }
 

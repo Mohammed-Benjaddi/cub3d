@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hook.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 18:36:16 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 18:57:57 by simo             ###   ########.fr       */
+/*   Updated: 2025/01/16 22:06:01 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	ft_hook(mlx_key_data_t keydata, void *param)
 		a_key(game);
 	rebuild_map(game);
 }
-
 
 void	set_direction(t_game *game, char c)
 {
