@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_first_inters.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:04:04 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 13:56:43 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:53:08 by simo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	get_first_hor_inter(t_game *game, t_hor_intersection *hor_inter,
 		* TILE_SIZE;
 	if (is_ray_facing_down(ray_angle))
 		hor_inter->yintercept += TILE_SIZE;
-	else
-		hor_inter->yintercept += 0;
 	hor_inter->xintercept = game->player.player_x + (hor_inter->yintercept
 			- game->player.player_y) / tan(ray_angle);
 }
@@ -32,8 +30,6 @@ void	get_first_ver_inter(t_game *game, t_ver_intersection *ver_inter,
 		* TILE_SIZE;
 	if (is_ray_facing_right(ray_angle))
 		ver_inter->xintercept += TILE_SIZE;
-	else
-		ver_inter->xintercept += 0;
 	ver_inter->yintercept = game->player.player_y + (ver_inter->xintercept
 			- game->player.player_x) * tan(ray_angle);
 }

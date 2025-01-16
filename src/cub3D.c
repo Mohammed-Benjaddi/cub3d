@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 21:04:38 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 11:46:47 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:20:47 by simo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ t_game	*init_infos(t_parse *parse)
 	return (game);
 }
 
-void check_leaks()
-{
-	system("leaks -q cub3D");
-}
+// void check_leaks()
+// {
+// 	system("leaks -q cub3D");
+// }
 
 void game_free(t_game *game)
 {
@@ -95,7 +95,7 @@ int	main(int ac, char **av)
 	t_game	*game;
 	int		flager;
 
-	atexit(check_leaks);
+	// atexit(check_leaks);
 	flager = 0;
 	flager = parse_entry(&parse, ac, av);
 	if (!flager)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vert_hor_intersections.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:02:54 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 11:22:44 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:13:08 by simo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,11 @@ void	init_horizontal_intersection(t_game *game,
 	hor_inter->ystep = TILE_SIZE;
 	if (is_ray_facing_up(ray_angle))
 		hor_inter->ystep *= -1;
-	else
-		hor_inter->ystep *= 1;
 	hor_inter->xstep = TILE_SIZE / tan(ray_angle);
 	if (is_ray_facing_left(ray_angle) && hor_inter->xstep > 0)
 		hor_inter->xstep *= -1;
-	else
-		hor_inter->xstep *= 1;
 	if (is_ray_facing_right(ray_angle) && hor_inter->xstep < 0)
 		hor_inter->xstep *= -1;
-	else
-		hor_inter->xstep *= 1;
 	hor_inter->x_check = 0;
 	hor_inter->y_check = 0;
 	hor_inter->next_horz_touch_x = hor_inter->xintercept;
@@ -49,17 +43,11 @@ void	init_vertical_intersection(t_game *game, t_ver_intersection *ver_inter,
 	ver_inter->xstep = TILE_SIZE;
 	if (is_ray_facing_left(ray_angle))
 		ver_inter->xstep *= -1;
-	else
-		ver_inter->xstep *= 1;
 	ver_inter->ystep = TILE_SIZE * tan(ray_angle);
 	if (is_ray_facing_up(ray_angle) && ver_inter->ystep > 0)
 		ver_inter->ystep *= -1;
-	else
-		ver_inter->ystep *= 1;
 	if (is_ray_facing_down(ray_angle) && ver_inter->ystep < 0)
 		ver_inter->ystep *= -1;
-	else
-		ver_inter->ystep *= 1;
 	ver_inter->x_check = 0;
 	ver_inter->y_check = 0;
 	ver_inter->next_vert_touch_x = ver_inter->xintercept;
@@ -68,8 +56,6 @@ void	init_vertical_intersection(t_game *game, t_ver_intersection *ver_inter,
 
 bool	check_intersections(t_game *game, double x, double y)
 {
-	// if (x >= 0 && x <= game->width && y >= 0 && y < game->height
-	// printf("length ---> %d\n", ft_strlen(game->map[(int)floor(y / TILE_SIZE)]));
 	if (x >= 0 && y >= 0 && floor(y / TILE_SIZE) < game->map_info->height
 			&& floor(x / TILE_SIZE) < ft_strlen(game->map[(int)floor(y / TILE_SIZE)]))
 			return (true);
@@ -103,10 +89,6 @@ void	vertical_intersection(t_game *game, t_ver_intersection *ver_inter,
 		double ray_angle)
 {
 	init_vertical_intersection(game, ver_inter, ray_angle);
-	// while (ver_inter->next_vert_touch_x >= 0
-	// 	&& ver_inter->next_vert_touch_x <= game->width
-	// 	&& ver_inter->next_vert_touch_y >= 0
-	// 	&& ver_inter->next_vert_touch_y <= game->height)
 	while (check_intersections(game, ver_inter->next_vert_touch_x,
 			ver_inter->next_vert_touch_y))
 	{
