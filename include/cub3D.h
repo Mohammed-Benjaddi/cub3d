@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:48:07 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 20:11:39 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 21:44:20 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,6 @@ double					get_new_y(t_game *game, double angle);
 void					rebuild_map(t_game *game);
 void					set_player_position(t_game *game);
 void					draw_map(t_game *game);
-void					draw_background(t_game *game);
 void					ft_put_pixel(mlx_image_t *image, int x, int y,
 							int color);
 void					cast_rays(t_game *game);

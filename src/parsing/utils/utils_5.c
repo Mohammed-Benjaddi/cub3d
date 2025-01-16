@@ -6,31 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:25:44 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/16 20:17:15 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 21:43:41 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/parsing.h"
-
-void	print_original(t_parse *map_info)
-{
-	int	i;
-
-	i = 0;
-	printf("------------------------- MAP ---------------------------\n");
-	while (map_info->original[i])
-	{
-		printf("%s\n", map_info->original[i]);
-		i++;
-	}
-	printf("---------------------------------------------------------\n");
-	printf("\n\n\n---------------- CORD -----------------------------\n");
-	printf("x: %d, y: %d \n", map_info->player_x, map_info->player_y);
-	printf("---------------------------------------------------------\n");
-	printf("\n\n\n---------------- HEIGHT AND WIDTH -----------------\n");
-	printf("width: %zu, height: %zu \n", map_info->width, map_info->height);
-	printf("---------------------------------------------------------\n");
-}
 
 size_t	get_longest_line(t_parse *map_info)
 {

@@ -4,12 +4,10 @@ MORE_FLAGS = #-fsanitize=address -g
 
 MLX_DIR	:= ~/MLX42
 SRC_DIR = src
-CUB_FILES = cub3D.c ./render_walls/render_walls.c
-# LIBS = $(MLX_DIR)/build/libmlx42.a -Iinclude -ldl -L/goinfre/bbelarra/homebrew/Cellar/glfw/3.4/lib/ -lglfw -pthread -lm # for linux
-LIBS	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm #for mac
+CUB_FILES = cub3D.c ./render_walls/render_walls.c ./render_walls/render_help.c
+LIBS	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
 RAYCAST_FILES = raycasting.c utils.c draw.c player_utils.c cast_rays.c check_directions.c vert_hor_intersections.c calc_first_inters.c
-RENDER_WALLS_FILES = render_walls.c
 PARSE_FILES = parse.c nsew_check.c utils/utils_0.c utils/utils_1.c utils/utils_2.c utils/utils_3.c utils/utils_4.c utils/utils_5.c utils/help.c  utils/rgb_help.c
 LIBFT_FILES = ft_strdup.c ft_strlen.c ft_substr.c ft_atoi.c
 GNL_FILES = get_next_line.c get_next_line_utils.c
@@ -25,6 +23,7 @@ MINIMAP_SRC = $(addprefix $(SRC_DIR)/minimap/, $(MINIMAP_FILES))
 HOOK_SRC = $(addprefix $(SRC_DIR)/hook/, $(HOOK_FILES))
 
 HEADERS	:= -I ./include -I $(MLX_DIR)/include
+INCLUDE = ./include
 SRC = $(CUB_SRC) $(LIBFT_SRC) $(RAYCAST_SRC) $(PARSE_SRC) $(GNL_SRC) $(MINIMAP_SRC) $(HOOK_SRC)
 
 OBJS	:= ${SRC:.c=.o}
@@ -34,7 +33,7 @@ all: libmlx $(NAME)
 libmlx:
 	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
 
-%.o: %.c ./include/cub3D.h 
+%.o: %.c $(INCLUDE)/cub3D.h $(INCLUDE)/get_next_line.h $(INCLUDE)/libft.h $(INCLUDE)/rendering.h $(INCLUDE)/parsing.h
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)

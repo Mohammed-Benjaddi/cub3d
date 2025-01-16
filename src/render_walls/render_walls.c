@@ -6,7 +6,7 @@
 /*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 06:06:00 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/16 20:01:04 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/16 20:26:34 by bbelarra42       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,35 +70,6 @@ int	get_texture_x(t_ray *ray, mlx_texture_t *texture, float tile_size)
 	return (tex_x);
 }
 
-void	render_init(t_render *render, t_game *game, t_ray *rays)
-{
-	render->perp_distance = rays[render->i].distance
-		* cos(rays[render->i].ray_angle - game->player.rotation_angle);
-	render->proj_wall_height = (TILE_SIZE / render->perp_distance)
-		* render->distance_proj_plane;
-	render->wall_strip_height = (int)render->proj_wall_height;
-	render->wall_top_pixel = get_top_pixel(game, render->wall_strip_height);
-	render->wall_bottom_pixel = get_bottom_pixel(game,
-			render->wall_strip_height);
-	return ;
-}
-
-void	put_get_color(t_render *render, t_game *game)
-{
-	render->tex_y = (int)(((render->y - render->wall_top_pixel)
-				/ (double)render->wall_strip_height) * render->texture->height);
-	render->r = render->texture->pixels[(render->tex_y * render->texture->width
-			+ render->tex_x) * 4 + 0];
-	render->g = render->texture->pixels[(render->tex_y * render->texture->width
-			+ render->tex_x) * 4 + 1];
-	render->b = render->texture->pixels[(render->tex_y * render->texture->width
-			+ render->tex_x) * 4 + 2];
-	render->a = render->texture->pixels[(render->tex_y * render->texture->width
-			+ render->tex_x) * 4 + 3];
-	render->color = (render->r << 24) | (render->g << 16) | (render->b << 8) | render->a;
-	ft_put_pixel(game->img, render->i, render->y, render->color);
-}
-
 void	render_walls(t_game *game, t_ray *rays)
 {
 	t_render	render;
@@ -109,20 +80,7 @@ void	render_walls(t_game *game, t_ray *rays)
 	while (render.i < game->num_rays)
 	{
 		render_init(&render, game, rays);
-		if (rays[render.i].was_hit_vertical)
-		{
-			if (rays[render.i].is_ray_facing_right)
-				render.texture = game->ea_texture;
-			else
-				render.texture = game->we_texture;
-		}
-		else
-		{
-			if (rays[render.i].is_ray_facing_down)
-				render.texture = game->so_texture;
-			else
-				render.texture = game->no_texture;
-		}
+		puter(&render, game, rays);
 		render.tex_x = get_texture_x(&rays[render.i], render.texture,
 				TILE_SIZE);
 		render.y = render.wall_top_pixel;

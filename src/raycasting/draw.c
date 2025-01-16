@@ -6,29 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:01:26 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 20:11:15 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 21:44:28 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
-
-void	ft_pixel(t_game *game, int x, int y)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < TILE_SIZE)
-	{
-		j = 0;
-		while (j < TILE_SIZE)
-		{
-			ft_put_pixel(game->img, x + j, y + i, BLACK);
-			j++;
-		}
-		i++;
-	}
-}
 
 void	draw_map(t_game *game)
 {
@@ -49,24 +31,3 @@ void	ft_put_pixel(mlx_image_t *image, int x, int y, int color)
 	mlx_put_pixel(image, x, y, color);
 }
 
-void	draw_background(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	game->background = mlx_new_image(game->mlx, game->width, game->height);
-	if (!game->background || (mlx_image_to_window(game->mlx, game->background,
-				0, 0)) < 0)
-		perror("putting image to window failed");
-	while (i < game->width)
-	{
-		j = 0;
-		while (j < game->height)
-		{
-			ft_put_pixel(game->background, i, j, WHITE);
-			j++;
-		}
-		i++;
-	}
-}

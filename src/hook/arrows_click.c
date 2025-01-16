@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arrows_click.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 21:23:56 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 20:00:49 by simo             ###   ########.fr       */
+/*   Updated: 2025/01/16 21:36:33 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,9 @@ bool	check_height(t_game *game, int x, int y)
 
 bool	player_can_move(t_game *game, double new_x, double new_y)
 {
-	int	i;
 	int	x;
 	int	y;
 
-	i = -5;
 	y = floor(new_y);
 	x = floor(new_x);
 	if (!check_width(game, x, y))

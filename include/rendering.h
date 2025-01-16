@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 03:05:39 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/16 20:02:49 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/16 21:39:41 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,7 @@ typedef struct s_render
 }					t_render;
 
 void	put_get_color(t_render *render, t_game *game);
+void	puter(t_render *render, t_game *game, t_ray *rays);
+void	render_init(t_render *render, t_game *game, t_ray *rays);
+int		get_bottom_pixel(t_game *game, int wall_strip_hight);
+int		get_top_pixel(t_game *game, int wall_strip_hight);

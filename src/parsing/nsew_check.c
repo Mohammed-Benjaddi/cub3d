@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/16 20:22:27 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 21:37:40 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,11 @@ int	color_syntax(t_parse *map_info, char *line, int color)
 	t_rgb	rgb;
 
 	rgb_init(&rgb);
-	if (r(map_info, &rgb, line, color))
+	if (r(&rgb, line, color))
 		return (1);
-	if (g(map_info, &rgb, line))
+	if (g(&rgb, line))
 		return (1);
-	if (b(map_info, &rgb, line))
+	if (b(&rgb, line))
 		return (1);
 	if (line[rgb.i] != '\0' && line[rgb.i] != '\n' && line[rgb.i] != ' ')
 		return (1);

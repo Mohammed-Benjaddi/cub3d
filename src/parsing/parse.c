@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 03:42:44 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/16 20:13:56 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 21:43:50 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,5 @@ int	parse_entry(t_parse *map_info, int ac, char **av)
 				29), 0);
 	trim_empty(map_info->original);
 	set_height_width(map_info);
-	print_original(map_info);
 	return (1);
 }
