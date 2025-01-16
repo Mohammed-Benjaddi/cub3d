@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 21:04:38 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/15 21:11:29 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:46:47 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,30 @@ t_game	*init_infos(t_parse *parse)
 	return (game);
 }
 
+void check_leaks()
+{
+	system("leaks -q cub3D");
+}
+
+void game_free(t_game *game)
+{
+	free(game->minimap);
+	free(game->rays);
+	free(game->no_texture);
+	free(game->so_texture);
+	free(game->we_texture);
+	free(game->ea_texture);
+	parse_free(game->map_info);
+	free(game);
+}
+
 int	main(int ac, char **av)
 {
 	t_parse	parse;
 	t_game	*game;
 	int		flager;
 
+	atexit(check_leaks);
 	flager = 0;
 	flager = parse_entry(&parse, ac, av);
 	if (!flager)
@@ -92,6 +110,8 @@ int	main(int ac, char **av)
 	raycarting(game);
 	mlx_key_hook(game->mlx, ft_hook, game);
 	mlx_loop(game->mlx);
+	printf("esc clicked\n");
+	game_free(game);
 	mlx_terminate(game->mlx);
 	return (EXIT_SUCCESS);
 }

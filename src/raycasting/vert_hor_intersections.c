@@ -6,7 +6,7 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:02:54 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 18:31:38 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:22:44 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,11 @@ void	init_vertical_intersection(t_game *game, t_ver_intersection *ver_inter,
 
 bool	check_intersections(t_game *game, double x, double y)
 {
-	if (x >= 0 && x <= game->width && y >= 0 && y < game->height)
-		return (true);
+	// if (x >= 0 && x <= game->width && y >= 0 && y < game->height
+	// printf("length ---> %d\n", ft_strlen(game->map[(int)floor(y / TILE_SIZE)]));
+	if (x >= 0 && y >= 0 && floor(y / TILE_SIZE) < game->map_info->height
+			&& floor(x / TILE_SIZE) < ft_strlen(game->map[(int)floor(y / TILE_SIZE)]))
+			return (true);
 	return (false);
 }
 
@@ -100,10 +103,12 @@ void	vertical_intersection(t_game *game, t_ver_intersection *ver_inter,
 		double ray_angle)
 {
 	init_vertical_intersection(game, ver_inter, ray_angle);
-	while (ver_inter->next_vert_touch_x >= 0
-		&& ver_inter->next_vert_touch_x <= game->width
-		&& ver_inter->next_vert_touch_y >= 0
-		&& ver_inter->next_vert_touch_y <= game->height)
+	// while (ver_inter->next_vert_touch_x >= 0
+	// 	&& ver_inter->next_vert_touch_x <= game->width
+	// 	&& ver_inter->next_vert_touch_y >= 0
+	// 	&& ver_inter->next_vert_touch_y <= game->height)
+	while (check_intersections(game, ver_inter->next_vert_touch_x,
+			ver_inter->next_vert_touch_y))
 	{
 		ver_inter->x_check = ver_inter->next_vert_touch_x;
 		if (is_ray_facing_left(ray_angle))
