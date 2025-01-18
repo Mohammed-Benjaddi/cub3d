@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_bonus.h                                    :+:      :+:    :+:   */
+/*   parsing.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,8 +13,8 @@
 #ifndef PARSING_BONUS_H
 # define PARSING_BONUS_H
 
-# include "get_next_line_bonus.h"
-# include "libft_bonus.h"
+# include "get_next_line.h"
+# include "libft.h"
 # include <errno.h>
 # include <stdio.h>
 # include <unistd.h>

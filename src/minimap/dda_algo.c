@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dda_algo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:16:51 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/17 22:02:18 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/19 00:31:23 by simo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D_bonus.h>
+#include <cub3D.h>
 
 t_dda_algo	init_dda(t_minimap *minimap, double rot_angle)
 {

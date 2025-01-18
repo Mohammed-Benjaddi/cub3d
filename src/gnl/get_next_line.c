@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/17 22:03:39 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/19 00:31:23 by simo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
+#include <limits.h>
 
 char	*get_next_line(int fd)
 {
@@ -20,7 +21,7 @@ char	*get_next_line(int fd)
 
 	var.buffer = malloc(BUFFER_SIZE + 1);
 	if (read(fd, var.buffer, 0) == -1 || fd < 0
-		|| BUFFER_SIZE <= 0 || fd > OPEN_MAX || BUFFER_SIZE > INT_MAX)
+		|| BUFFER_SIZE <= 0 || fd > 200 || BUFFER_SIZE > INT_MAX)
 		return (ft_cleaner(&holder, var.buffer, 1));
 	while (1)
 	{

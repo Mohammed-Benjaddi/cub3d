@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rendering_bonus.h                                  :+:      :+:    :+:   */
+/*   rendering.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,7 +14,7 @@
 # define RENDERING_BONUS_H
 
 # include <MLX42/MLX42.h>
-# include <cub3D_bonus.h>
+# include <cub3D.h>
 
 typedef struct s_render
 {

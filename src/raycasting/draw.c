@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:01:26 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/17 22:09:01 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/19 00:31:23 by simo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D_bonus.h>
+#include <cub3D.h>
 
 void	draw_map(t_game *game)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
+	// i = 0;
 	if (!game->map)
 		perror("Error: map not found\n");
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);

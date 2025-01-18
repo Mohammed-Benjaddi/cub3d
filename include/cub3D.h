@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D_bonus.h                                      :+:      :+:    :+:   */
+/*   cub3D.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -27,9 +27,9 @@
 # define WIDTH 800
 # define HEIGHT 600
 
-# include "parsing_bonus.h"
+# include "parsing.h"
 # include <MLX42/MLX42.h>
-# include <libft_bonus.h>
+# include <libft.h>
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>

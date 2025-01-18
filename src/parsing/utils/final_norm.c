@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   final_norm.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:52:31 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/17 22:46:47 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/19 00:31:23 by simo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/parsing_bonus.h"
+#include "../../../include/parsing.h"
 
 int	final_norm0(char **map, int len, int i, int y)
 {

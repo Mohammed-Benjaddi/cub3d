@@ -1,5 +1,5 @@
-NAME	:= cub3D_bonus
-CFLAGS	:= -Wextra -Wall -Werror
+NAME	:= cub3D
+CFLAGS	:= #-Wextra -Wall -Werror
 
 MLX_DIR	:= ~/MLX42
 SRC_DIR = src
@@ -32,7 +32,7 @@ bonus: libmlx $(NAME)
 libmlx:
 	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
 
-%.o: %.c $(INCLUDE)/cub3D_bonus.h $(INCLUDE)/get_next_line_bonus.h $(INCLUDE)/libft_bonus.h $(INCLUDE)/rendering_bonus.h $(INCLUDE)/parsing_bonus.h
+%.o: %.c $(INCLUDE)/cub3D.h $(INCLUDE)/get_next_line.h $(INCLUDE)/libft.h $(INCLUDE)/rendering.h $(INCLUDE)/parsing.h
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)
