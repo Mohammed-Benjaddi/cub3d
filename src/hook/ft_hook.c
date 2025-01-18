@@ -6,11 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 18:36:16 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 22:06:01 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:22:06 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include <cub3D_bonus.h>
 
 void	init_rotation(t_game *game)
 {
@@ -92,23 +92,23 @@ t_game	*init_infos(t_parse *parse)
 	game->map_info = parse;
 	game->width = game->map_info->width * TILE_SIZE;
 	game->height = game->map_info->height * TILE_SIZE;
-	game->num_rays = game->width;
-	game->mlx = mlx_init(game->width, game->height, "MLX42", false);
+	game->num_rays = WIDTH;
+	game->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", false);
 	game->map = game->map_info->original;
 	game->fov = 60 * PI / 180;
-	game->player.rotation_speed = 5;
+	game->player.rotation_speed = 4;
 	game->player.turn_direction = 0;
 	game->player.walk_direction = 0;
 	player_position(game);
 	game->player.rotation_speed = 10 * (PI / 180);
 	game->player.player_x = (game->map_info->player_x * TILE_SIZE + 15);
 	game->player.player_y = (game->map_info->player_y * TILE_SIZE + 15);
-	game->player.move_speed = 10;
+	game->player.move_speed = 4;
 	game->rays = malloc(sizeof(t_ray) * game->num_rays);
-	game->minimap = malloc(sizeof(t_minimap));
 	game->no_texture = mlx_load_png(game->map_info->no_texture);
 	game->so_texture = mlx_load_png(game->map_info->so_texture);
 	game->we_texture = mlx_load_png(game->map_info->we_texture);
 	game->ea_texture = mlx_load_png(game->map_info->ea_texture);
+	game->minimap = malloc(sizeof(t_minimap));
 	return (game);
 }

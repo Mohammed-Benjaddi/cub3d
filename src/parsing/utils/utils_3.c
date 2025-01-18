@@ -6,11 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/16 22:01:36 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:07:17 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/parsing.h"
+#include "../../../include/parsing_bonus.h"
 
 void	map_free(t_parse *map_info)
 {
@@ -38,13 +38,11 @@ int	map_checker(char **map, int len)
 		y = 0;
 		while (map[i][y] && map[i][y] != '\n')
 		{
-			if ((map[i][y] == 'M') && (i == 0 || y == 0 || i == len))
+			if (final_norm0(map, len, i, y))
 				return (1);
 			else if (check_help(map, i, y))
 				return (1);
-			else if ((i + 1 < len && map[i][y] == 'M')
-				&& ((int)custom_strlen(map[i + 1]) - 1 < y || map[i
-					+ 1][y] == ' '))
+			else if (final_norm1(map, len, i, y))
 				return (1);
 			y++;
 		}

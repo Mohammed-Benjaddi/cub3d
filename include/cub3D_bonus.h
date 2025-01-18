@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:48:07 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 21:44:20 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:17:38 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # define RED 0xFF0000FF
 # define WHITE 0xFFFFFFFF
@@ -22,14 +22,14 @@
 # define BEIGE 0xFFB38E
 
 # define PI 3.14159265358979323846
-// # define fov 60 * PI / 180
 # define NUM_RAYS 1200
 # define TILE_SIZE 30
-# define MM_TILE_SIZE 20
+# define WIDTH 800
+# define HEIGHT 600
 
-# include "parsing.h"
+# include "parsing_bonus.h"
 # include <MLX42/MLX42.h>
-# include <libft.h>
+# include <libft_bonus.h>
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -170,7 +170,6 @@ void					d_key(t_game *game);
 void					a_key(t_game *game);
 void					render_walls(t_game *game, t_ray *rays);
 void					draw_minimap(t_game *game);
-void					init_minimap(t_game *game, t_minimap *minimap);
 bool					player_can_move(t_game *game, double new_x,
 							double new_y);
 void					get_first_hor_inter(t_game *game,
@@ -178,8 +177,8 @@ void					get_first_hor_inter(t_game *game,
 void					get_first_ver_inter(t_game *game,
 							t_ver_intersection *ver_inter, double ray_angle);
 bool					map_has_wall(t_game *game, double x, double y);
-void					dda(t_minimap *minimap, double rot_angle);
 void					ft_hook(mlx_key_data_t keydata, void *param);
 t_game					*init_infos(t_parse *parse);
+void					dda(t_minimap *minimap, double rot_angle);
 
 #endif

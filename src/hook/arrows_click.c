@@ -6,11 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 21:23:56 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 21:36:33 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:02:18 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include <cub3D_bonus.h>
 
 void	right_arrow(t_game *game)
 {

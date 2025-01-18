@@ -6,11 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:28:13 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/14 18:31:32 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:09:01 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include <cub3D_bonus.h>
 
 double	normalize_angle(float angle)
 {
@@ -88,22 +88,10 @@ void	cast_rays(t_game *game)
 
 	ray_angle = game->player.rotation_angle - (game->fov / 2);
 	i = 0;
-	while (i < game->width)
+	while (i < game->num_rays)
 	{
 		cast_ray(game, &game->rays[i], ray_angle);
 		ray_angle += (game->fov / game->num_rays);
 		i++;
 	}
 }
-
-// void	render_rays(t_game *game)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < NUM_RAYS)
-// 	{
-// 		// draw_line(game, game->player, game->rays[i]);
-// 		i++;
-// 	}
-// }

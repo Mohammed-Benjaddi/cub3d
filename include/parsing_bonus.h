@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   parsing_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 03:32:49 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/16 22:17:58 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:18:09 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef PARSING_BONUS_H
+# define PARSING_BONUS_H
 
-# include "get_next_line.h"
-# include "libft.h"
+# include "get_next_line_bonus.h"
+# include "libft_bonus.h"
 # include <errno.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -69,7 +69,7 @@ int			east_checker(t_parse *map_info, int continues, int *E);
 size_t		real_size(t_parse *map_info);
 char		**set_original(char **src, size_t size, int som);
 void		free_original(char **map);
-void		set_height_width(t_parse *map_info);
+int			set_height_width(t_parse *map_info);
 size_t		get_longest_line(t_parse *map_info);
 void		overwrite(char *line);
 int			valid(char *line);
@@ -114,5 +114,7 @@ void		flood_fill(char **map, int i, size_t y);
 int			parse_entry(t_parse *map_info, int ac, char **av);
 void		flood_filler(t_parse *map_info);
 int			check_help(char **map, int i, int y);
+int			final_norm0(char **map, int len, int i, int y);
+int			final_norm1(char **map, int len, int i, int y);
 
 #endif

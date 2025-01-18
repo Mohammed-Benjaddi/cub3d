@@ -1,6 +1,5 @@
-NAME	:= cub3D
+NAME	:= cub3D_bonus
 CFLAGS	:= -Wextra -Wall -Werror
-MORE_FLAGS = #-fsanitize=address -g
 
 MLX_DIR	:= ~/MLX42
 SRC_DIR = src
@@ -8,7 +7,7 @@ CUB_FILES = cub3D.c ./render_walls/render_walls.c ./render_walls/render_help.c
 LIBS	:= $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
 RAYCAST_FILES = raycasting.c utils.c draw.c player_utils.c cast_rays.c check_directions.c vert_hor_intersections.c calc_first_inters.c
-PARSE_FILES = parse.c nsew_check.c utils/utils_0.c utils/utils_1.c utils/utils_2.c utils/utils_3.c utils/utils_4.c utils/utils_5.c utils/help.c  utils/rgb_help.c
+PARSE_FILES = parse.c nsew_check.c utils/utils_0.c utils/utils_1.c utils/utils_2.c utils/utils_3.c utils/utils_4.c utils/utils_5.c utils/help.c  utils/rgb_help.c utils/final_norm.c
 LIBFT_FILES = ft_strdup.c ft_strlen.c ft_substr.c ft_atoi.c
 GNL_FILES = get_next_line.c get_next_line_utils.c
 MINIMAP_FILES = minimap.c dda_algo.c
@@ -28,16 +27,16 @@ SRC = $(CUB_SRC) $(LIBFT_SRC) $(RAYCAST_SRC) $(PARSE_SRC) $(GNL_SRC) $(MINIMAP_S
 
 OBJS	:= ${SRC:.c=.o}
 
-all: libmlx $(NAME)
+bonus: libmlx $(NAME)
 
 libmlx:
 	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
 
-%.o: %.c $(INCLUDE)/cub3D.h $(INCLUDE)/get_next_line.h $(INCLUDE)/libft.h $(INCLUDE)/rendering.h $(INCLUDE)/parsing.h
+%.o: %.c $(INCLUDE)/cub3D_bonus.h $(INCLUDE)/get_next_line_bonus.h $(INCLUDE)/libft_bonus.h $(INCLUDE)/rendering_bonus.h $(INCLUDE)/parsing_bonus.h
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(MORE_FLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
 clean:
 	@rm -rf $(OBJS)

@@ -6,11 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/16 21:37:40 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:07:17 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/parsing.h"
+#include "../../include/parsing_bonus.h"
 
 int	south_checker(t_parse *map_info, int continues, int *S)
 {

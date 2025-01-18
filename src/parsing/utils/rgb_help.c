@@ -6,11 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 05:35:09 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/16 22:03:51 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:07:17 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/parsing.h"
+#include "../../../include/parsing_bonus.h"
 
 int	r(t_rgb *rgb, char *line, int color)
 {

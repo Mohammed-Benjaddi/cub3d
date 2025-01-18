@@ -6,11 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:57:25 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/13 18:58:48 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:09:01 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include <cub3D_bonus.h>
 
 int	is_ray_facing_down(double ray_angle)
 {

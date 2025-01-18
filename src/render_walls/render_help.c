@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   render_help.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 20:09:04 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/16 20:34:06 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/17 22:09:01 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/rendering.h"
-#include <cub3D.h>
+#include "../../include/rendering_bonus.h"
+#include <cub3D_bonus.h>
 
 void	puter(t_render *render, t_game *game, t_ray *rays)
 {
@@ -58,8 +58,7 @@ void	render_init(t_render *render, t_game *game, t_ray *rays)
 	render->proj_wall_height = (TILE_SIZE / render->perp_distance)
 		* render->distance_proj_plane;
 	render->wall_strip_height = (int)render->proj_wall_height;
-	render->wall_top_pixel = get_top_pixel(game, render->wall_strip_height);
-	render->wall_bottom_pixel = get_bottom_pixel(game,
-			render->wall_strip_height);
+	render->wall_top_pixel = get_top_pixel(render->wall_strip_height);
+	render->wall_bottom_pixel = get_bottom_pixel(render->wall_strip_height);
 	return ;
 }

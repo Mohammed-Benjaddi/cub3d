@@ -6,11 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:55:29 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 20:20:35 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:02:18 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 void	init_minimap(t_game *game, t_minimap *minimap)
 {

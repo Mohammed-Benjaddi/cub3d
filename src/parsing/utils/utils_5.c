@@ -6,11 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:25:44 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/16 21:54:21 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:07:17 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/parsing.h"
+#include "../../../include/parsing_bonus.h"
 
 size_t	get_longest_line(t_parse *map_info)
 {
@@ -45,7 +45,7 @@ size_t	real_size(t_parse *map_info)
 	return (real_size);
 }
 
-void	set_height_width(t_parse *map_info)
+int	set_height_width(t_parse *map_info)
 {
 	size_t	height;
 
@@ -54,6 +54,7 @@ void	set_height_width(t_parse *map_info)
 		height++;
 	map_info->height = height;
 	map_info->width = get_longest_line(map_info);
+	return (0);
 }
 
 void	overwrite(char *line)

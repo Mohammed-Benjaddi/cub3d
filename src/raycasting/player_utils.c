@@ -6,11 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:01:37 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 20:11:31 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:09:01 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include <cub3D_bonus.h>
 
 bool	is_player(char c)
 {

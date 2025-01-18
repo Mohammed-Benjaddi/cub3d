@@ -6,11 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 21:04:38 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 22:15:56 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:21:01 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include <cub3D_bonus.h>
 
 void	game_free(t_game *game)
 {
@@ -38,7 +38,8 @@ int	main(int ac, char **av)
 	if (!game->no_texture || !game->so_texture || !game->we_texture
 		|| !game->ea_texture)
 	{
-		printf("Error loading textures\n");
+		parse_free(game->map_info);
+		write(2, "Error loading textures\n", 23);
 		exit(1);
 	}
 	raycarting(game);

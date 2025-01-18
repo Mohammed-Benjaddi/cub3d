@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 04:21:59 by bbelarra          #+#    #+#             */
-/*   Updated: 2024/04/02 18:30:55 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/17 22:03:39 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*filler(char *holder, int readed)
 {

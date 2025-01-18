@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   render_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbelarra42 <bbelarra@student.1337.ma>      +#+  +:+       +#+        */
+/*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 06:06:00 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/16 20:26:34 by bbelarra42       ###   ########.fr       */
+/*   Updated: 2025/01/17 22:09:01 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/rendering.h"
-#include <cub3D.h>
+#include "../../include/rendering_bonus.h"
+#include <cub3D_bonus.h>
 
 void	floor_ceiling(t_game *game)
 {
@@ -20,12 +20,12 @@ void	floor_ceiling(t_game *game)
 
 	i = 0;
 	j = 0;
-	while (i < game->height)
+	while (i < HEIGHT)
 	{
 		j = 0;
-		while (j < game->width)
+		while (j < WIDTH)
 		{
-			if (i < game->height / 2)
+			if (i < HEIGHT / 2)
 				ft_put_pixel(game->img, j, i, game->map_info->ceiling_color);
 			else
 				ft_put_pixel(game->img, j, i, game->map_info->floor_color);
@@ -35,23 +35,21 @@ void	floor_ceiling(t_game *game)
 	}
 }
 
-int	get_top_pixel(t_game *game, int wall_strip_hight)
+int	get_top_pixel(int wall_strip_hight)
 {
 	int	wall_top_pixel;
 
-	wall_top_pixel = (game->height / 2) - (wall_strip_hight / 2);
-	if (wall_top_pixel < 0)
-		wall_top_pixel = 0;
+	wall_top_pixel = (HEIGHT / 2) - (wall_strip_hight / 2);
 	return (wall_top_pixel);
 }
 
-int	get_bottom_pixel(t_game *game, int wall_strip_hight)
+int	get_bottom_pixel(int wall_strip_hight)
 {
 	int	wall_bottom_pixel;
 
-	wall_bottom_pixel = (game->height / 2) + (wall_strip_hight / 2);
-	if (wall_bottom_pixel > game->height)
-		wall_bottom_pixel = game->height;
+	wall_bottom_pixel = (HEIGHT / 2) + (wall_strip_hight / 2);
+	if (wall_bottom_pixel > HEIGHT)
+		wall_bottom_pixel = HEIGHT;
 	return (wall_bottom_pixel);
 }
 
@@ -75,7 +73,7 @@ void	render_walls(t_game *game, t_ray *rays)
 	t_render	render;
 
 	render.i = 0;
-	render.distance_proj_plane = (game->width / 2.0) / tan(game->fov / 2.0);
+	render.distance_proj_plane = (WIDTH / 2.0) / tan(game->fov / 2.0);
 	floor_ceiling(game);
 	while (render.i < game->num_rays)
 	{

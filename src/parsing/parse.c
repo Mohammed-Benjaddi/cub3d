@@ -6,11 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 03:42:44 by bbelarra42        #+#    #+#             */
-/*   Updated: 2025/01/16 21:43:50 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:07:17 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/parsing.h"
+#include "../include/parsing_bonus.h"
 
 int	position_finder(t_parse *map_info)
 {

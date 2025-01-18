@@ -6,11 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
-/*   Updated: 2025/01/16 22:12:14 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:07:17 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/parsing.h"
+#include "../../../include/parsing_bonus.h"
 
 size_t	count_word(char *s, char delimiter)
 {
@@ -66,10 +66,10 @@ void	texture_initilizer(t_parse *map_info)
 
 int	check_help(char **map, int i, int y)
 {
-	if (map[i][y] == 'M' && (map[i][y + 1] == '\n' || map[i][y
-			+ 1] == ' ' || map[i][y - 1] == ' '
-			|| (int)custom_strlen(map[i - 1]) - 1 < y || map[i
-			- 1][y] == ' '))
+	if ((map[i][y] == 'M' || map[i][y] == 'N' || map[i][y] == 'S'
+		|| map[i][y] == 'E' || map[i][y] == 'W') && (map[i][y + 1] == '\n'
+			|| map[i][y + 1] == ' ' || map[i][y - 1] == ' '
+			|| (int)custom_strlen(map[i - 1]) - 1 < y || map[i - 1][y] == ' '))
 		return (1);
 	return (0);
 }

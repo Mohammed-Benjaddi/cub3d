@@ -6,11 +6,11 @@
 /*   By: mben-jad <mben-jad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:04:04 by mben-jad          #+#    #+#             */
-/*   Updated: 2025/01/16 20:12:37 by mben-jad         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:09:01 by mben-jad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include <cub3D_bonus.h>
 
 void	get_first_hor_inter(t_game *game, t_hor_intersection *hor_inter,
 		double ray_angle)
