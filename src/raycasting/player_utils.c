@@ -1,56 +1,40 @@
-#include <raycasting.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 19:01:37 by mben-jad          #+#    #+#             */
+/*   Updated: 2025/01/19 00:31:23 by simo             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-bool is_player(char c)
+#include <cub3D.h>
+
+bool	is_player(char c)
 {
-  if(c == 'N' || c == 'S' || c == 'E' || c == 'W')
-    return true;
-  return false;
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (true);
+	return (false);
 }
 
-void update_direction_dda(t_game *game, double rot_angle, int color) // update player direction using dda algo
+void	set_player_position(t_game *game)
 {
-  game->n_px  = game->player_x + cos(rot_angle) * 30;
-  game->n_py = game->player_y + sin(rot_angle) * 30;
-  double dx;
-  double dy;
-  dx = game->n_px - game->player_x;
-  dy = game->n_py - game->player_y;
-  double steps;
-  if(fabs(dx) > fabs(dy))
-    steps = fabs(dx);
-  else
-    steps = fabs(dy);
-  int i;
-  double x = game->player_x + 15;
-  double y = game->player_y + 15;
-  double x_inc = dx / steps;
-  double y_inc = dy / steps;
-  i = 0;
-  while(i <= steps + 70)
-  {
-    ft_put_pixel(game->img, roundf(x), roundf(y), color);
-    x += x_inc;
-    y += y_inc;
-    i++;    
-  }
-}
-
-void set_player_position(t_game *game)
-{
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
-	while(game->map[i])
+	while (game->map[i])
 	{
 		j = 0;
-		while(game->map[i][j])
+		while (game->map[i][j])
 		{
-			if(is_player(game->map[i][j]))
+			if (is_player(game->map[i][j]))
 			{
-				game->player_x = (j * 30);
-				game->player_y = (i * 30);
-				return;
+				game->player.player_x = (j * TILE_SIZE) + 15;
+				game->player.player_y = (i * TILE_SIZE) + 15;
+				return ;
 			}
 			j++;
 		}
@@ -58,25 +42,31 @@ void set_player_position(t_game *game)
 	}
 }
 
-void put_player(t_game *game)
-{
-  int i;
-  int j;
-
-  i = 0;
-  j = 0;
-  
-  while(i < 30)
-  {
-    j = 0;
-    while (j < 30)
-    {
-      if(j >= 12 && j <= 18 && i >= 12 && i <= 18)
-        ft_put_pixel(game->img, game->player_x + j, game->player_y + i, RED);
-      j++;
-    }
-    i++;
-  }
-  update_direction_dda(game, game->rotation_angle, RED);
-  cast_rays(game);
-}
+// void	update_direction_dda(t_game *game, double rot_angle, int color)
+// 		// update player direction using dda algo
+// {
+// 	game->player.n_px = game->player.player_x + cos(rot_angle) * TILE_SIZE;
+// 	game->player.n_py = game->player.player_y + sin(rot_angle) * TILE_SIZE;
+// 	double dx;
+// 	double dy;
+// 	dx = game->player.n_px - game->player.player_x;
+// 	dy = game->player.n_py - game->player.player_y;
+// 	double steps;
+// 	if (fabs(dx) > fabs(dy))
+// 		steps = fabs(dx);
+// 	else
+// 		steps = fabs(dy);
+// 	int i;
+// 	double x = game->player.player_x;
+// 	double y = game->player.player_y;
+// 	double x_inc = dx / steps;
+// 	double y_inc = dy / steps;
+// 	i = 0;
+// 	while (i <= steps + 70)
+// 	{
+// 		ft_put_pixel(game->img, roundf(x), roundf(y), color);
+// 		x += x_inc;
+// 		y += y_inc;
+// 		i++;
+// 	}
+// }

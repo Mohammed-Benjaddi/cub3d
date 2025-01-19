@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   final_norm.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 19:02:27 by mben-jad          #+#    #+#             */
+/*   Created: 2025/01/17 16:52:31 by mben-jad          #+#    #+#             */
 /*   Updated: 2025/01/19 00:31:23 by simo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include "../../../include/parsing.h"
 
-void	destroy_images(t_game *game)
+int	final_norm0(char **map, int len, int i, int y)
 {
-	mlx_delete_image(game->mlx, game->img);
+	if ((map[i][y] == 'M' || map[i][y] == 'N' || map[i][y] == 'S'
+			|| map[i][y] == 'E' || map[i][y] == 'W') && (i == 0 || y == 0
+			|| i == len))
+		return (1);
+	return (0);
 }
 
-void	rebuild_map(t_game *game)
+int	final_norm1(char **map, int len, int i, int y)
 {
-	destroy_images(game);
-	draw_map(game);
-	cast_rays(game);
-	render_walls(game, game->rays);
-	draw_minimap(game);
-}
-
-void	raycarting(t_game *game)
-{
-	draw_map(game);
-	cast_rays(game);
-	render_walls(game, game->rays);
-	draw_minimap(game);
+	if (((i + 1 <= len) && (map[i][y] == 'M' || map[i][y] == 'N'
+		|| map[i][y] == 'S' || map[i][y] == 'E' || map[i][y] == 'W'))
+		&& ((int)custom_strlen(map[i + 1]) - 1 < y || map[i + 1][y] == ' '))
+		return (1);
+	return (0);
 }

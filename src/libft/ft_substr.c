@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 19:02:27 by mben-jad          #+#    #+#             */
+/*   Created: 2024/01/17 00:15:47 by bbelarra          #+#    #+#             */
 /*   Updated: 2025/01/19 00:31:23 by simo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include "../../include/libft.h"
 
-void	destroy_images(t_game *game)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	mlx_delete_image(game->mlx, game->img);
-}
+	char	*malloca;
+	size_t	slen;
+	size_t	i;
 
-void	rebuild_map(t_game *game)
-{
-	destroy_images(game);
-	draw_map(game);
-	cast_rays(game);
-	render_walls(game, game->rays);
-	draw_minimap(game);
-}
-
-void	raycarting(t_game *game)
-{
-	draw_map(game);
-	cast_rays(game);
-	render_walls(game, game->rays);
-	draw_minimap(game);
+	if (!s)
+		return (NULL);
+	i = 0;
+	slen = ft_strlen(s);
+	if (len > slen - start)
+		len = slen - start;
+	if (start > slen)
+		len = 0;
+	malloca = (char *)malloc(sizeof(char) * (len + 1));
+	if (malloca == NULL)
+		return (NULL);
+	while (i < len && s[i + start] != '\0')
+	{
+		malloca[i] = s[i + start];
+		i++;
+	}
+	malloca[i] = '\0';
+	return (malloca);
 }

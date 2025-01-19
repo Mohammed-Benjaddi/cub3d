@@ -1,122 +1,97 @@
-#include <raycasting.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cast_rays.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 18:28:13 by mben-jad          #+#    #+#             */
+/*   Updated: 2025/01/19 16:00:30 by simo             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// void put_ray(t_game *game, double rot_angle, int color) // update player direction using dda algo
-// {
-//   bool wall_hit_x = false;
-//   bool wall_hit_y = false;
-//   // player is facing down
-//   if(to_down())
-//   {
+#include <cub3D.h>
 
-//   }
-
-  // game->n_px  = game->player_x + cos(rot_angle) * 30;
-  // game->n_py = game->player_y + sin(rot_angle) * 30;
-  // double dx;
-  // double dy;
-  // dx = game->n_px - game->player_x;
-  // dy = game->n_py - game->player_y;
-  // double steps;
-  // if(fabs(dx) > fabs(dy))
-  //   steps = fabs(dx);
-  // else
-  //   steps = fabs(dy);
-  // int i;
-  // double x = game->player_x + 15;
-  // double y = game->player_y + 15;
-  // double x_inc = dx / steps;
-  // double y_inc = dy / steps;
-  // i = 0;
-  // while(i <= steps + 70)
-  // {
-  //   ft_put_pixel(game->img, roundf(x), roundf(y), color);
-  //   x += x_inc;
-  //   y += y_inc;
-  //   i++;    
-  // }
-// }
-
-bool to_down(double angle)
+double	normalize_angle(float angle)
 {
-  if(angle > 0 && angle < M_PI)
-    return true;
-  return false;
+	angle = fmod(angle, 2 * M_PI);
+	if (angle < 0)
+		angle = (2 * M_PI) + angle;
+	return (angle);
 }
 
-bool to_right(double angle)
+double	calculate_distance(float x1, float y1, float x2, float y2)
 {
-  if(angle < 0.5 * M_PI || angle > 1.5 * M_PI)
-    return true;
-  return false;
+	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-bool map_has_wall(t_game *game, int x, int y)
+void	get_the_smaller_distance(t_game *game, t_ray *ray,
+		double horz_hit_distance, double vert_hit_distance)
 {
-  if(y < 0 || y >= game->height / 30 || x < 0 || x >= game->width / 30)
-    return true;
-  printf("map --> %c | x --> %d | y --> %d\n", game->map[y][x], x, y);
-  if(game->map[y][x] == '1')
-    return true;
-  return false;
+	t_hor_intersection	*hor_inter;
+	t_ver_intersection	*ver_inter;
+
+	hor_inter = &game->h_intersection;
+	ver_inter = &game->v_intersection;
+	if (vert_hit_distance < horz_hit_distance)
+	{
+		ray->distance = vert_hit_distance;
+		ray->wall_hit_x = ver_inter->vert_wall_hit_x;
+		ray->wall_hit_y = ver_inter->vert_wall_hit_y;
+		ray->was_hit_vertical = true;
+	}
+	else
+	{
+		ray->distance = horz_hit_distance;
+		ray->wall_hit_x = hor_inter->horz_wall_hit_x;
+		ray->wall_hit_y = hor_inter->horz_wall_hit_y;
+		ray->was_hit_vertical = false;
+	}
+	ray->is_ray_facing_down = is_ray_facing_down(ray->ray_angle);
+	ray->is_ray_facing_up = is_ray_facing_up(ray->ray_angle);
+	ray->is_ray_facing_left = is_ray_facing_left(ray->ray_angle);
+	ray->is_ray_facing_right = is_ray_facing_right(ray->ray_angle);
 }
 
-void put_ray(t_game *game, double rays_start, int color)
+void	cast_ray(t_game *game, t_ray *ray, float ray_angle)
 {
-  (void) rays_start;
-  (void) color;
-  double first_inter_x;
-  double first_inter_y;
-  double next_hor_x;
-  double next_hor_y;
+	t_hor_intersection	*hor_inter;
+	t_ver_intersection	*ver_inter;
+	double				horz_hit_distance;
+	double				vert_hit_distance;
 
-  next_hor_x = 0;
-  next_hor_y = 0;
-  if(!to_down(game->rotation_angle))
-    first_inter_y = floor(game->player_y / TILE_SIZE) * TILE_SIZE - 1;
-  else if(to_down(game->rotation_angle))
-    first_inter_y = floor(game->player_y / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
-  first_inter_x = floor((first_inter_y - game->player_y) / tan(game->rotation_angle)) + game->player_x;
-  next_hor_x = first_inter_x;
-  next_hor_y = first_inter_y;
-
-  // printf("x ---> %f\n", next_hor_x);
-  // printf("y ---> %f\n", next_hor_y);
-  // printf("--------------------------------------------\n");
-  double xa;
-  double ya;
-  if(!to_down(game->rotation_angle))
-    ya = -TILE_SIZE;
-  else if(to_down(game->rotation_angle))
-    ya = TILE_SIZE;
-  xa = TILE_SIZE / tan(game->rotation_angle);
-  while(next_hor_x <= game->width && next_hor_x >= 0 && next_hor_y <= game->height && next_hor_y >= 0)
-  {
-    if(map_has_wall(game, (int)floor(next_hor_x / 30), (int)floor(next_hor_y / 30)))
-    {
-      printf("wall touched\n");
-      game->wall_hit_x = next_hor_x;
-      game->wall_hit_y = next_hor_y;
-      break;
-    }
-    next_hor_x += xa;
-    next_hor_y += ya;
-    game->wall_hit_x = next_hor_x; 
-    game->wall_hit_y = next_hor_y;
-  }
+	ray_angle = normalize_angle(ray_angle);
+	hor_inter = &game->h_intersection;
+	ver_inter = &game->v_intersection;
+	horizontal_intersection(game, hor_inter, ray_angle);
+	vertical_intersection(game, ver_inter, ray_angle);
+	if (hor_inter->found_horz_wall_hit)
+		horz_hit_distance = calculate_distance(game->player.player_x,
+				game->player.player_y, hor_inter->horz_wall_hit_x,
+				hor_inter->horz_wall_hit_y);
+	else
+		horz_hit_distance = INT_MAX;
+	if (ver_inter->found_vert_wall_hit)
+		vert_hit_distance = calculate_distance(game->player.player_x,
+				game->player.player_y, ver_inter->vert_wall_hit_x,
+				ver_inter->vert_wall_hit_y);
+	else
+		vert_hit_distance = INT_MAX;
+	ray->ray_angle = ray_angle;
+	get_the_smaller_distance(game, ray, horz_hit_distance, vert_hit_distance);
 }
 
-void cast_rays(t_game *game)
+void	cast_rays(t_game *game)
 {
-  game->rays_start = game->rotation_angle - (FOV / 2);
-  game->rays_end = game->rotation_angle + (FOV / 2);
-  int i = 0;
-  while (i < 1 && game->rays_start < game->rays_end)
-  {
-    put_ray(game, game->rays_start, BEIGE);
-    printf("x ---> %f\n", game->wall_hit_x);
-    printf("y ---> %f\n", game->wall_hit_y);
-    printf("--------------------------------------------\n");
-    game->rays_start += (FOV / NUM_RAYS);
-    i++;
-  }
+	double	ray_angle;
+	int		i;
+
+	ray_angle = game->player.rotation_angle - (game->fov / 2);
+	i = 0;
+	while (i < game->num_rays)
+	{
+		cast_ray(game, &game->rays[i], ray_angle);
+		ray_angle += (game->fov / game->num_rays);
+		i++;
+	}
 }

@@ -1,88 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: simo <simo@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/12 21:04:38 by mben-jad          #+#    #+#             */
+/*   Updated: 2025/01/19 16:00:50 by simo             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <cub3D.h>
-// #include <raycasting.h>
 
-void	ft_hook(mlx_key_data_t keydata, void *param)
+void	game_free(t_game *game)
 {
-	t_game *game;
-
-	game = param;
-	if (keydata.key == MLX_KEY_ESCAPE)
-			mlx_close_window(game->mlx);
-	else if (keydata.key == MLX_KEY_RIGHT && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		right_arrow(game);
-	else if (keydata.key == MLX_KEY_LEFT && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		left_arrow(game);
-	else if (keydata.key == MLX_KEY_W && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		w_key(game);
-	else if (keydata.key == MLX_KEY_S && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		s_key(game);
-	else if (keydata.key == MLX_KEY_D && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		d_key(game);
-	else if (keydata.key == MLX_KEY_A && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		a_key(game);
-	game->turn_direction = 0;
-	game->walk_direction = 0;
-  rebuild_map(game);
-	// printf("start ---> %f\n", game->rotation_angle - (FOV / 2));
-	// printf("mid ---> %f\n", game->rotation_angle);
-	// printf("end ---> %f\n", game->rotation_angle + (FOV / 2));
+	free(game->minimap);
+	free(game->rays);
+	parse_free(game->map_info);
+	mlx_delete_texture(game->no_texture);
+	mlx_delete_texture(game->we_texture);
+	mlx_delete_texture(game->so_texture);
+	mlx_delete_texture(game->ea_texture);
+	free(game);
 }
 
-t_game *init_infos()
+int	main(int ac, char **av)
 {
-	t_game *game;
-	game = malloc(sizeof(t_game));
-	game->width = 720;
-	game->height = 420;
-	game->mlx = mlx_init(game->width , game->height, "MLX42", false);
-	game->map = malloc(sizeof(char *) * 15);
-	game->map[0] = 	ft_strdup("111111111111111111111111");
-	game->map[1] = 	ft_strdup("10N000000011000000000001");
-	game->map[2] = 	ft_strdup("100100000111000000000001");
-	game->map[3] = 	ft_strdup("100100000000000000000001");
-	game->map[4] = 	ft_strdup("111111111011000011100001");
-	game->map[5] = 	ft_strdup("100000000011000011101111");
-	game->map[6] = 	ft_strdup("111101111111101110000001");
-	game->map[7] = 	ft_strdup("111101111111110111011001");
-	game->map[8] = 	ft_strdup("110000001101010111000001");
-	game->map[9] = 	ft_strdup("100000000000000110000011");
-	game->map[10] = ft_strdup("100000000000000011010111");
-	game->map[11] = ft_strdup("110000011101010111110111");
-	game->map[12] = ft_strdup("111101111110101101111001");
-	game->map[13] = ft_strdup("111111111111111111111111");
-	game->map[14] = NULL;
-	game->x = game->width / 2;
-	game->y = game->height / 2;
-	game->angle = 90;
-	game->direction = 'N';
-	game->rotation_speed = 5;
-	game->turn_direction = 0;
-	game->walk_direction = 0;
-	game->wall_hit_x = 0;
-	game->wall_hit_y = 0; 
-	game->rotation_angle = PI / 2;
-	game->rotation_speed = 9 * (PI / 180);
-	set_player_position(game);
-	game->move_speed = 9;
-	// printf("init rotation angle ---> %f\n", game->rotation_angle);
-	// printf("init rotation speed ---> %f\n", game->rotation_speed);
-	// game->background = mlx_new_image(game->mlx, game->width + 500, game->height + 200);
-  // mlx_image_to_window(game->mlx, game->background, 0, 0);
-	// game->img = mlx_new_image(game->mlx, game->width, game->height);
-  // if (!game->img || (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0))
-    // perror("putting image to window failed");
-	return game;
-}
+	t_parse	parse;
+	t_game	*game;
+	int		flager;
 
-int main(void)
-{
-	t_game *game;
-	game = init_infos();
+	flager = 0;
+	flager = parse_entry(&parse, ac, av);
+	if (!flager)
+		return (EXIT_FAILURE);
+	game = init_infos(&parse);
+	if (!game->no_texture || !game->so_texture || !game->we_texture
+		|| !game->ea_texture)
+	{
+		parse_free(game->map_info);
+		write(2, "Error loading textures\n", 23);
+		exit(1);
+	}
 	raycarting(game);
-	// printf("----> %d\n", game->rotation_angle % (2 * PI));	
 	mlx_key_hook(game->mlx, ft_hook, game);
 	mlx_loop(game->mlx);
+	game_free(game);
 	mlx_terminate(game->mlx);
-
 	return (EXIT_SUCCESS);
 }
